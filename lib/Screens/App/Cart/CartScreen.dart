@@ -150,6 +150,21 @@ class _CartScreenState extends State<CartScreen> {
                                           style: kTextgrey,
                                         ),
                                       ),
+                                      SizedBox(height: 10,),
+                                       Container(
+                        padding: EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: Colors.orangeAccent,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Text(
+                          data.store['cuisine'],
+                          style: TextStyle(
+                              fontSize: 9,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
                                     ],
                                   ),
                                 )
@@ -470,7 +485,7 @@ class _CartScreenState extends State<CartScreen> {
                                             borderRadius:
                                                 BorderRadius.circular(5),
                                             border: Border.all(
-                                              color: kPinkColor,
+                                              color: Colors.black54,
                                             ),
                                             color: selectedCategory
                                                     .contains(category4)
@@ -480,7 +495,7 @@ class _CartScreenState extends State<CartScreen> {
                                           child: Center(
                                             child: Text(
                                               'Others',
-                                              style: kPink14,
+                                              style: kBlack87,
                                             ),
                                           ),
                                         ),
@@ -615,13 +630,14 @@ class _CartScreenState extends State<CartScreen> {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: kPinkColor,
+                          primary: Colors.green,
                         ),
                         child: Text(
-                          "Proceed to Checkout",
+                          "PLACE ORDER",
                           style: TextStyle(
+                            fontWeight: FontWeight.w800,
                             fontFamily: 'Gilroy',
-                            fontSize: 15,
+                            fontSize: 18,
                             color: Color(0xffffffff),
                           ),
                         ),

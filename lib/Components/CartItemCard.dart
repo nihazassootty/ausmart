@@ -32,7 +32,7 @@ Widget cartItemCard({item, context}) {
     width: MediaQuery.of(context).size.width,
     color: kWhiteColor,
     child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -44,7 +44,12 @@ Widget cartItemCard({item, context}) {
               children: [
                 Text(
                   item["name"],
-                  style: kNavBarTitle,
+                  style: TextStyle(
+                    fontFamily: PrimaryFontName,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black87,
+                    fontSize: 14,
+                  ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -82,10 +87,10 @@ Widget cartItemCard({item, context}) {
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Color(0xFFFFFFFF),
-                  border: Border.all(
-                    color: kPinkColor,
-                  ),
+                  color: Colors.grey[200],
+                  // border: Border.all(
+                  //   color: kPinkColor,
+                  // ),
                 ),
                 child: SpinnerInput(
                   minValue: 0,
@@ -93,13 +98,13 @@ Widget cartItemCard({item, context}) {
                   step: 1,
                   plusButton: SpinnerButtonStyle(
                       elevation: 0,
-                      color: Colors.transparent,
-                      textColor: kBlackColor,
+                      color: Colors.grey[700],
+                      textColor: Colors.white,
                       borderRadius: BorderRadius.circular(0)),
                   minusButton: SpinnerButtonStyle(
                       elevation: 0,
-                      textColor: kBlackColor,
-                      color: Colors.transparent,
+                      textColor: Colors.white,
+                      color: Colors.grey[700],
                       borderRadius: BorderRadius.circular(0)),
                   middleNumberWidth: 25,
                   middleNumberStyle: TextStyle(

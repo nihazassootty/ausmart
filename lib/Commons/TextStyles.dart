@@ -71,6 +71,11 @@ const kPink14 = TextStyle(
   fontWeight: FontWeight.w700,
   color: kPinkColor,
 );
+const kBlack87 = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w700,
+  color: Colors.black54,
+);
 const kPink143 = TextStyle(
   fontSize: 14,
   fontWeight: FontWeight.w900,
@@ -185,7 +190,7 @@ const TextHeadGrey = TextStyle(
   letterSpacing: 0.5,
   fontSize: 18,
   color: kGreyLight,
-  fontWeight: FontWeight.w900,
+  fontWeight: FontWeight.w700,
 );
 const TextHeadGrey1 = TextStyle(
   fontSize: 18,

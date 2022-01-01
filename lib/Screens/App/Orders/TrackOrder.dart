@@ -14,6 +14,7 @@ import 'package:timeline_tile/timeline_tile.dart';
 import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'dart:developer';
 
 class TrackOrder extends StatefulWidget {
   final orderid;
@@ -80,9 +81,11 @@ class _TrackOrderState extends State<TrackOrder> {
 
       var data = jsonDecode(response.body);
       if (response.statusCode == 200) {
+        log(response.body);
         setState(() {
+          order = SingleOrderModel.fromJson(data);
+
           loading = false;
-          order = SingleOrderModel.fromJson(data["data"]);
           // print(orderdetails);
         });
       }
@@ -174,7 +177,7 @@ class _TrackOrderState extends State<TrackOrder> {
                       ),
                       child: Center(
                         child: Text(
-                          'ORDER ID:#${order.orderId}\t',
+                          'ORDER ID:#${order.data.orderId}\t',
                           style: TextStyle(
                             color: kPinkColor,
                           ),
@@ -183,48 +186,51 @@ class _TrackOrderState extends State<TrackOrder> {
                     ),
                   ),
                   Text(
-                    '${order?.orderStatus} ${outputDate((order?.updatedAt).toString())}'
+                    '${order.data.orderStatus} ${outputDate((order.data.updatedAt).toString())}'
                         .toUpperCase(),
                     style: kNavBarTitle,
                   ),
-                  Offstage(
-                    offstage: order.orderStatus == 'cancelled',
-                    child: Container(
-                      padding: EdgeInsets.all(15),
-                      child: Column(
-                          children: order.track.asMap().entries.map((e) {
-                        int idx = e.key;
-                        var val = e.value;
-                        return TimelineTile(
-                          alignment: TimelineAlign.start,
-                          lineXY: 0.1,
-                          isFirst: idx == 0,
-                          isLast: idx == order.status.length - 3,
-                          indicatorStyle: IndicatorStyle(
-                            width: 18,
-                            indicator: Image.asset(
-                              'assets/images/trackicon.png',
-                              color: val.status ? Colors.green : Colors.red,
-                            ),
-                            padding: EdgeInsets.all(6),
-                          ),
-                          endChild: _RightChild(
-                            asset: val.asset,
-                            title: val.info,
-                            message: val.detail,
-                            disabled: !val.status,
-                          ),
-                          beforeLineStyle: LineStyle(
-                            thickness: 1.5,
-                            color: val.status ? Colors.green : Colors.grey,
-                          ),
-                        );
-                      }).toList()),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
+
+                  //TODO: ADD TRACK ORDER
+                  // Offstage(
+                  //   offstage: order.data.orderStatus == 'cancelled',
+                  //   child: Container(
+                  //     padding: EdgeInsets.all(15),
+                  //     child: Column(
+                  //         children: order.data.track.asMap().entries.map((e) {
+                  //       int idx = e.key;
+                  //       var val = e.value;
+                  //       return TimelineTile(
+                  //         alignment: TimelineAlign.start,
+                  //         lineXY: 0.1,
+                  //         isFirst: idx == 0,
+                  //         isLast: idx == order.data.status.length - 3,
+                  //         indicatorStyle: IndicatorStyle(
+                  //           width: 18,
+                  //           indicator: Image.asset(
+                  //             'assets/images/trackicon.png',
+                  //             color: val.status ? Colors.green : Colors.red,
+                  //           ),
+                  //           padding: EdgeInsets.all(6),
+                  //         ),
+                  //         endChild: _RightChild(
+                  //           asset: val.asset,
+                  //           title: val.info,
+                  //           message: val.detail,
+                  //           disabled: !val.status,
+                  //         ),
+                  //         beforeLineStyle: LineStyle(
+                  //           thickness: 1.5,
+                  //           color: val.status ? Colors.green : Colors.grey,
+                  //         ),
+                  //       );
+                  //     }).toList()),
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: 20,
+                  // ),
+                
                   Divider(
                     thickness: 0.5,
                   ),
@@ -236,23 +242,31 @@ class _TrackOrderState extends State<TrackOrder> {
                         ListView.builder(
                           physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: order.items.length,
+                          itemCount: order.data.items.length,
                           itemBuilder: (BuildContext context, int index) {
                             return orderDetailsCard(
-                                item: order.items[index], context: context);
+                                item: order.data.items[index],
+                                context: context);
                           },
                         ),
                         Divider(
                           thickness: 1,
                         ),
                         billItem(
-                            title: 'Item Total', price: order.subTotalAmount),
+                            title: 'Item Total',
+                            price: order.data.subTotalAmount),
+                        //TODO: ADD DELIVERY TIP
                         billItem(
-                            title: 'Delivery Tip', price: order.deliveryTip),
-                        billItem(title: 'Discount', price: order.discount),
+                            title: 'Delivery Tip',
+                            price: order.data.deliveryCharge),
+                        //TODO: ADD DELIVERY Discount
+
+                        billItem(
+                            title: 'Discount',
+                            price: order.data.deliveryDistance),
                         billItem(
                             title: 'Delivery Charge',
-                            price: order.deliveryCharge),
+                            price: order.data.deliveryCharge),
                       ],
                     ),
                   ),
@@ -263,10 +277,10 @@ class _TrackOrderState extends State<TrackOrder> {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                     child: billItem(
-                        title: 'Paid Via\t${order.paymentType}',
+                        title: 'Paid Via\t${order.data.paymentType}',
 
                         // 'Paid Via Cash',
-                        price: order.totalAmount,
+                        price: order.data.totalAmount,
                         bold: true),
                   ),
                   SizedBox(
