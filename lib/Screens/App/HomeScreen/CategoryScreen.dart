@@ -1,4 +1,5 @@
 import 'package:ausmart/Components/explorecard.dart';
+import 'package:ausmart/Screens/App/HomeInnerScreens/meetNFish/meetNFishList.dart';
 import 'package:flutter/material.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Screens/App/HomeInnerScreens/MarketInner.dart';
@@ -130,8 +131,11 @@ class CategoryScreen extends StatelessWidget {
               //     ),
               //   ),
               // ),
+             
               exploreCard(
-                  title: 'Restaurants',
+                innerColor: Colors.blue[50],
+                color: Colors.blueAccent,
+                  title: 'Hotels',
                   image: 'assets/images/hotels.png',
                   action: () {
                     Navigator.push(
@@ -141,15 +145,19 @@ class CategoryScreen extends StatelessWidget {
                     );
                   }),
               exploreCard(
+                innerColor: Colors.orange[50],
+                color: Colors.orangeAccent,
                   title: 'Meat & Fish',
                   image: 'assets/images/meat.png',
                   action: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => MarketInner()),
+                      MaterialPageRoute(builder: (context) => MeetNFish()),
                     );
                   }),
               exploreCard(
+                innerColor: Colors.green[50],
+                color: Colors.green,
                   title: 'Groceries',
                   image: 'assets/images/grocery.png',
                   action: () {

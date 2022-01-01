@@ -1,4 +1,5 @@
 import 'package:ausmart/Commons/TextStyles.dart';
+import 'package:ausmart/Components/topBanner.dart';
 import 'package:ausmart/Screens/App/HomeScreen/BottomNav.dart';
 import 'package:ausmart/Screens/App/SearchScreen.dart';
 import 'package:flutter/material.dart';
@@ -337,30 +338,20 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
+                      TopBanner(),
                       SizedBox(
-                        height: 20,
+                        height: 5,
                       ),
                       PopularScreen(),
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       QuickScreen(),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      // MessageCard(data: data.store.branch?.activeMessage),
-                      SizedBox(
-                        height: 5,
-                      ),
                       BannerScreen(),
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       CategoryScreen(),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      // RecommendedScreen(),
                       SizedBox(
                         height: 10,
                       ),

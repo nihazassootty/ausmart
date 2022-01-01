@@ -1,10 +1,11 @@
 import 'package:ausmart/Commons/ColorConstants.dart';
+import 'package:ausmart/Models/OrdersModel.dart';
 import 'package:flutter/material.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:intl/intl.dart';
 import 'package:ausmart/Screens/App/Orders/TrackOrder.dart';
 
-Widget myOrdersCard({BuildContext context, item}) {
+Widget myOrdersCard({BuildContext context, Datum item}) {
   var outputDate = (date) => DateFormat('d MMM yyyy')
       .format(DateTime.parse(date.toString()).toUtc().toLocal());
   return GestureDetector(
@@ -19,6 +20,7 @@ Widget myOrdersCard({BuildContext context, item}) {
     child: Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 25),
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           color: Color(0xFFF6F6F4),
@@ -50,13 +52,29 @@ Widget myOrdersCard({BuildContext context, item}) {
                       decoration: BoxDecoration(
                         // borderRadius: BorderRadius.circular(5),
                         color: item.orderStatus == 'delivered'
-                            ? Colors.grey[800]
-                            : Colors.green,
+                            ? Colors.grey[300]
+                            : item.orderStatus == 'cancelled'
+                                ? Colors.redAccent
+                                : Colors.green,
                       ),
                       child: Center(
                         child: Text(
                           item.orderStatus,
-                          style: kText144,
+                          style: item.orderStatus == 'delivered'
+                              ? TextStyle(
+                                  fontFamily: PrimaryFontName,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.black54,
+                                  fontSize: 15,
+                                )
+                              : item.orderStatus == 'cancelled'
+                                  ? TextStyle(
+                                      fontFamily: PrimaryFontName,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                    )
+                                  : kText144,
                         ),
                       ),
                     ),
@@ -130,27 +148,40 @@ Widget myOrdersCard({BuildContext context, item}) {
             // ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              child: Text(
-                "Order id: ${item.vendor}",
-                style: TextStyle(),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${item.items.length.toString()}\titems ',
-                    style: TextStyle(fontSize: 12),
+                    "Order id: ${item.vendor}",
+                    style: TextStyle(),
+                  ),
+                  SizedBox(
+                    height: 3,
                   ),
                   Text(
-                    '₹${item.totalAmount.toString()}',
-                  )
+                    item.address.landmark,
+                    style: TextStyle(),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        '${item.items.length.toString()}\titems ',
+                        style: TextStyle(fontSize: 12),
+                      ),
+                      Text(
+                        '₹${item.totalAmount.toString()}',
+                      )
+                    ],
+                  ),
                 ],
               ),
             ),
+
             SizedBox(
               height: 5,
             ),

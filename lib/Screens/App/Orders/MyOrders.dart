@@ -159,23 +159,33 @@ class _MyOrdersState extends State<MyOrders> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 2,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back,
-            color: kPinkColor,
+      appBar: new AppBar(
+        backgroundColor: kWhiteColor,
+        elevation: 0,
+        centerTitle: false,
+        automaticallyImplyLeading: false,
+        // leading: Padding(
+        //   padding: const EdgeInsets.all(8.0),
+        //   child: Icon(Icons.menu),
+        // ),
+        title: Padding(
+          padding: const EdgeInsets.only(right: 30.0),
+          child: Image.asset(
+            "assets/images/ausmart.png",
+            height: 60,
           ),
         ),
-        title: Text(
-          "My Orders",
-          style: Text18,
+
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(
+              Icons.phone,
+              color: kBlackColor,
+            ),
+            onPressed: null,
+          ),
+        ],
         ),
-      ),
       body: loading
           ? checkoutShimmer()
           : orders.length == 0

@@ -24,7 +24,7 @@ Widget nearbyCard(
     child: Padding(
       padding: const EdgeInsets.all(3.0),
       child: Container(
-        height: 100,
+        height: 110,
         margin: EdgeInsets.all(10.0),
         clipBehavior: Clip.antiAlias,
         // margin: EdgeInsets.symmetric(vertical: 5.0),
@@ -67,134 +67,120 @@ Widget nearbyCard(
                 ),
               ),
             ),
-            SizedBox(
-              height: 150,
-              width: MediaQuery.of(context).size.width,
-              child: Image.asset(
-                'assets/images/Rectangle1.png',
-                fit: BoxFit.cover,
-              ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [],
-            ),
-            Positioned(
-              top: 10,
-              right: 15,
-              child: Container(
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: Color(0xFFD3184E),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text(
-                  item.cuisine,
-                  style: kText145,
-                ),
-              ),
-            ),
-            Positioned(
-              top: 10,
-              left: 10,
-              child: Container(
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: Color(0xFF0A8F15),
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Icon(
-                      Icons.star,
-                      color: Color(0xFFFFFFFF),
-                      size: 12.0,
-                    ),
-                    Text(
-                      item.rating,
-                      style: kText144,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 10,
-              left: 10,
-              child: Column(
+            Container(
+              margin: EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    item.name,
-                    style: Text16white,
-                    maxLines: 2,
-                  ),
-                  SizedBox(
-                    width: 4,
-                  ),
-                  Text(
-                    item.location.address,
-                    style: kText144,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-              ),
-            ),
-            item.storeStatus == false
-                ? Positioned(
-                    bottom: 10,
-                    right: 10,
-                    child: Text(
-                      "Currently Not Accepting Orders",
-                      style: kText12white,
-                    ),
-                  )
-                : Positioned(
-                    bottom: 10,
-                    right: 10,
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: Column(
-                            children: [
-                              SvgPicture.asset(
-                                'assets/svg/clock.svg',
-                                color: Color(0xFFFFFFFF),
-                                height: 18.0,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                '${outputDate(item.openTime)}-${outputDate(item.closeTime)}',
-                                style: kText10white,
-                              ),
-                            ],
-                          ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        item.name,
+                        style: TextStyle(
+                            fontSize: 17,
+                            color: Colors.black87,
+                            fontWeight: FontWeight.w700),
+                      ),
+                      Text(
+                        item.location.address,
+                        maxLines: 1,
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.black45,
+                            fontWeight: FontWeight.w500),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      SizedBox(height: 5,),
+                      Container(
+                        padding: EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: Colors.orangeAccent,
+                          borderRadius: BorderRadius.circular(4),
                         ),
-                        Column(
-                          children: [
-                            SvgPicture.asset(
-                              'assets/svg/cooking.svg',
-                              color: Color(0xFFFFFFFF),
-                              height: 18.0,
+                        child: Text(
+                          item.cuisine,
+                          style: TextStyle(
+                              fontSize: 9,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Spacer(),
+                      item.storeStatus == false
+                          ? Text(
+                              "Currently Not Accepting Orders",
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  color: Colors.black45,
+                                  fontWeight: FontWeight.w700),
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/svg/cooking.svg',
+                                  color: Colors.black45,
+                                  height: 13.0,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  '${item.avgCookingTime.toString()}mnts',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: Colors.black45,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                SvgPicture.asset(
+                                  'assets/svg/clock.svg',
+                                  color: Colors.black45,
+                                  height: 13.0,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  '${outputDate(item.openTime)}-${outputDate(item.closeTime)}',
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: Colors.black45,
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              '${item.avgCookingTime.toString()}mnts',
-                              style: kText10white,
-                            ),
-                          ],
+                    ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: item.rating <= 3.0 ?Colors.orange[400]:Colors.green[500],
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(
+                          Icons.star,
+                          color: Color(0xFFFFFFFF),
+                          size: 12.0,
+                        ),
+                        Text(
+                          item.rating.toString(),
+                          style: kText144,
                         ),
                       ],
                     ),
                   ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

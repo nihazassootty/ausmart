@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 
-Widget exploreCard({@required title, @required image, @required action}) {
+Widget exploreCard(
+    {@required title,
+    @required image,
+    @required action,
+    @required Color color,
+    @required Color innerColor}) {
   return GestureDetector(
     onTap: action,
     child: Padding(
       padding: const EdgeInsets.only(left: 10.0, bottom: 10),
       child: Container(
         width: 115,
+        padding: EdgeInsets.fromLTRB(17, 10, 17, 10),
         height: 100,
         decoration: ShapeDecoration(
-          gradient: const LinearGradient(
-            colors: [Colors.white, Colors.white],
+          gradient: LinearGradient(
+            colors: [innerColor, innerColor],
             begin: FractionalOffset.bottomCenter,
             end: FractionalOffset.topCenter,
           ),
@@ -24,31 +30,25 @@ Widget exploreCard({@required title, @required image, @required action}) {
           ],
           shape: ContinuousRectangleBorder(
               borderRadius: BorderRadius.circular(40),
-              side: const BorderSide(width: 1, color: Color(0xFFE4E4E4))),
+              side: BorderSide(width: 1, color: color)),
+          // image: DecorationImage(
+          //   fit: BoxFit.cover,
+          //   image: AssetImage(image ?? 'assets/images/food.png'),
+          // ),
         ),
         child: Stack(
-          alignment: Alignment.bottomCenter,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 30.0, left: 5, right: 5),
-              child: Positioned(
-                  bottom: 0,
-                  child: SizedBox(
-                    height: 95,
-                    width: 100,
-                    child: Image(
-                      image: AssetImage(image ?? 'assets/images/food.png'),
-                      fit: BoxFit.contain,
-                      alignment: Alignment.bottomCenter,
-                    ),
-                  )),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 5.0, left: 5, right: 5),
-              child: Text(
-                title ?? 'Item',
-                style: const TextStyle(),
-                textAlign: TextAlign.center,
+            Positioned(
+              bottom: 0,
+              child: Column(
+                children: [
+                  Image.asset(image ?? 'assets/images/food.png'),
+                  Text(
+                    title ?? 'Item',
+                    style: TextStyle(fontWeight: FontWeight.bold, color: color,fontSize: 15),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
             ),
           ],

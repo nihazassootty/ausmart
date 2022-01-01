@@ -24,7 +24,7 @@ class QuickScreen extends StatelessWidget {
                       text: TextSpan(
                         text: "Quick",
                         style: TextStyle(
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w800,
                           fontSize: 16,
                           color: Color(0xff444444),
                         ),
@@ -33,7 +33,7 @@ class QuickScreen extends StatelessWidget {
                             text: "\tOrder",
                             style: TextStyle(
                               fontSize: 16,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w800,
                               color: Color(0xff444444),
                             ),
                           ),
@@ -42,7 +42,7 @@ class QuickScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: 180,
+                    height: 160,
                     width: MediaQuery.of(context).size.width,
                     child: ListView.builder(
                       padding: EdgeInsets.only(left: 8),

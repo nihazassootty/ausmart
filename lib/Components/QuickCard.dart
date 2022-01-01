@@ -31,21 +31,14 @@ Widget quickCard(
           Stack(
             children: [
               SizedBox(
-                height: 40,
+                height: 85,
                 width: MediaQuery.of(context).size.width,
                 child: Image.network(
                   item.storeBg.image,
                   fit: BoxFit.cover,
                 ),
               ),
-              SizedBox(
-                height: 80,
-                width: MediaQuery.of(context).size.width,
-                child: Image.asset(
-                  'assets/images/Rectangle1.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
+        
             ],
           ),
           Padding(
