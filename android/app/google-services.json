@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "937992074092",
+    "project_id": "ausmart-41bcc",
+    "storage_bucket": "ausmart-41bcc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937992074092:android:0b721d886651c4eaf93949",
+        "android_client_info": {
+          "package_name": "com.example.ausmart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "937992074092-4dtnjbim7lbqtenhcdci546vrkf0hjif.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxHW9j0SVYRPn4SX3JohfxZsRXaJfKiUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "937992074092-4dtnjbim7lbqtenhcdci546vrkf0hjif.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

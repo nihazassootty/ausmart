@@ -1,0 +1,14 @@
+<svg id="Group_348" data-name="Group 348"
+  xmlns="http://www.w3.org/2000/svg" width="76" height="25" viewBox="0 0 76 25">
+  <rect id="Rectangle_14" data-name="Rectangle 14" width="76" height="25" rx="3" transform="translate(0)" fill="#f9f9f9"/>
+  <text id="ausmartafe" transform="translate(27.721 9.947)" fill="#3a3738" font-size="8" font-family="Helvetica">
+    <tspan x="0" y="0">maafo</tspan>
+    <tspan y="0" font-family="Helvetica-Bold, Helvetica" font-weight="700">safe</tspan>
+  </text>
+  <path id="Path_492" data-name="Path 492" d="M75.055,16.447a.506.506,0,0,1-.225-.052c-3.252-1.583-5.943-3.292-5.943-8.172V2.569a.513.513,0,0,1,.338-.483L74.879.031a.515.515,0,0,1,.351,0l5.654,2.056a.513.513,0,0,1,.338.483V8.223c0,4.88-2.691,6.588-5.943,8.172a.505.505,0,0,1-.225.052ZM69.915,2.929V8.223c0,3.834,1.731,5.445,5.14,7.137,3.409-1.692,5.14-3.3,5.14-7.137V2.929l-5.14-1.869Z" transform="translate(-59.834 4.606)" fill="#3a3738"/>
+  <path id="Path_493" data-name="Path 493" d="M184.735,192.044l-2.419-2.419.727-.727,1.693,1.693,3.234-3.235.727.727Z" transform="translate(-169.878 -177.159)" fill="#ed1a4f"/>
+  <rect id="Rectangle_722" data-name="Rectangle 722" width="39.474" height="7.895" transform="translate(27.721 13.158)" fill="#ed1a4f"/>
+  <text id="DELIVERY" transform="translate(32.457 19.105)" fill="#fff" font-size="6" font-family="Helvetica-Bold, Helvetica" font-weight="700" letter-spacing="0.15em">
+    <tspan x="0" y="0">DELIVERY</tspan>
+  </text>
+</svg>

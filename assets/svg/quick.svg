@@ -1,0 +1,11 @@
+<svg id="Quick" xmlns="http://www.w3.org/2000/svg" width="38" height="38" viewBox="0 0 38 38">
+  <circle id="Ellipse_61" data-name="Ellipse 61" cx="19" cy="19" r="19"/>
+  <ellipse id="Ellipse_62" data-name="Ellipse 62" cx="12.5" cy="12" rx="12.5" ry="12" transform="translate(6.5 7.663)" fill="#fff"/>
+  <g id="lightning" transform="translate(9.616 3.938)">
+    <path id="Path_484" data-name="Path 484" d="M141.011,253.5l3.388-1.952-13.63,13.372-3.388,1.952Z" transform="translate(-125.631 -236.748)" fill="#f91"/>
+    <path id="Path_485" data-name="Path 485" d="M246.056,189.437l3.388-1.952,6.586,3.769-3.388,1.952Z" transform="translate(-237.262 -176.454)" fill="#ffeb9a"/>
+    <path id="Path_486" data-name="Path 486" d="M250.873,73.762l3.388-1.952-4.817,6.806-3.388,1.952Z" transform="translate(-237.262 -67.585)" fill="#f91"/>
+    <path id="Path_487" data-name="Path 487" d="M202.824,1.952,206.212,0l7.383,4.225-3.388,1.952Z" transform="translate(-196.597 0)" fill="#ffeb9a"/>
+    <path id="Path_488" data-name="Path 488" d="M113.287,47.97,99.656,61.342l5.435-13.509-7.185-4.112,6.227-10.552,7.383,4.225L106.7,44.2Z" transform="translate(-97.907 -31.218)" fill="#feda44"/>
+  </g>
+</svg>

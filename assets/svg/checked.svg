@@ -1,0 +1,8 @@
+<svg id="checked" xmlns="http://www.w3.org/2000/svg" width="230.345" height="230.345" viewBox="0 0 230.345 230.345">
+  <ellipse id="Ellipse_5" data-name="Ellipse 5" cx="115.173" cy="115.173" rx="115.173" ry="115.173" transform="translate(0 0)" fill="#32ba7c"/>
+  <path id="Path_131" data-name="Path 131" d="M188.8,250.1l59.221,59.221A115.1,115.1,0,0,0,333.4,198.142v-3.27L286.9,152Z" transform="translate(-103.056 -82.969)" fill="#0aa06e"/>
+  <g id="Group_129" data-name="Group 129" transform="translate(38.694 56.86)">
+    <path id="Path_132" data-name="Path 132" d="M164.586,249.92a13.6,13.6,0,0,1,0,18.893l-10.536,10.536a13.6,13.6,0,0,1-18.893,0L89.015,232.844a13.6,13.6,0,0,1,0-18.893l10.536-10.536a13.6,13.6,0,0,1,18.893,0Z" transform="translate(-85.2 -165.811)" fill="#fff"/>
+    <path id="Path_133" data-name="Path 133" d="M248.145,129.015a13.6,13.6,0,0,1,18.893,0l10.536,10.536a13.6,13.6,0,0,1,0,18.893l-79.93,79.567a13.6,13.6,0,0,1-18.893,0l-10.536-10.536a13.6,13.6,0,0,1,0-18.893Z" transform="translate(-128.431 -125.2)" fill="#fff"/>
+  </g>
+</svg>
