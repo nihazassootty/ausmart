@@ -5,7 +5,7 @@ import 'package:ausmart/Providers/CartProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:spinner_input/spinner_input.dart';
 
-Widget cartItemCard({item, context}) {
+Widget cartItemCard({item, context, index}) {
   final getmodel = Provider.of<CartProvider>(context, listen: false);
   final qty = getmodel.cart.firstWhere((element) => element["id"] == item["id"],
       orElse: () {
@@ -32,12 +32,23 @@ Widget cartItemCard({item, context}) {
     width: MediaQuery.of(context).size.width,
     color: kWhiteColor,
     child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+      padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          Text(
+            '${index + 1}. ',
+            style: TextStyle(
+              fontFamily: PrimaryFontName,
+              fontWeight: FontWeight.w700,
+              color: Colors.black87,
+              fontSize: 14,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
           Container(
-            width: 160,
+            width: 140,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -125,8 +136,13 @@ Widget cartItemCard({item, context}) {
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: Text(
-                  '\u20B9' + (item["price"] * item["qty"]).toString(),
-                  style: kText143,
+                  '\u20B9' + (item["price"] * item["qty"]).round().toString(),
+                  style: TextStyle(
+                    fontFamily: PrimaryFontName,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.grey[700],
+                    fontSize: 14,
+                  ),
                 ),
               ),
               IconButton(
@@ -140,6 +156,57 @@ Widget cartItemCard({item, context}) {
                   color: Colors.red[900],
                 ),
               )
+            ],
+          )
+        ],
+      ),
+    ),
+  );
+}
+
+Widget cartBillCard({item, context, index}) {
+  return Container(
+    width: MediaQuery.of(context).size.width,
+    color: kWhiteColor,
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            width: 140,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  item["name"],
+                  style: TextStyle(
+                    fontFamily: PrimaryFontName,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black87,
+                    fontSize: 12,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  '\u20B9' + (item["price"] * item["qty"]).round().toString(),
+                  style: TextStyle(
+                    fontFamily: PrimaryFontName,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey[600],
+                    fontSize: 12,
+                  ),
+                ),
+              ),
             ],
           )
         ],

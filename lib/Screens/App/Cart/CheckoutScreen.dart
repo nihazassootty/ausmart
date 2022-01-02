@@ -1188,26 +1188,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           SizedBox(
                             height: 10,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Tip",
-                                  style: kNavBarTitle,
-                                ),
-                                Text(
-                                  widget.tip == null
-                                      ? "Not Added"
-                                      : widget.tip == ''
-                                          ? "Not Added"
-                                          : '₹ ' + widget.tip.toString(),
-                                  style: kNavBarTitle,
-                                ),
-                              ],
-                            ),
-                          ),
+                        
                           SizedBox(
                             height: 10,
                           ),
