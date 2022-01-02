@@ -22,7 +22,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController _phoneController = TextEditingController();
+  TextEditingController _phoneController = TextEditingController(text: '9142705120');
 
   bool circular = false;
   final storage = new FlutterSecureStorage();
@@ -146,14 +146,14 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                         TextFormField(
                           validator: phoneValidator,
                           keyboardType: TextInputType.phone,
-                          cursorColor: Colors.green,
+                          cursorColor: kGreenColor,
                           controller: _phoneController,
                           onChanged: (text) {
                             // mobileNumber = value;
                           },
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(10),
-                            focusColor: Colors.greenAccent,
+                            focusColor: kGreenColor,
                             // labelStyle: ktext14,
                             labelText: "Mobile Number",
                             prefixText: "+91 |  ",

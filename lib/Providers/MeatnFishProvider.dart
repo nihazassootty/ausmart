@@ -1,12 +1,15 @@
+// ignore_for_file: missing_required_param
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:ausmart/Commons/AppConstants.dart';
-import 'package:ausmart/Models/StoreModel.dart';
+import 'package:ausmart/Models/MeatnFishModel.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'dart:developer';
-class StoreProvider extends ChangeNotifier {
+
+class MeetnFishProvider extends ChangeNotifier {
   bool loading = true;
   bool isServicable = true;
   int errorCode;
@@ -14,52 +17,53 @@ class StoreProvider extends ChangeNotifier {
   bool isPagination = false;
   String limit = '5';
   IO.Socket socket;
-  StoreModel store = StoreModel();
+  MeantnFishModel store = MeantnFishModel();
   FlutterSecureStorage storage = FlutterSecureStorage();
 
-  //* CONNECT BRANCH SOCKET
-  connectSocket(id) {
-    socket = IO.io(socketUrl, <String, dynamic>{
-      "transports": ["websocket"],
-      "autoConnect": false,
-    });
-    socket.connect();
-    socket.onConnect(
-      (data) => socket.emit('join', 'branch_$id'),
-    );
-    socket.onConnect(
-      (data) => print('connected'),
-    );
-    socket.on('branch', (data) {
-      message(data);
-      //*MANAGE IN-APP MESSAGE
-      // if (data["type"] == 'message') _message(data);
-    });
-    socket.on('branchVendors', (data) {
-      fetchStores();
-    });
-  }
+  // * CONNECT BRANCH SOCKET
+  // _connectSocket(id) {
+  //   socket = IO.io(socketUrl, <String, dynamic>{
+  //     "transports": ["websocket"],
+  //     "autoConnect": false,
+  //   });
+  //   socket.connect();
+  //   socket.onConnect(
+  //     (data) => socket.emit('join', 'branch_$id'),
+  //   );
+  //   socket.onConnect(
+  //     (data) => print('connected'),
+  //   );
+  //   socket.on('branch', (data) {
+  //     //*MANAGE IN-APP MESSAGE
+  //     // if (data["type"] == 'message') _message(data);
+  //   });
+  // }
 
-  message(val) {
-    if (val["visible"] == 'true') {
-      store.branch.activeMessage = ActiveMessage.fromJson(val["data"]);
-    } else {
-      store.branch.activeMessage = null;
-    }
-    notifyListeners();
-  }
+  // _message(val) {
+  //   if (val["visible"] == 'true') {
+  //     store.branch.activeMessage = ActiveMessage.fromJson(val["data"]);
+  //   } else {
+  //     store.branch.activeMessage = null;
+  //   }
+  //   notifyListeners();
+  // }
 
   //* FETCH NEAREST STORES
-  Future<StoreModel> fetchStores({latitude, longitude, context}) async {
+  Future<MeantnFishModel> fetchMeatNFish({latitude, longitude, context}) async {
+    
     loading = true;
     initialPage = 0;
-    StoreModel result;
+    MeantnFishModel result;
     final String token = await storage.read(key: "token");
     try {
-      final Uri url = Uri.https(
-          baseUrl,
-          apiUrl + "/vendor/$latitude/$longitude",
-          {"page": (initialPage + 1).toString(), "limit": limit});
+      final Uri url =
+          Uri.https(baseUrl, apiUrl + "/vendor/near-grocery-meat-stores", {
+        "lat": '$latitude',
+        "lng": '$longitude',
+        "type": 'meat',
+        "page": (initialPage + 1).toString(),
+        "limit": limit
+      });
 
       final response = await http.get(
         url,
@@ -71,28 +75,27 @@ class StoreProvider extends ChangeNotifier {
       );
 
       var data = jsonDecode(response.body);
+      store = MeantnFishModel.fromJson(data);
 
       if (response.statusCode == 200) {
-        store = StoreModel.fromJson(data["data"]);
-        log(response.body);
         if (data['pagination']['next'] != null) {
           isPagination = true;
         } else {
           isPagination = false;
         }
-
         isServicable = true;
         loading = false;
         initialPage = initialPage + 1;
-        connectSocket(store.branch.id);
       }
       if (response.statusCode == 404 || response.statusCode == 400) {
         // socket.disconnect();
         isServicable = false;
-        store = StoreModel();
+        store = MeantnFishModel();
         errorCode = data["code"];
         loading = false;
       }
+      print(isServicable.toString());
+
       notifyListeners();
     } catch (e) {
       print(e);
@@ -102,48 +105,48 @@ class StoreProvider extends ChangeNotifier {
   }
 
   //* LOAD MORE NEAREST STORES
-  Future<StoreModel> loadMoreStores({latitude, longitude}) async {
-    final String token = await storage.read(key: "token");
-    StoreModel result;
-    try {
-      final Uri url = Uri.https(
-          baseUrl,
-          apiUrl + "/restaurant/$latitude/$longitude",
-          {"page": (initialPage + 1).toString(), "limit": limit});
+  // Future<MeantnFishModel> loadMoreGrocery({latitude, longitude}) async {
+  //   final String token = await storage.read(key: "token");
+  //   GroceryModel result;
+  //   try {
+  //     final Uri url = Uri.https(
+  //         baseUrl,
+  //         apiUrl + "/restaurant/$latitude/$longitude",
+  //         {"page": (initialPage + 1).toString(), "limit": limit});
 
-      final response = await http.get(url, headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        "Authorization": "Bearer $token"
-      });
-      var data = jsonDecode(response.body);
+  //     final response = await http.get(url, headers: {
+  //       'Content-Type': 'application/json',
+  //       'Accept': 'application/json',
+  //       "Authorization": "Bearer $token"
+  //     });
+  //     var data = jsonDecode(response.body);
 
-      if (response.statusCode == 200) {
-        isServicable = true;
-        if (data['pagination']['next'] != null) {
-          isPagination = true;
-        } else {
-          isPagination = false;
-        }
-        // store.restaurant = store.restaurant +
-        //     List<Quick>.from(
-        //         data["data"]["restaurant"].map((x) => Quick.fromJson(x)));
-        initialPage = initialPage + 1;
-      }
-      if (response.statusCode == 404 || response.statusCode == 400) {
-        socket.dispose();
-        isServicable = false;
-        store = StoreModel();
-        errorCode = data["code"];
-        loading = false;
-      }
-      notifyListeners();
-    } catch (e) {
-      print(e);
-    }
+  //     if (response.statusCode == 200) {
+  //       isServicable = true;
+  //       if (data['pagination']['next'] != null) {
+  //         isPagination = true;
+  //       } else {
+  //         isPagination = false;
+  //       }
+  //       // store.restaurant = store.restaurant +
+  //       //     List<Quick>.from(
+  //       //         data["data"]["restaurant"].map((x) => Quick.fromJson(x)));
+  //       initialPage = initialPage + 1;
+  //     }
+  //     if (response.statusCode == 404 || response.statusCode == 400) {
+  //       socket.dispose();
+  //       isServicable = false;
+  //       store = GroceryModel();
+  //       errorCode = data["code"];
+  //       loading = false;
+  //     }
+  //     notifyListeners();
+  //   } catch (e) {
+  //     print(e);
+  //   }
 
-    return result;
-  }
+  //   return result;
+  // }
 
   // Future<void> _showMyDialog(BuildContext context, data) async {
   //   return showDialog<void>(

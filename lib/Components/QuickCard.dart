@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Models/StoreModel.dart';
-import 'package:ausmart/Screens/App/HomeInnerScreens/RestaurentDetails.dart';
+import 'package:ausmart/Screens/App/HomeInnerScreens/restaurants/RestaurentDetails.dart';
 
 Widget quickCard(
     {@required Quick item, @required branch, @required BuildContext context}) {

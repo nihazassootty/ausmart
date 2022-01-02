@@ -46,7 +46,7 @@ Widget restaurentInnercard({
                   width: 130,
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
-                    color: Colors.red,
+                    color: Colors.grey[200],
                     borderRadius: BorderRadius.circular(7),
                   ),
                   child: ColorFiltered(

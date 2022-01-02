@@ -1,5 +1,6 @@
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Components/topBanner.dart';
+import 'package:ausmart/Providers/GroceryProvider.dart';
 import 'package:ausmart/Screens/App/HomeScreen/BottomNav.dart';
 import 'package:ausmart/Screens/App/SearchScreen.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ import 'package:ausmart/Components/ActiveMessageCard.dart';
 import 'package:ausmart/Components/BannerCard.dart';
 import 'package:ausmart/Components/CartBottomCard.dart';
 import 'package:ausmart/Providers/GetDataProvider.dart';
-import 'package:ausmart/Providers/GroceryProvider.dart';
+import 'package:ausmart/Providers/MeatnFishProvider.dart';
 import 'package:ausmart/Providers/PopularProvider.dart';
 import 'package:ausmart/Providers/StoreProvider.dart';
 import 'package:ausmart/Screens/App/HomeScreen/CategoryScreen.dart';
@@ -75,6 +76,10 @@ class _HomeScreenState extends State<HomeScreen> {
           latitude: position.latitude,
           longitude: position.longitude,
           context: context);
+      Provider.of<MeetnFishProvider>(context, listen: false).fetchMeatNFish(
+          latitude: position.latitude,
+          longitude: position.longitude,
+          context: context);
       Provider.of<GroceryProvider>(context, listen: false).fetchGrocery(
           latitude: position.latitude,
           longitude: position.longitude,
@@ -100,7 +105,11 @@ class _HomeScreenState extends State<HomeScreen> {
           latitude: position.latitude,
           longitude: position.longitude,
           context: context);
-      Provider.of<GroceryProvider>(context, listen: false).fetchGrocery(
+      Provider.of<MeetnFishProvider>(context, listen: false).fetchMeatNFish(
+          latitude: position.latitude,
+          longitude: position.longitude,
+          context: context);
+          Provider.of<GroceryProvider>(context, listen: false).fetchGrocery(
           latitude: position.latitude,
           longitude: position.longitude,
           context: context);
@@ -125,7 +134,11 @@ class _HomeScreenState extends State<HomeScreen> {
           latitude: position.latitude,
           longitude: position.longitude,
           context: context);
-      Provider.of<GroceryProvider>(context, listen: false).fetchGrocery(
+      Provider.of<MeetnFishProvider>(context, listen: false).fetchMeatNFish(
+          latitude: position.latitude,
+          longitude: position.longitude,
+          context: context);
+          Provider.of<GroceryProvider>(context, listen: false).fetchGrocery(
           latitude: position.latitude,
           longitude: position.longitude,
           context: context);
@@ -158,10 +171,14 @@ class _HomeScreenState extends State<HomeScreen> {
         latitude: customer.latitude,
         longitude: customer.longitude,
         context: context);
-    Provider.of<GroceryProvider>(context, listen: false).fetchGrocery(
+    Provider.of<MeetnFishProvider>(context, listen: false).fetchMeatNFish(
         latitude: customer.latitude,
         longitude: customer.longitude,
         context: context);
+        Provider.of<GroceryProvider>(context, listen: false).fetchGrocery(
+          latitude: customer.latitude,
+          longitude: customer.longitude,
+          context: context);
     Provider.of<PopularProvider>(context, listen: false).fetchCategory();
   }
 

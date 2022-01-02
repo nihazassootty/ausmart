@@ -1,10 +1,11 @@
 import 'dart:io';
 
 // import 'package:firebase_core/firebase_core.dart';
+import 'package:ausmart/Providers/GroceryProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:ausmart/Providers/CartProvider.dart';
 import 'package:ausmart/Providers/GetDataProvider.dart';
-import 'package:ausmart/Providers/GroceryProvider.dart';
+import 'package:ausmart/Providers/MeatnFishProvider.dart';
 import 'package:ausmart/Providers/PopularProvider.dart';
 import 'package:ausmart/Providers/StoreProvider.dart';
 import 'package:ausmart/Screens/AuthFiles/SplashScreen.dart';
@@ -37,6 +38,7 @@ List<SingleChildWidget> providers = [
   ChangeNotifierProvider<GetDataProvider>(create: (_) => GetDataProvider()),
   ChangeNotifierProvider<StoreProvider>(create: (_) => StoreProvider()),
   ChangeNotifierProvider<PopularProvider>(create: (_) => PopularProvider()),
+  ChangeNotifierProvider<MeetnFishProvider>(create: (_) => MeetnFishProvider()),
   ChangeNotifierProvider<GroceryProvider>(create: (_) => GroceryProvider()),
   ChangeNotifierProvider<CartProvider>(create: (_) => CartProvider()),
 ];

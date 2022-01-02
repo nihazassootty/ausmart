@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:intl/intl.dart';
-import 'package:ausmart/Screens/App/HomeInnerScreens/RestaurentDetails.dart';
+import 'package:ausmart/Screens/App/HomeInnerScreens/restaurants/RestaurentDetails.dart';
 
 Widget nearbyCard(
     {@required item, @required branch, @required BuildContext context}) {

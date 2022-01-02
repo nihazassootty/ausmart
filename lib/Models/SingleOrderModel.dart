@@ -67,15 +67,15 @@ class Data {
     final List<Status> status;
     final String id;
     final Customer customer;
-    final int deliveryCharge;
-    final int totalPackingAmount;
-    final int subTotalAmount;
+    final dynamic deliveryCharge;
+    final dynamic totalPackingAmount;
+    final dynamic subTotalAmount;
     final Branch branch;
-    final int totalAmount;
-    final int vendorTotalAmount;
+    final dynamic totalAmount;
+    final dynamic vendorTotalAmount;
     final double vendorCommissionTotal;
     final double deliveryDistanceKm;
-    final int deliveryDistance;
+    final dynamic deliveryDistance;
     final String vendor;
     final String vendorType;
     final List<Item> items;
@@ -86,7 +86,7 @@ class Data {
     final List<dynamic> expense;
     final DateTime createdAt;
     final DateTime updatedAt;
-    final int v;
+    final dynamic v;
 
     factory Data.fromJson(Map<String, dynamic> json) => Data(
         commissionDetail: json["commissionDetail"] == null ? null : CommissionDetail.fromJson(json["commissionDetail"]),
@@ -192,7 +192,7 @@ class Branch {
     final Location location;
     final String id;
     final String name;
-    final int supportNumber;
+    final dynamic supportNumber;
 
     factory Branch.fromJson(Map<String, dynamic> json) => Branch(
         location: json["location"] == null ? null : Location.fromJson(json["location"]),
@@ -241,7 +241,7 @@ class CommissionDetail {
     });
 
     final String type;
-    final int commission;
+    final dynamic commission;
     final double commissionAmount;
 
     factory CommissionDetail.fromJson(Map<String, dynamic> json) => CommissionDetail(
@@ -294,10 +294,10 @@ class Item {
 
     final String id;
     final String name;
-    final int ausmartPrice;
-    final int price;
-    final int offerPrice;
-    final int qty;
+    final dynamic ausmartPrice;
+    final dynamic price;
+    final dynamic offerPrice;
+    final dynamic qty;
     final String type;
 
     factory Item.fromJson(Map<String, dynamic> json) => Item(

@@ -177,7 +177,7 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      Switch(
+                                      CupertinoSwitch(
                                         onChanged: (val) {
                                           setState(() {
                                             isVeg = val;
@@ -186,12 +186,13 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                                         },
                                         value: isVeg,
                                         activeColor: Colors.green,
-                                        activeTrackColor: Colors.green,
-                                        inactiveThumbColor: Colors.grey[50],
-                                        inactiveTrackColor: Colors.grey[200],
+                                        // activeTrackColor: Colors.green,
+                                        // inactiveThumbColor: Colors.grey[50],
+                                        // inactiveTrackColor: Colors.grey[200],
                                       ),
+                                      SizedBox(width: 5,),
                                       Text(
-                                        'VEG ONLY',
+                                        'VEG',
                                         style: kTextgrey,
                                       )
                                     ],

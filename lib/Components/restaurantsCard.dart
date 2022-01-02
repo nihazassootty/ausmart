@@ -1,11 +1,12 @@
+import 'package:ausmart/Models/StoreModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:intl/intl.dart';
 import 'package:ausmart/Screens/App/HomeInnerScreens/grocery/MarketDetails.dart';
 
-Widget groceryCard(
-    {@required item, @required branch, @required BuildContext context}) {
+Widget restaurantsCard(
+    {@required Quick item, @required branch, @required BuildContext context}) {
   var outputDate =
       (date) => DateFormat('hh:mma').format(DateFormat('HH:mm').parse(date));
   return GestureDetector(
@@ -88,7 +89,35 @@ Widget groceryCard(
                           size: 12.0,
                         ),
                         Text(
-                          " 4/6 ",
+                          " 4/5 ",
+                          style: kText144,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 10,
+                  right: 10,
+                  child: Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.orange,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SvgPicture.asset(
+                          'assets/svg/cooking.svg',
+                          color: Colors.white,
+                          height: 11.0,
+                        ),
+                        SizedBox(
+                          width: 3,
+                        ),
+                        Text(
+                          item.cuisine,
                           style: kText144,
                         ),
                       ],

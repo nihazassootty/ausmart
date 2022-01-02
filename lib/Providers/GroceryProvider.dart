@@ -1,10 +1,13 @@
+// ignore_for_file: missing_required_param
+
 import 'dart:convert';
+import 'package:ausmart/Models/GroceryModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:ausmart/Commons/AppConstants.dart';
-import 'package:ausmart/Models/GroceryModel.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'dart:developer';
 
 class GroceryProvider extends ChangeNotifier {
   bool loading = true;
@@ -47,6 +50,7 @@ class GroceryProvider extends ChangeNotifier {
 
   //* FETCH NEAREST STORES
   Future<GroceryModel> fetchGrocery({latitude, longitude, context}) async {
+  
     loading = true;
     initialPage = 0;
     GroceryModel result;
@@ -56,6 +60,7 @@ class GroceryProvider extends ChangeNotifier {
           Uri.https(baseUrl, apiUrl + "/vendor/near-grocery-meat-stores", {
         "lat": '$latitude',
         "lng": '$longitude',
+        "type": 'grocery',
         "page": (initialPage + 1).toString(),
         "limit": limit
       });
@@ -70,7 +75,7 @@ class GroceryProvider extends ChangeNotifier {
       );
 
       var data = jsonDecode(response.body);
-      store = GroceryModel.fromJson(data["data"]);
+      store = GroceryModel.fromJson(data);
 
       if (response.statusCode == 200) {
         if (data['pagination']['next'] != null) {
@@ -89,7 +94,7 @@ class GroceryProvider extends ChangeNotifier {
         errorCode = data["code"];
         loading = false;
       }
-      print(isServicable.toString());
+      // print(isServicable.toString());
 
       notifyListeners();
     } catch (e) {

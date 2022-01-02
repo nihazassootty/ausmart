@@ -49,7 +49,7 @@ class NearbyScreen extends StatelessWidget {
                         child: ListView.builder(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
-                          itemCount: getstore.store.restaurant.length + 1,
+                          itemCount: getstore.store.restaurant.length,
                           itemBuilder: (context, int index) {
                             if (index == getstore.store.restaurant.length) {
                               return Offstage(

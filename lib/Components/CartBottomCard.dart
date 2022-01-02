@@ -36,7 +36,7 @@ Widget cartBottomCard({String name, onTap}) {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: kPinkColor,
+                        primary: Colors.green,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

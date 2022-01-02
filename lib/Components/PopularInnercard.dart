@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
-import 'package:ausmart/Screens/App/HomeInnerScreens/RestaurentDetails.dart';
+import 'package:ausmart/Screens/App/HomeInnerScreens/restaurants/RestaurentDetails.dart';
 // ignore: implementation_imports
 import 'package:intl/src/intl/date_format.dart' show DateFormat;
 

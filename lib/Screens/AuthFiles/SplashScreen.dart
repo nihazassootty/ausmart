@@ -271,16 +271,11 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        child: Center(
-          child: Image.asset(
-            'assets/images/AusmartLogo.png',
-            height: 300,
-            fit: BoxFit.cover,
-          ),
+        child: Image.asset(
+          'assets/images/splashBg.jpeg',
+          fit: BoxFit.cover,
         ),
-        decoration: const BoxDecoration(
-          color: kPinkColor,
-        ),
+       
       ),
     );
   }

@@ -1,16 +1,16 @@
 // To parse this JSON data, do
 //
-//     final groceryModel = groceryModelFromJson(jsonString);
+//     final meantnFishModel = meantnFishModelFromJson(jsonString);
 
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
-GroceryModel groceryModelFromJson(String str) => GroceryModel.fromJson(json.decode(str));
+MeantnFishModel meantnFishModelFromJson(String str) => MeantnFishModel.fromJson(json.decode(str));
 
-String groceryModelToJson(GroceryModel data) => json.encode(data.toJson());
+String meantnFishModelToJson(MeantnFishModel data) => json.encode(data.toJson());
 
-class GroceryModel {
-    GroceryModel({
+class MeantnFishModel {
+    MeantnFishModel({
         @required this.success,
         @required this.pagination,
         @required this.data,
@@ -20,7 +20,7 @@ class GroceryModel {
     final Pagination pagination;
     final Data data;
 
-    factory GroceryModel.fromJson(Map<String, dynamic> json) => GroceryModel(
+    factory MeantnFishModel.fromJson(Map<String, dynamic> json) => MeantnFishModel(
         success: json["success"] == null ? null : json["success"],
         pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
         data: json["data"] == null ? null : Data.fromJson(json["data"]),

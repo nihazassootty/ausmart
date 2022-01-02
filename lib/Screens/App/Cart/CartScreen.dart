@@ -355,17 +355,17 @@ class _CartScreenState extends State<CartScreen> {
                                             borderRadius:
                                                 BorderRadius.circular(5),
                                             border: Border.all(
-                                              color: kPinkColor,
+                                              color: kGreenColor,
                                             ),
                                             color: selectedCategory
                                                     .contains(category1)
-                                                ? Colors.pink[50]
+                                                ? Colors.green[50]
                                                 : kWhiteColor,
                                           ),
                                           child: Center(
                                             child: Text(
                                               '₹10',
-                                              style: kPink14,
+                                              style: kGreen14,
                                             ),
                                           ),
                                         ),
@@ -398,17 +398,17 @@ class _CartScreenState extends State<CartScreen> {
                                             borderRadius:
                                                 BorderRadius.circular(5),
                                             border: Border.all(
-                                              color: kPinkColor,
+                                              color: kGreenColor,
                                             ),
                                             color: selectedCategory
                                                     .contains(category2)
-                                                ? Colors.pink[50]
+                                                ? Colors.green[50]
                                                 : kWhiteColor,
                                           ),
                                           child: Center(
                                             child: Text(
                                               '₹30',
-                                              style: kPink14,
+                                              style: kGreen14,
                                             ),
                                           ),
                                         ),
@@ -441,17 +441,17 @@ class _CartScreenState extends State<CartScreen> {
                                             borderRadius:
                                                 BorderRadius.circular(5),
                                             border: Border.all(
-                                              color: kPinkColor,
+                                              color: kGreenColor,
                                             ),
                                             color: selectedCategory
                                                     .contains(category3)
-                                                ? Colors.pink[50]
+                                                ? Colors.green[50]
                                                 : kWhiteColor,
                                           ),
                                           child: Center(
                                             child: Text(
                                               '₹50',
-                                              style: kPink14,
+                                              style: kGreen14,
                                             ),
                                           ),
                                         ),
@@ -485,17 +485,17 @@ class _CartScreenState extends State<CartScreen> {
                                             borderRadius:
                                                 BorderRadius.circular(5),
                                             border: Border.all(
-                                              color: Colors.black54,
+                                              color: kGreenColor,
                                             ),
                                             color: selectedCategory
                                                     .contains(category4)
-                                                ? Colors.pink[50]
+                                                ? Colors.green[50]
                                                 : kWhiteColor,
                                           ),
                                           child: Center(
                                             child: Text(
                                               'Others',
-                                              style: kBlack87,
+                                              style: kGreen14,
                                             ),
                                           ),
                                         ),
@@ -533,11 +533,12 @@ class _CartScreenState extends State<CartScreen> {
                                         focusColor: Colors.greenAccent,
                                         // labelStyle: ktext14,
                                         labelText: "Enter the tip",
+                                        labelStyle: kGreen14,
                                         focusedBorder: OutlineInputBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(5.0)),
                                             borderSide: BorderSide(
-                                              color: kPinkColor,
+                                              color: kGreenColor,
                                             )),
                                         border: OutlineInputBorder(
                                           borderRadius: BorderRadius.all(
@@ -565,14 +566,14 @@ class _CartScreenState extends State<CartScreen> {
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
                                         border: Border.all(
-                                          color: kPinkColor,
+                                          color: kGreenColor,
                                         ),
                                         color: kWhiteColor,
                                       ),
                                       child: Center(
                                         child: Text(
                                           'Add',
-                                          style: kPink14,
+                                          style: kGreen14,
                                         ),
                                       ),
                                     ),

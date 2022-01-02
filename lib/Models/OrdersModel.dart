@@ -60,11 +60,11 @@ class Datum {
   String orderStatus;
   String id;
   String customer;
-  int totalPackingAmount;
-  int subTotalAmount;
+  dynamic totalPackingAmount;
+  dynamic subTotalAmount;
   String branch;
-  int totalAmount;
-  int vendorTotalAmount;
+  dynamic totalAmount;
+  dynamic vendorTotalAmount;
   double vendorCommissionTotal;
   String vendor;
   String vendorType;
@@ -74,7 +74,7 @@ class Datum {
   String orderId;
   String createdAt;
   String updatedAt;
-  int v;
+  dynamic v;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         commissionDetail: json["commissionDetail"] == null
@@ -192,7 +192,7 @@ class CommissionDetail {
   });
 
   String type;
-  int commission;
+  dynamic commission;
   double commissionAmount;
 
   factory CommissionDetail.fromJson(Map<String, dynamic> json) =>
@@ -224,11 +224,11 @@ class Item {
 
   String id;
   String name;
-  int ausmartPrice;
-  int price;
-  int offerPrice;
+  dynamic ausmartPrice;
+  dynamic price;
+  dynamic offerPrice;
   dynamic packingCharge;
-  int qty;
+  dynamic qty;
 
   factory Item.fromJson(Map<String, dynamic> json) => Item(
         id: json["_id"] == null ? null : json["_id"],

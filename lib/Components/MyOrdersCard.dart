@@ -33,7 +33,7 @@ Widget myOrdersCard({BuildContext context, Datum item}) {
                     blurRadius: 2,
                   )
                 : BoxShadow(
-                    color: Color(0xFFFF0808),
+                    color: kGreenColor,
                     // spreadRadius: 0,
                     blurRadius: 2,
                   ),
@@ -52,29 +52,34 @@ Widget myOrdersCard({BuildContext context, Datum item}) {
                       decoration: BoxDecoration(
                         // borderRadius: BorderRadius.circular(5),
                         color: item.orderStatus == 'delivered'
-                            ? Colors.grey[300]
+                            ? kGreyLight
                             : item.orderStatus == 'cancelled'
                                 ? Colors.redAccent
-                                : Colors.green,
+                                : kGreenColor,
                       ),
                       child: Center(
                         child: Text(
-                          item.orderStatus,
+                          item.orderStatus.toUpperCase(),
                           style: item.orderStatus == 'delivered'
                               ? TextStyle(
                                   fontFamily: PrimaryFontName,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.black54,
-                                  fontSize: 15,
+                                  fontSize: 13,
                                 )
                               : item.orderStatus == 'cancelled'
                                   ? TextStyle(
                                       fontFamily: PrimaryFontName,
                                       fontWeight: FontWeight.w700,
                                       color: Colors.white,
-                                      fontSize: 15,
+                                      fontSize: 13,
                                     )
-                                  : kText144,
+                                  : TextStyle(
+                                      fontFamily: PrimaryFontName,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                    ),
                         ),
                       ),
                     ),
@@ -89,10 +94,11 @@ Widget myOrdersCard({BuildContext context, Datum item}) {
                         child: Text(
                           "Order ID: ${item.orderId}",
                           style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w400,
-                            color: kBlackColor,
-                          ),
+                                      fontFamily: PrimaryFontName,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.black87,
+                                      fontSize: 11,
+                                    ),
                         ),
                       ),
                     ),
@@ -159,7 +165,7 @@ Widget myOrdersCard({BuildContext context, Datum item}) {
                     height: 3,
                   ),
                   Text(
-                    item.address.landmark,
+                    item.address.landmark ?? '',
                     style: TextStyle(),
                   ),
                   SizedBox(

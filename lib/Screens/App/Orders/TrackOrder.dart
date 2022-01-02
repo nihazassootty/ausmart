@@ -26,6 +26,7 @@ class TrackOrder extends StatefulWidget {
 
 class _TrackOrderState extends State<TrackOrder> {
   bool loading = true;
+  // ignore: missing_required_param
   SingleOrderModel order = SingleOrderModel();
   IO.Socket socket;
   FlutterSecureStorage storage = FlutterSecureStorage();
@@ -191,7 +192,8 @@ class _TrackOrderState extends State<TrackOrder> {
                     style: kNavBarTitle,
                   ),
 
-                  //TODO: ADD TRACK ORDER
+                  // TODO: ADD TRACK ORDER
+
                   // Offstage(
                   //   offstage: order.data.orderStatus == 'cancelled',
                   //   child: Container(

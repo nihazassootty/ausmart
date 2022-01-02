@@ -71,6 +71,12 @@ const kPink14 = TextStyle(
   fontWeight: FontWeight.w700,
   color: kPinkColor,
 );
+
+const kGreen14 = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w700,
+  color: kGreenColor,
+);
 const kBlack87 = TextStyle(
   fontSize: 14,
   fontWeight: FontWeight.w700,
@@ -116,7 +122,7 @@ const kNavBarTitle = TextStyle(
 );
 const kNavBarTitle1 = TextStyle(
   fontFamily: PrimaryFontName,
-  fontWeight: FontWeight.w600,
+  fontWeight: FontWeight.w700,
   letterSpacing: -0.5,
   color: kBlackColor,
   fontSize: 14,

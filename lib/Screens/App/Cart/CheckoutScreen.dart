@@ -510,7 +510,7 @@ import 'package:provider/provider.dart';
 //                                       children: [
 //                                         Text(
 //                                           "Promo Code",
-//                                           style: kPink14,
+//                                           style: kGreen14,
 //                                         ),
 //                                         Text(
 //                                           widget.discountedTotal == null
@@ -1218,14 +1218,14 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                               children: [
                                 Text(
                                   "Promo Code",
-                                  style: kPink14,
+                                  style: kGreen14,
                                 ),
                                 Text(
                                   widget.discountedTotal == null
                                       ? "Not Applied"
                                       : '₹ ' +
                                           widget.discount.toStringAsFixed(1),
-                                  style: kPink14,
+                                  style: kGreen14,
                                 ),
                               ],
                             ),
@@ -1334,7 +1334,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                       Radio(
                                         value: "cash",
                                         groupValue: _value,
-                                        activeColor: kPinkColor,
+                                        activeColor: kGreenColor,
                                         onChanged: (value) {
                                           setState(() {
                                             _value = value;
@@ -1391,12 +1391,12 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                   padding: const EdgeInsets.only(right: 10),
                                   child: Text(
                                     "Delivery Address",
-                                    style: kPink14,
+                                    style: kGreen14,
                                   ),
                                 ),
                                 Icon(
                                   Icons.ac_unit,
-                                  color: kPinkColor,
+                                  color: kGreenColor,
                                   size: 20,
                                 ),
                               ],
@@ -1450,7 +1450,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 //     (route) => false);
                               },
                               style: ElevatedButton.styleFrom(
-                                primary: kPinkColor,
+                                primary: kGreenColor,
                               ),
                               child: Text(
                                 "Place Order",

@@ -1,27 +1,29 @@
+import 'package:ausmart/Components/GroceryCard.dart';
+import 'package:ausmart/Providers/GroceryProvider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Commons/zerostate.dart';
 import 'package:ausmart/Components/CartBottomCard.dart';
-import 'package:ausmart/Components/NearbyCard.dart';
-import 'package:ausmart/Providers/StoreProvider.dart';
+import 'package:ausmart/Components/restaurantsCard.dart';
+import 'package:ausmart/Providers/MeatnFishProvider.dart';
 import 'package:ausmart/Shimmers/nearbydummy.dart';
 import 'package:provider/provider.dart';
 
-class RestaurentInner extends StatefulWidget {
+class MarketInner extends StatefulWidget {
   @override
-  _RestaurentInnerState createState() => _RestaurentInnerState();
+  _MarketInnerState createState() => _MarketInnerState();
 }
 
-class _RestaurentInnerState extends State<RestaurentInner> {
+class _MarketInnerState extends State<MarketInner> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kPinkColor,
+        backgroundColor: kGreenColor,
         title: Text(
-          "Restaurants",
+          "Grocery",
           style: TextStyle(
             fontFamily: PrimaryFontName,
             fontSize: 20,
@@ -41,34 +43,34 @@ class _RestaurentInnerState extends State<RestaurentInner> {
       ),
       bottomNavigationBar: cartBottomCard(),
       body: SingleChildScrollView(
-        child: Consumer<StoreProvider>(
+        child: Consumer<GroceryProvider>(
           builder: (context, getstore, child) => getstore.loading
               ? nearrestaurantShimmer()
               : Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    getstore.store.restaurant.length == 0
+                    getstore.store.data.stores.length == 0
                         ? zerostate(
                             height: 300,
                             icon: 'assets/svg/noresta.svg',
                             head: 'Opps!',
-                            sub: 'No Restaurants',
+                            sub: 'No Grocery Store Found',
                           )
                         : ListView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemCount: getstore.store.restaurant.length + 1,
+                            itemCount: getstore.store.data.stores.length + 1,
                             itemBuilder: (context, int index) {
-                              if (index == getstore.store.restaurant.length) {
+                              if (index == getstore.store.data.stores.length) {
                                 return Offstage(
                                   offstage: getstore.isPagination,
                                   child: CupertinoActivityIndicator(),
                                 );
                               }
-                              return nearbyCard(
-                                  item: getstore.store.restaurant[index],
-                                  branch: getstore.store.branch.id,
+                              return groceryCard(
+                                  item: getstore.store.data.stores[index],
+                                  branch: getstore.store.data.branch.id,
                                   context: context);
                             },
                           ),

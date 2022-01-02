@@ -4,7 +4,7 @@ import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:intl/intl.dart';
 import 'package:ausmart/Screens/App/HomeInnerScreens/grocery/MarketDetails.dart';
 
-Widget groceryCard(
+Widget meetNFishCard(
     {@required item, @required branch, @required BuildContext context}) {
   var outputDate =
       (date) => DateFormat('hh:mma').format(DateFormat('HH:mm').parse(date));
@@ -88,7 +88,7 @@ Widget groceryCard(
                           size: 12.0,
                         ),
                         Text(
-                          " 4/6 ",
+                          " 4/5 ",
                           style: kText144,
                         ),
                       ],
