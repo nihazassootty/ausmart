@@ -51,19 +51,47 @@ class _AccountScreenState extends State<AccountScreen> {
                           child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   vertical: 20, horizontal: 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              child: Row(
                                 children: [
-                                  Text(
-                                    getmodel.get.customer.name.toUpperCase(),
-                                    style: Text18,
+                                  Container(
+                                    width: 50,
+                                    height: 50,
+                                    margin: EdgeInsets.only(right: 10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(6),
+                                      border: Border.all(
+                                          color: kGreyLight2, width: 2),
+                                    ),
+                                    child: Center(
+                                        child: Text(
+                                      getmodel.get.customer.name[0].toUpperCase() +
+                                          getmodel.get.customer.name[1].toUpperCase(),
+                                      style: Text18,
+                                    )),
                                   ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Text(
-                                    '+91-${getmodel?.get?.customer?.user?.username}',
-                                    style: kNavBarTitle1,
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        getmodel.get.customer.name
+                                            .toUpperCase(),
+                                        style: Text18,
+                                      ),
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                      Text(
+                                        '+91 ${getmodel?.get?.customer?.user?.username}',
+                                        style: TextStyle(
+                                          fontFamily: PrimaryFontName,
+                                          fontWeight: FontWeight.w700,
+                                          letterSpacing: -0.5,
+                                          color: Colors.grey,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               )),
@@ -79,11 +107,11 @@ class _AccountScreenState extends State<AccountScreen> {
                           ListTile(
                             leading: Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Icon(
-                                Icons.shopping_bag_outlined,
-                                color: Color(0xFFD3184E),
-                                size: 25.0,
-                              ),
+                              child: Container(
+                                  height: 25,
+                                  child: Image.asset(
+                                    'assets/images/shopping-bag.png',
+                                  )),
                             ),
                             title: Text(
                               "My Orders",
@@ -106,8 +134,8 @@ class _AccountScreenState extends State<AccountScreen> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 8),
                               child: Icon(
-                                Icons.location_on_outlined,
-                                color: Color(0xFFD3184E),
+                                Icons.fmd_good,
+                                color: Colors.black87,
                                 size: 25.0,
                               ),
                             ),
@@ -132,8 +160,8 @@ class _AccountScreenState extends State<AccountScreen> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 8),
                               child: Icon(
-                                Icons.format_list_numbered_rtl_rounded,
-                                color: Color(0xFFD3184E),
+                                Icons.description,
+                                color: Colors.black87,
                                 size: 25.0,
                               ),
                             ),
@@ -150,8 +178,8 @@ class _AccountScreenState extends State<AccountScreen> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 8),
                               child: Icon(
-                                Icons.info_outline,
-                                color: Color(0xFFD3184E),
+                                Icons.groups,
+                                color: Colors.black87,
                                 size: 25.0,
                               ),
                             ),
@@ -168,8 +196,8 @@ class _AccountScreenState extends State<AccountScreen> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 8),
                               child: Icon(
-                                Icons.call,
-                                color: Color(0xFFD3184E),
+                                Icons.local_phone,
+                                color: Colors.black87,
                                 size: 25.0,
                               ),
                             ),
@@ -186,8 +214,8 @@ class _AccountScreenState extends State<AccountScreen> {
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 8),
                               child: Icon(
-                                Icons.ac_unit,
-                                color: Color(0xFFD3184E),
+                                Icons.login_rounded,
+                                color: Colors.black87,
                                 size: 25.0,
                               ),
                             ),

@@ -2,17 +2,21 @@ import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Components/topBanner.dart';
 import 'package:ausmart/Providers/GroceryProvider.dart';
 import 'package:ausmart/Screens/App/HomeScreen/BottomNav.dart';
+import 'package:ausmart/Screens/App/ModalBottomsheets/SavedAddressmodal.dart';
 import 'package:ausmart/Screens/App/SearchScreen.dart';
+import 'package:ausmart/Screens/App/saved_address.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:ausmart/Commons/AppConstants.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
+
 import 'package:ausmart/Commons/SnackBar.dart';
 import 'package:ausmart/Commons/zerostate.dart';
 import 'package:ausmart/Components/ActiveMessageCard.dart';
 import 'package:ausmart/Components/BannerCard.dart';
+
 import 'package:ausmart/Components/CartBottomCard.dart';
 import 'package:ausmart/Providers/GetDataProvider.dart';
 import 'package:ausmart/Providers/MeatnFishProvider.dart';
@@ -109,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
           latitude: position.latitude,
           longitude: position.longitude,
           context: context);
-          Provider.of<GroceryProvider>(context, listen: false).fetchGrocery(
+      Provider.of<GroceryProvider>(context, listen: false).fetchGrocery(
           latitude: position.latitude,
           longitude: position.longitude,
           context: context);
@@ -138,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
           latitude: position.latitude,
           longitude: position.longitude,
           context: context);
-          Provider.of<GroceryProvider>(context, listen: false).fetchGrocery(
+      Provider.of<GroceryProvider>(context, listen: false).fetchGrocery(
           latitude: position.latitude,
           longitude: position.longitude,
           context: context);
@@ -175,10 +179,10 @@ class _HomeScreenState extends State<HomeScreen> {
         latitude: customer.latitude,
         longitude: customer.longitude,
         context: context);
-        Provider.of<GroceryProvider>(context, listen: false).fetchGrocery(
-          latitude: customer.latitude,
-          longitude: customer.longitude,
-          context: context);
+    Provider.of<GroceryProvider>(context, listen: false).fetchGrocery(
+        latitude: customer.latitude,
+        longitude: customer.longitude,
+        context: context);
     Provider.of<PopularProvider>(context, listen: false).fetchCategory();
   }
 
@@ -255,54 +259,68 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         centerTitle: false,
         automaticallyImplyLeading: false,
-        // leading: Padding(
-        //   padding: const EdgeInsets.all(8.0),
-        //   child: Icon(Icons.menu),
-        // ),
-        title: Padding(
-          padding: const EdgeInsets.only(right: 30.0),
+        title: Container(
           child: Image.asset(
             "assets/images/ausmart.png",
             height: 60,
           ),
         ),
-
         actions: <Widget>[
-          new IconButton(
-            icon: new Icon(
-              Icons.phone,
-              color: kBlackColor,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 5),
+            child: GestureDetector(
+              child: Image.asset(
+                "assets/images/whatsappicon.png",
+                height: 60,
+              ),
             ),
-            onPressed: null,
-          ),
+          )
         ],
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(50),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Container(
-              height: 45,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: Color(0xFF01D46F),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Icon(
-                      Icons.location_on,
-                      color: kWhiteColor,
-                      size: 20,
-                    ),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SavedPage(),
                   ),
-                  Text(
-                    "Enter your Location",
-                    style: kText12white,
+                ),
+                child: Container(
+                  height: 45,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF01D46F),
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                ],
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Icon(
+                          Icons.location_on,
+                          color: kWhiteColor,
+                          size: 20,
+                        ),
+                      ),
+                      Text(
+                        "Enter your Location",
+                        style: kText12white,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Icon(
+                          Icons.expand_more_outlined,
+                          color: kWhiteColor,
+                          size: 20,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),

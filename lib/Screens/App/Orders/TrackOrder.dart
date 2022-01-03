@@ -232,6 +232,45 @@ class _TrackOrderState extends State<TrackOrder> {
                   // SizedBox(
                   //   height: 20,
                   // ),
+               
+                 Offstage(
+                    offstage: order.data.orderStatus == 'cancelled',
+                    child: Container(
+                      padding: EdgeInsets.all(15),
+                      child: Column(
+                          children: order.data.status.asMap().entries.map((e) {
+                        int idx = e.key;
+                        var val = e.value;
+                        return TimelineTile(
+                          alignment: TimelineAlign.start,
+                          lineXY: 0.1,
+                          isFirst: idx == 0,
+                          isLast: idx == order.data.status.length - 3,
+                          indicatorStyle: IndicatorStyle(
+                            width: 18,
+                            indicator: Image.asset(
+                              'assets/images/trackicon.png',
+                              color:  Colors.green ,
+                            ),
+                            padding: EdgeInsets.all(6),
+                          ),
+                          endChild: _RightChild(
+                            asset: 'assets/images/trackicon.png',
+                            title: val.info,
+                            message: val.info,
+                            disabled: !val.info.isNotEmpty,
+                          ),
+                          beforeLineStyle: LineStyle(
+                            thickness: 1.5,
+                            color:  Colors.green,
+                          ),
+                        );
+                      }).toList()),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
                 
                   Divider(
                     thickness: 0.5,
@@ -380,7 +419,7 @@ class _RightChild extends StatelessWidget {
               height: 28,
               width: 28,
               color: Colors.transparent,
-              child: SvgPicture.asset(
+              child: Image.asset(
                 asset,
                 height: (0.1),
                 width: (0.1),

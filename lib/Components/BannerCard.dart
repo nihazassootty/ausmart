@@ -1,3 +1,4 @@
+import 'package:ausmart/Screens/App/HomeInnerScreens/restaurants/RestaurentDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:ausmart/Providers/StoreProvider.dart';
 import 'package:ausmart/Shimmers/bannerdummy.dart';
@@ -18,27 +19,41 @@ class BannerScreen extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: getstore.store.branch.branchBanner.length,
                   itemBuilder: (context, int index) {
-                    return Container(
-                      margin: EdgeInsets.only(right: 10),
-                      width: 260,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        color: Colors.black26,
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Color(0x48EEEEEE),
-                              spreadRadius: 4,
-                              blurRadius: 20)
-                        ],
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                            getstore
-                                .store.branch.branchBanner[index].image.image,
+                    return GestureDetector(
+                      onTap: () =>
+                          getstore.store.branch.branchBanner[index].clickable
+                              ? Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    // ignore: missing_required_param
+                                    builder: (context) => RestaurentDetail(
+                                        restoId: getstore.store.branch
+                                            .branchBanner[index].linkId),
+                                  ),
+                                )
+                              : null,
+                      child: Container(
+                        margin: EdgeInsets.only(right: 10),
+                        width: 260,
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                          color: Colors.black26,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Color(0x48EEEEEE),
+                                spreadRadius: 4,
+                                blurRadius: 20)
+                          ],
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: NetworkImage(
+                              getstore
+                                  .store.branch.branchBanner[index].image.image,
+                            ),
+                            // image:
+                            //     ExactAssetImage('assets/images/populartest.png'),
                           ),
-                          // image:
-                          //     ExactAssetImage('assets/images/populartest.png'),
                         ),
                       ),
                     );

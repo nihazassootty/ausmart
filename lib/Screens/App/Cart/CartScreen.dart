@@ -40,6 +40,7 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   TextEditingController _instructionController;
+  TextEditingController coupnController = TextEditingController();
 
   List<double> selectedCategory = <double>[];
 
@@ -249,7 +250,7 @@ class _CartScreenState extends State<CartScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  height: 30,
+                                  height: 40,
                                   child: Row(
                                     children: [
                                       Expanded(
@@ -263,7 +264,7 @@ class _CartScreenState extends State<CartScreen> {
                                                   fontFamily: PrimaryFontName,
                                                   fontWeight: FontWeight.w800,
                                                   color: Colors.black87,
-                                                  fontSize: 14,
+                                                  fontSize: 16,
                                                 )),
                                           ),
                                         ),
@@ -292,9 +293,12 @@ class _CartScreenState extends State<CartScreen> {
                                         height: 10,
                                       ),
                                       TextFormField(
-                                        controller: _instructionController,
+                                        controller: coupnController,
                                         minLines: 1,
                                         maxLines: 1,
+                                        validator: (value) => value.isEmpty
+                                            ? 'Please enter your coupon code'
+                                            : null,
                                         keyboardType: TextInputType.multiline,
                                         decoration: InputDecoration(
                                           hintText: 'Enter Coupon Code',
@@ -403,7 +407,7 @@ class _CartScreenState extends State<CartScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  height: 30,
+                                  height: 40,
                                   child: Row(
                                     children: [
                                       Expanded(
@@ -450,6 +454,37 @@ class _CartScreenState extends State<CartScreen> {
                                           );
                                         },
                                       ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 13, vertical: 4),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Coupon Discount',
+                                              style: TextStyle(
+                                                fontFamily: PrimaryFontName,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.black87,
+                                                fontSize: 12,
+                                              ),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),Text(
+                                              'applied x',
+                                              style: TextStyle(
+                                                fontFamily: PrimaryFontName,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.grey[600],
+                                                fontSize: 11,
+                                              ),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -457,14 +492,13 @@ class _CartScreenState extends State<CartScreen> {
                                   height: 5,
                                 ),
                                 Container(
-                                       padding: const EdgeInsets.symmetric(
-                                        horizontal: 15, vertical: 10),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 10),
                                   decoration: BoxDecoration(
-                                    border: Border(
-                                      bottom: BorderSide(
-                                        color: Colors.grey,
-                                        width: 1,
-                                      ),
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(
+                                      color: Colors.grey[300],
+                                      width: 1,
                                     ),
                                   ),
                                   child: Row(
@@ -473,20 +507,31 @@ class _CartScreenState extends State<CartScreen> {
                                     children: [
                                       Text(
                                         "Grand Total",
-                                        style: kNavBarTitle1,
+                                        style: TextStyle(
+                                          fontFamily: PrimaryFontName,
+                                          fontWeight: FontWeight.w700,
+                                          letterSpacing: -0.5,
+                                          color: kGreyDark,
+                                          fontSize: 16,
+                                        ),
                                       ),
                                       Text(
                                         '₹ ' +
                                             getcartmodel.cart
                                                 .map((item) =>
-                                                    item["price"] *
-                                                    item["qty"])
+                                                    item["price"] * item["qty"])
                                                 .fold(
                                                     0,
                                                     (prev, amount) =>
                                                         prev + amount)
                                                 .toString(),
-                                        style: kNavBarTitle1,
+                                        style: TextStyle(
+                                          fontFamily: PrimaryFontName,
+                                          fontWeight: FontWeight.w700,
+                                          letterSpacing: -0.5,
+                                          color: kGreyDark,
+                                          fontSize: 16,
+                                        ),
                                       ),
                                     ],
                                   ),

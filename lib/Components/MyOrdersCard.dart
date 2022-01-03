@@ -23,7 +23,7 @@ Widget myOrdersCard({BuildContext context, Datum item}) {
         margin: EdgeInsets.symmetric(horizontal: 25),
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
-          color: Color(0xFFF6F6F4),
+          color: kWhiteColor,
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             item.orderStatus == 'delivered' || item.orderStatus == 'cancelled'
@@ -52,7 +52,7 @@ Widget myOrdersCard({BuildContext context, Datum item}) {
                       decoration: BoxDecoration(
                         // borderRadius: BorderRadius.circular(5),
                         color: item.orderStatus == 'delivered'
-                            ? kGreyLight
+                            ? kGreyLight2
                             : item.orderStatus == 'cancelled'
                                 ? Colors.redAccent
                                 : kGreenColor,
@@ -165,7 +165,7 @@ Widget myOrdersCard({BuildContext context, Datum item}) {
                     height: 3,
                   ),
                   Text(
-                    item.address.landmark ?? '',
+                    item.address.landmark ?? '--',
                     style: TextStyle(),
                   ),
                   SizedBox(
@@ -181,6 +181,7 @@ Widget myOrdersCard({BuildContext context, Datum item}) {
                       ),
                       Text(
                         '₹${item.totalAmount.toString()}',
+                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                       )
                     ],
                   ),

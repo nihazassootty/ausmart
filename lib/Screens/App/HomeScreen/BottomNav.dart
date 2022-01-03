@@ -53,7 +53,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
         onTap: onTappedBar,
         currentIndex: _currentIndex,
         unselectedItemColor: Colors.grey,
-        selectedItemColor: kPinkColor,
+        selectedItemColor: kGreenColor,
         selectedLabelStyle: kTextgrey1,
         unselectedLabelStyle: kTextgrey1,
         type: BottomNavigationBarType.fixed,
@@ -70,12 +70,12 @@ class _BottomNavigationState extends State<BottomNavigation> {
             activeIcon: Padding(
               padding: const EdgeInsets.all(2.0),
               child: Icon(
-                Icons.home,
+                Icons.other_houses_rounded,
                 size: 25,
-                color: kPinkColor,
+                color: kGreenColor,
               ),
             ),
-            label: 'Home',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Padding(
@@ -91,35 +91,16 @@ class _BottomNavigationState extends State<BottomNavigation> {
               child: SvgPicture.asset(
                 'assets/svg/search.svg',
                 height: 25,
-                color: kPinkColor,
+                color: kGreenColor,
               ),
             ),
-            label: 'Search',
+            label: '',
           ),
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.all(2.0),
-              child: SvgPicture.asset(
-                'assets/svg/cart.svg',
-                height: 20,
-                color: kGreyLight,
-              ),
-            ),
-            activeIcon: Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: SvgPicture.asset(
-                'assets/svg/cart.svg',
-                height: 25,
-                color: kPinkColor,
-              ),
-            ),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: Icon(
-                Icons.person,
+             child: Icon(
+                Icons.shopping_cart_rounded,
                 size: 20,
                 color: kGreyLight,
               ),
@@ -127,12 +108,31 @@ class _BottomNavigationState extends State<BottomNavigation> {
             activeIcon: Padding(
               padding: const EdgeInsets.all(2.0),
               child: Icon(
-                Icons.person,
+                Icons.shopping_cart_rounded,
                 size: 25,
-                color: kPinkColor,
+                color: kGreenColor,
               ),
             ),
-            label: 'Account',
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Icon(
+                Icons.account_circle,
+                size: 20,
+                color: kGreyLight,
+              ),
+            ),
+            activeIcon: Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Icon(
+                Icons.account_circle,
+                size: 25,
+                color: kGreenColor,
+              ),
+            ),
+            label: '',
           ),
         ],
       ),

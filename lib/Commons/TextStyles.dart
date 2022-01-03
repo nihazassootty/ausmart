@@ -124,7 +124,7 @@ const kNavBarTitle1 = TextStyle(
   fontFamily: PrimaryFontName,
   fontWeight: FontWeight.w700,
   letterSpacing: -0.5,
-  color: kBlackColor,
+  color: Colors.black87,
   fontSize: 14,
 );
 
@@ -169,7 +169,7 @@ const Text16 = TextStyle(
 const Text18 = TextStyle(
   fontFamily: PrimaryFontName,
   fontSize: 18,
-  color: Colors.black,
+  color: Colors.black87,
   fontWeight: FontWeight.w700,
 );
 const Text18Pink = TextStyle(
