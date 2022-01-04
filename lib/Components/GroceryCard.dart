@@ -88,7 +88,7 @@ Widget groceryCard(
                           size: 12.0,
                         ),
                         Text(
-                          " 4/6 ",
+                          " ${item.rating.round()}/5 ",
                           style: kText144,
                         ),
                       ],

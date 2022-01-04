@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:ausmart/Components/RestaurentInnerCard%20copy.dart';
+import 'package:ausmart/Models/RestoProductModel%20copy.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
@@ -132,7 +134,7 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
           ? nearrestaurantShimmer()
           : Column(
               children: [
-                restaurantInfoCard(restaurant: restaurant, context: context),
+                restaurantInfoCard(restaurant: restaurant.vendor, context: context),
                 SizedBox(
                   height: 60,
                 ),
@@ -162,7 +164,9 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                                     borderRadius: BorderRadius.circular(8),
                                     color: Colors.white),
                                 labelStyle: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.w500),
+                                    fontFamily: PrimaryFontName,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500),
                                 labelColor: kGreyDark,
                                 unselectedLabelColor: Colors.white,
                                 tabs: restaurant.products.map((e) {
@@ -206,7 +210,7 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                             ),
                             LimitedBox(
                               maxHeight:
-                                  MediaQuery.of(context).size.height * 0.5,
+                                  MediaQuery.of(context).size.height * 0.45,
                               child: Container(
                                 height: MediaQuery.of(context)
                                     .size
@@ -229,6 +233,8 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                                                 Text(
                                                   'Ohh No!',
                                                   style: TextStyle(
+                                                      fontFamily:
+                                                          PrimaryFontName,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontSize: 18),
@@ -237,8 +243,10 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                                                 Text(
                                                   'This Category has no more items!' ??
                                                       '',
-                                                  style:
-                                                      TextStyle(fontSize: 15),
+                                                  style: TextStyle(
+                                                      fontFamily:
+                                                          PrimaryFontName,
+                                                      fontSize: 15),
                                                 )
                                               ],
                                             )),
@@ -277,6 +285,8 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                       ),
               ],
             ),
+    
+    
     );
   }
 }
@@ -329,6 +339,7 @@ Future<void> _showMenuSheet(
                             Text(
                               "View Menu",
                               style: TextStyle(
+                                fontFamily: PrimaryFontName,
                                 fontWeight: FontWeight.w800,
                                 color: Colors.black54,
                                 fontSize: 16,

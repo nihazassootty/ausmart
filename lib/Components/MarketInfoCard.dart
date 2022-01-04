@@ -29,7 +29,9 @@ Widget marketInfoCard({restaurant, context}) {
         left: 20,
         right: 20,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 30,
+          ),
           child: Container(
             // clipBehavior: Clip.antiAlias,
             transform: Matrix4.translationValues(0, 50, 0),
@@ -42,95 +44,82 @@ Widget marketInfoCard({restaurant, context}) {
             child: Card(
               elevation: 1,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
+                  borderRadius: BorderRadius.all(Radius.circular(15))),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      restaurant.vendor.featured
-                          ? Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Container(
-                                  height: 25,
-                                  width: 80,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: Colors.yellow[900],
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      "Recommended",
-                                      style: kText10white,
-                                    ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        restaurant.vendor.featured
+                            ? Container(
+                                height: 20,
+                                width: 76,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Colors.yellow[900],
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Recommended",
+                                    style: kText10white,
                                   ),
                                 ),
+                              )
+                            : Container(
+                                height: 20,
+                                width: 48,
                               ),
-                            )
-                          : Container(
-                              height: 20,
-                              width: 90,
-                            ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
                               restaurant.vendor.name.toUpperCase(),
                               style: kNavBarTitle1,
                             ),
-                            Text(
-                              '${restaurant.vendor.location.address}'
-                                  .toLowerCase(),
-                              style: TextStyle(
-                                fontFamily: 'Proxima Nova Font',
-                                fontSize: 10,
-                                color: kGreyLight,
-                              ),
-                            )
+//                             Text(
+//                               '${restaurant.vendor.cuisine}'.toLowerCase(),
+//                               style: TextStyle(
+// fontFamily: PrimaryFontName,                                fontSize: 10,
+//                                 color: kGreyLight,
+//                               ),
+//                             )
                           ],
                         ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Align(
-                            alignment: Alignment.topRight,
-                            child: Container(
-                              height: 20,
-                              width: 70,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Colors.green,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.star,
-                                    size: 10,
-                                    color: Colors.white,
-                                  ),
-                                  Text(
-                                    restaurant.vendor.rating.toString(),
-                                    style: kText8,
-                                  ),
-                                ],
-                              ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: Container(
+                            height: 20,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: Colors.green,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.star,
+                                  size: 10,
+                                  color: Colors.white,
+                                ),
+                                Text(
+                                  restaurant.vendor.rating.toString(),
+                                  style: kText8,
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: Divider(
                       thickness: 0.5,
-                      color: kGreyLight,
+                      color: kBlackColor,
                     ),
                   ),
                   Row(
@@ -140,50 +129,48 @@ Widget marketInfoCard({restaurant, context}) {
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Column(
                           children: [
-                            SvgPicture.asset(
-                              'assets/svg/clock.svg',
-                              height: 20,
-                              width: 20,
-                              color: kGreyLight,
-                            ),
+                            // SvgPicture.asset(
+                            //   'assets/svg/cooking.svg',
+                            //   height: 20,
+                            //   width: 20,
+                            //   color: kGreyLight,
+                            // ),
                             SizedBox(
                               height: 8,
                             ),
                             Text(
                               " ${outputDate(restaurant.vendor.openTime)} - ${outputDate(restaurant.vendor.closeTime)}",
                               style: TextStyle(
-                                fontFamily: 'Proxima Nova Font',
-                                fontSize: 10,
+fontFamily: PrimaryFontName,                                fontSize: 10,
                                 color: kGreyLight,
                               ),
                             ),
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Column(
-                          children: [
-                            SvgPicture.asset(
-                              'assets/svg/cooking.svg',
-                              height: 20,
-                              width: 20,
-                              color: kGreyLight,
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Text(
-                              "10-15mnts",
-                              style: TextStyle(
-                                fontFamily: 'Proxima Nova Font',
-                                fontSize: 10,
-                                color: kGreyLight,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+//                       Padding(
+//                         padding: const EdgeInsets.symmetric(horizontal: 10),
+//                         child: Column(
+//                           children: [
+//                             SvgPicture.asset(
+//                               'assets/svg/clock.svg',
+//                               height: 20,
+//                               width: 20,
+//                               color: kGreyLight,
+//                             ),
+//                             SizedBox(
+//                               height: 8,
+//                             ),
+// //                             Text(
+// //                               '10-${restaurant.vendor.avgCookingTime} mnts',
+// //                               style: TextStyle(
+// // fontFamily: PrimaryFontName,                                fontSize: 10,
+// //                                 color: kGreyLight,
+// //                               ),
+// //                             ),
+//                           ],
+//                         ),
+//                       ),
                     ],
                   ),
                 ],

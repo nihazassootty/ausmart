@@ -121,6 +121,7 @@ Widget cartItemCard({item, context, index}) {
                   middleNumberStyle: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w800,
+                      fontFamily: PrimaryFontName,
                       color: kBlackColor),
                   // spinnerValue: 10,
                   spinnerValue: qty == null ? 1 : qty["qty"].toDouble(),

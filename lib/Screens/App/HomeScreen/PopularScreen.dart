@@ -23,19 +23,21 @@ class PopularScreen extends StatelessWidget {
                   : Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: Container(
-                        height: 100,
+                        height: MediaQuery.of(context).size.height / 7.5,
                         child: MediaQuery.removePadding(
                           context: context,
                           removeTop: true,
-                          child: GridView.builder(
+                          child: ListView.builder(
                             shrinkWrap: true,
                             itemCount: data.category.count,
-                            physics: NeverScrollableScrollPhysics(),
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    mainAxisSpacing: 10,
-                                    crossAxisSpacing: 4,
-                                    crossAxisCount: 4),
+                            // physics: NeverScrollableScrollPhysics(),
+                            scrollDirection: Axis.horizontal,
+
+                            // gridDelegate:
+                            //     SliverGridDelegateWithFixedCrossAxisCount(
+                            //         mainAxisSpacing: 10,
+                            //         crossAxisSpacing: 4,
+                            //         crossAxisCount: 4),
                             itemBuilder: (BuildContext context, int index) {
                               return popularCard(
                                 item: data.category.data[index],

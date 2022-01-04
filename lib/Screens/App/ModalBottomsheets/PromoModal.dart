@@ -271,6 +271,7 @@ class _PromoModalState extends State<PromoModal> {
                                                                 "Coupon Not Applicable",
                                                                 style:
                                                                     TextStyle(
+                                                                      fontFamily: PrimaryFontName,
                                                                   fontSize: 12,
                                                                   color: Colors
                                                                       .red,

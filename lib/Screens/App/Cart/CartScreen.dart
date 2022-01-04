@@ -169,6 +169,8 @@ class _CartScreenState extends State<CartScreen> {
                                       SizedBox(
                                         height: 10,
                                       ),
+                                      data.store['cuisine'] == null?
+                                      Container():
                                       Container(
                                         padding: EdgeInsets.all(4),
                                         decoration: BoxDecoration(
@@ -177,8 +179,9 @@ class _CartScreenState extends State<CartScreen> {
                                               BorderRadius.circular(4),
                                         ),
                                         child: Text(
-                                          data.store['cuisine'],
+                                          data.store['cuisine'] ?? '---',
                                           style: TextStyle(
+                                            fontFamily: PrimaryFontName,
                                               fontSize: 9,
                                               color: Colors.white,
                                               fontWeight: FontWeight.bold),
@@ -287,7 +290,7 @@ class _CartScreenState extends State<CartScreen> {
                                       ),
                                       Text(
                                         "Apply Coupon Code on your Order to get additional offer",
-                                        style: TextStyle(fontSize: 12),
+                                        style: TextStyle(fontSize: 12,fontFamily: PrimaryFontName,),
                                       ),
                                       SizedBox(
                                         height: 10,
@@ -374,6 +377,7 @@ class _CartScreenState extends State<CartScreen> {
                                           child: Text(
                                             'View Coupons',
                                             style: TextStyle(
+                                              fontFamily: PrimaryFontName,
                                                 fontSize: 10,
                                                 color: kGreyDark,
                                                 fontWeight: FontWeight.w600),
@@ -1002,8 +1006,7 @@ class _CartScreenState extends State<CartScreen> {
                               "PLACE ORDER",
                               style: TextStyle(
                                 fontWeight: FontWeight.w800,
-                                fontFamily: 'Gilroy',
-                                fontSize: 18,
+fontFamily: PrimaryFontName,                                fontSize: 18,
                                 color: Color(0xffffffff),
                               ),
                             ),

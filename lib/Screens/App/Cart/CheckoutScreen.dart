@@ -1436,8 +1436,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                               child: Text(
                                 "Place Order",
                                 style: TextStyle(
-                                  fontFamily: 'Gilroy',
-                                  fontSize: 15,
+fontFamily: PrimaryFontName,                                  fontSize: 15,
                                   color: Color(0xffffffff),
                                 ),
                               ),

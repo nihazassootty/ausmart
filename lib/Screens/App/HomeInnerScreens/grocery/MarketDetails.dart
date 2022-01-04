@@ -1,4 +1,8 @@
 import 'dart:convert';
+import 'package:ausmart/Components/RestaurantInfoCard.dart';
+import 'package:ausmart/Components/RestaurentInnerCard.dart';
+import 'package:ausmart/Screens/App/HomeInnerScreens/meetNFish/meetNFishItemCard.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
@@ -83,6 +87,8 @@ class _MarketDetailState extends State<MarketDetail> {
           milliseconds: 400,
         ));
   }
+    TabController _tabController;
+
 
   @override
   Widget build(BuildContext context) {
@@ -102,124 +108,145 @@ class _MarketDetailState extends State<MarketDetail> {
       //   ),
       // ),
       bottomNavigationBar: cartBottomCard(),
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Colors.grey[700],
-        icon: Icon(Icons.menu),
-        label: Text(
-          'Menu',
-          style: TextStyle(
-              fontFamily: 'Proxima Nova Font',
-              letterSpacing: -0.2,
-              fontWeight: FontWeight.w700),
-        ),
-        isExtended: true,
-        onPressed: () =>
-            _showMenuSheet(context, menu, (val) => scrollToItem(val)),
-      ),
+//       floatingActionButton: FloatingActionButton.extended(
+//         backgroundColor: Colors.grey[700],
+//         icon: Icon(Icons.menu),
+//         label: Text(
+//           'Menu',
+//           style: TextStyle(
+// fontFamily: PrimaryFontName,              letterSpacing: -0.2,
+//               fontWeight: FontWeight.w700),
+//         ),
+//         isExtended: true,
+//         onPressed: () =>
+//             _showMenuSheet(context, menu, (val) => scrollToItem(val)),
+//       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: loading
           ? nearrestaurantShimmer()
-          : ScrollablePositionedList.builder(
-              shrinkWrap: true,
-              physics: ScrollPhysics(),
-              itemScrollController: itemScrollController,
-              itemCount: restaurant.products == null ? 1 : menu.length + 1,
-              scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) {
-                if (index == 0) {
-                  return Column(
-                    children: <Widget>[
-                      loading
-                          ? restaurantdetailShimmer()
-                          : marketInfoCard(
-                              restaurant: restaurant, context: context),
-                      Container(
-                        clipBehavior: Clip.antiAlias,
-                        transform: Matrix4.translationValues(0, 50, 0),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          // borderRadius: BorderRadius.vertical(top: Radius.circular(15.0)),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                child: Divider(
-                                  thickness: 1,
+          : Column(
+              children: [
+                marketInfoCard(restaurant: restaurant, context: context),
+                SizedBox(
+                  height: 60,
+                ),
+                restaurant.products.length == 0
+                    ? zerostate(
+                        height: 400,
+                        size: 180,
+                        icon: 'assets/svg/noproducts.svg',
+                        head: 'Ohh No!',
+                        sub: 'Nothing is found here!')
+                    : DefaultTabController(
+                        length: restaurant.products.length, // length of tabs
+                        initialIndex: 0,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(left: 15),
+                              width: MediaQuery.of(context).size.width,
+                              height: 40,
+                              color: kGreyDark,
+                              child: TabBar(
+                                controller: _tabController,
+                                isScrollable: true,
+                                indicatorColor: Colors.transparent,
+                                indicator: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.white),
+                                labelStyle: TextStyle(
+                                    fontFamily: PrimaryFontName,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w500),
+                                labelColor: kGreyDark,
+                                unselectedLabelColor: Colors.white,
+                                tabs: restaurant.products.map((e) {
+                                  return FittedBox(
+                                      fit: BoxFit.fitWidth,
+                                      child: Tab(text: e.category.name));
+                                }).toList(),
+                              ),
+                            ),
+                         
+                            LimitedBox(
+                              maxHeight:
+                                  MediaQuery.of(context).size.height * 0.45,
+                              child: Container(
+                                height: MediaQuery.of(context)
+                                    .size
+                                    .height, //height of TabBarView
+                                child: TabBarView(
+                                  controller: _tabController,
+                                  children: restaurant.products.map((e) {
+                                    List check = e.products;
+                                    var store = restaurant.vendor;
+                                    return check.isEmpty
+                                        ? Container(
+                                            height: 560,
+                                            child: Center(
+                                                child: Column(
+                                              children: [
+                                                SvgPicture.asset(
+                                                    'assets/svg/noproducts.svg',
+                                                    height: 150),
+                                                SizedBox(height: 25),
+                                                Text(
+                                                  'Ohh No!',
+                                                  style: TextStyle(
+                                                      fontFamily:
+                                                          PrimaryFontName,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18),
+                                                ),
+                                                SizedBox(height: 10),
+                                                Text(
+                                                  'This Category has no more items!' ??
+                                                      '',
+                                                  style: TextStyle(
+                                                      fontFamily:
+                                                          PrimaryFontName,
+                                                      fontSize: 15),
+                                                )
+                                              ],
+                                            )),
+                                          )
+                                        : SingleChildScrollView(
+                                            child: Container(
+                                              color: Colors.white,
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal: 0, vertical: 0),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: check
+                                                      .map((e) =>
+                                                          meetNFishItemCard(
+                                                            item: e,
+                                                            store: restaurant.vendor,
+                                                            context: context,
+                                                          ))
+                                                      .toList(),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                  }).toList(),
                                 ),
                               ),
-                              Offstage(
-                                offstage: restaurant?.products?.length == 0,
-                                child: Consumer<StoreProvider>(
-                                  builder: (context, data, child) {
-                                    return MessageCard(
-                                        data: data.store.branch?.activeMessage);
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
+                            )
+                          ],
                         ),
                       ),
-                      Offstage(
-                        offstage: restaurant.products.length != 0,
-                        child: zerostate(
-                          height: 400,
-                          size: 180,
-                          icon: 'assets/svg/noproducts.svg',
-                          head: 'Ohh No!',
-                          sub: 'No Products found!',
-                        ),
-                      ),
-                    ],
-                  );
-                }
-
-                index -= 1;
-
-                List products = menu[index].products;
-                return Offstage(
-                  offstage: products.length == 0,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 50),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            restaurant.products[index].category.name,
-                            style: TextHeadGrey,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Divider(
-                            thickness: 0.5,
-                          ),
-                        ),
-                        Container(
-                          color: Color(0x8EF5F5F5),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: products.map((val) {
-                              return marketInnercard(
-                                item: val,
-                                store: restaurant.vendor,
-                                context: context,
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
-
+              ],
+            ),
+    
       // body: loading
       //     ? restaurantdetailShimmer()
       //     : SingleChildScrollView(
@@ -281,6 +308,7 @@ Future<void> _showMenuSheet(
                             Text(
                               "View Menu",
                               style: TextStyle(
+                                fontFamily: PrimaryFontName,
                                 fontWeight: FontWeight.w800,
                                 color: Colors.black54,
                                 fontSize: 16,

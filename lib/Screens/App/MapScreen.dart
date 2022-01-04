@@ -210,8 +210,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                       'Select delivery location.',
                       style: TextStyle(
                         fontSize: 15,
-                        fontFamily: 'Quicksand',
-                        fontWeight: FontWeight.w600,
+fontFamily: PrimaryFontName,                        fontWeight: FontWeight.w600,
                         color: Colors.black,
                       ),
                     ),
@@ -238,8 +237,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                               maxLines: 1,
                               style: TextStyle(
                                   fontSize: 17,
-                                  fontFamily: 'Quicksand',
-                                  fontWeight: FontWeight.bold),
+fontFamily: PrimaryFontName,                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                           if (confirm)
@@ -253,8 +251,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 12,
-                                      fontFamily: 'Quicksand',
-                                      fontWeight: FontWeight.bold),
+fontFamily: PrimaryFontName,                                      fontWeight: FontWeight.bold),
                                 ),
                                 onPressed: () {
                                   setState(() {
@@ -297,8 +294,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                             maxLines: 2,
                             style: TextStyle(
                                 fontSize: 13,
-                                fontFamily: 'Quicksand',
-                                color: kGreyLight,
+fontFamily: PrimaryFontName,                                color: kGreyLight,
                                 fontWeight: FontWeight.w600),
                           ),
                     SizedBox(
@@ -378,8 +374,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                                                   'Home',
                                                   style: TextStyle(
                                                       color: Colors.black,
-                                                      fontFamily: 'QuickSand',
-                                                      fontSize: 14,
+fontFamily: PrimaryFontName,                                                      fontSize: 14,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -424,8 +419,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                                                   'Work',
                                                   style: TextStyle(
                                                       color: Colors.black,
-                                                      fontFamily: 'QuickSand',
-                                                      fontSize: 14,
+fontFamily: PrimaryFontName,                                                      fontSize: 14,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -479,8 +473,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                                       : 'Confirm Location',
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontFamily: 'Quicksand',
-                                  fontWeight: FontWeight.w700),
+fontFamily: PrimaryFontName,                                  fontWeight: FontWeight.w700),
                             ),
                           ),
                         ),

@@ -55,11 +55,11 @@ Widget quickCard(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 5),
                     child: Container(
-                      width: 70,
+                      width:70 ,
                       child: Text(
                         item.name,
                         style: Text16,
-                        maxLines: 1,
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),

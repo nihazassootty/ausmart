@@ -18,16 +18,26 @@ class NearbyScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 18),
                   child: RichText(
                     textAlign: TextAlign.justify,
                     text: TextSpan(
                       text: "Restaurants",
-                      style: TextHeadGrey,
+                      style: TextStyle(
+                          fontFamily: PrimaryFontName,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 18,
+                          color: Color(0xff444444),
+                        ),
                       children: <TextSpan>[
                         TextSpan(
                           text: "\tNearby",
-                          style: TextHeadGrey,
+                          style: TextStyle(
+                          fontFamily: PrimaryFontName,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 18,
+                          color: Color(0xff444444),
+                        ),
                         ),
                       ],
                     ),

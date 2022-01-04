@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
 
-const String PrimaryFontName = 'Proxima Nova Font';
+const String PrimaryFontName = 'Proxima Nova';
 
 //* TITLES STYLE
 
@@ -67,6 +67,7 @@ const kTextbuttonwhite = TextStyle(
 );
 
 const kPink14 = TextStyle(
+  fontFamily: PrimaryFontName,
   fontSize: 14,
   fontWeight: FontWeight.w700,
   color: kPinkColor,
@@ -86,6 +87,7 @@ const kPink143 = TextStyle(
   fontSize: 14,
   fontWeight: FontWeight.w900,
   color: kPinkColor,
+  fontFamily: PrimaryFontName,
 );
 
 const TextStyle kText143 = TextStyle(
@@ -197,14 +199,17 @@ const TextHeadGrey = TextStyle(
   fontSize: 18,
   color: kGreyLight,
   fontWeight: FontWeight.w700,
+  fontFamily: PrimaryFontName,
 );
 const TextHeadGrey1 = TextStyle(
   fontSize: 18,
   color: Color(0xff333333),
   fontWeight: FontWeight.w900,
+  fontFamily: PrimaryFontName,
 );
 const TextHeadBlack = TextStyle(
   fontSize: 20,
   color: kBlackColor,
   fontWeight: FontWeight.w700,
+  fontFamily: PrimaryFontName,
 );

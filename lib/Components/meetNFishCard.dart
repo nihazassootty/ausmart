@@ -88,7 +88,7 @@ Widget meetNFishCard(
                           size: 12.0,
                         ),
                         Text(
-                          " 4/5 ",
+                          " ${item.rating.round()}/5 ",
                           style: kText144,
                         ),
                       ],

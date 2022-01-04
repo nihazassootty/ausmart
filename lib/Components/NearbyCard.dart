@@ -80,12 +80,14 @@ Widget nearbyCard(
                       style: TextStyle(
                           fontSize: 17,
                           color: Colors.black87,
+                          fontFamily: PrimaryFontName,
                           fontWeight: FontWeight.w700),
                     ),
                     Text(
                       item.location.address,
                       maxLines: 1,
                       style: TextStyle(
+                        fontFamily: PrimaryFontName,
                           fontSize: 12,
                           color: Colors.black45,
                           fontWeight: FontWeight.w500),
@@ -103,6 +105,7 @@ Widget nearbyCard(
                       child: Text(
                         item.cuisine,
                         style: TextStyle(
+                          fontFamily: PrimaryFontName,
                             fontSize: 9,
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
@@ -113,6 +116,7 @@ Widget nearbyCard(
                         ? Text(
                             "Currently Not Accepting Orders",
                             style: TextStyle(
+                              fontFamily: PrimaryFontName,
                                 fontSize: 10,
                                 color: Colors.black45,
                                 fontWeight: FontWeight.w700),
@@ -132,6 +136,7 @@ Widget nearbyCard(
                               Text(
                                 '${item.avgCookingTime.toString()}mnts',
                                 style: TextStyle(
+                                  fontFamily: PrimaryFontName,
                                   fontSize: 10,
                                   color: Colors.black45,
                                 ),
@@ -150,6 +155,7 @@ Widget nearbyCard(
                               Text(
                                 '${outputDate(item.openTime)}-${outputDate(item.closeTime)}',
                                 style: TextStyle(
+                                  fontFamily: PrimaryFontName,
                                   fontSize: 10,
                                   color: Colors.black45,
                                 ),

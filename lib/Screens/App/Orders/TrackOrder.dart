@@ -180,6 +180,7 @@ class _TrackOrderState extends State<TrackOrder> {
                         child: Text(
                           'ORDER ID:#${order.data.orderId}\t',
                           style: TextStyle(
+                            fontFamily: PrimaryFontName,
                             color: kPinkColor,
                           ),
                         ),
@@ -194,51 +195,12 @@ class _TrackOrderState extends State<TrackOrder> {
 
                   // TODO: ADD TRACK ORDER
 
-                  // Offstage(
-                  //   offstage: order.data.orderStatus == 'cancelled',
-                  //   child: Container(
-                  //     padding: EdgeInsets.all(15),
-                  //     child: Column(
-                  //         children: order.data.track.asMap().entries.map((e) {
-                  //       int idx = e.key;
-                  //       var val = e.value;
-                  //       return TimelineTile(
-                  //         alignment: TimelineAlign.start,
-                  //         lineXY: 0.1,
-                  //         isFirst: idx == 0,
-                  //         isLast: idx == order.data.status.length - 3,
-                  //         indicatorStyle: IndicatorStyle(
-                  //           width: 18,
-                  //           indicator: Image.asset(
-                  //             'assets/images/trackicon.png',
-                  //             color: val.status ? Colors.green : Colors.red,
-                  //           ),
-                  //           padding: EdgeInsets.all(6),
-                  //         ),
-                  //         endChild: _RightChild(
-                  //           asset: val.asset,
-                  //           title: val.info,
-                  //           message: val.detail,
-                  //           disabled: !val.status,
-                  //         ),
-                  //         beforeLineStyle: LineStyle(
-                  //           thickness: 1.5,
-                  //           color: val.status ? Colors.green : Colors.grey,
-                  //         ),
-                  //       );
-                  //     }).toList()),
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: 20,
-                  // ),
-               
-                 Offstage(
+                  Offstage(
                     offstage: order.data.orderStatus == 'cancelled',
                     child: Container(
                       padding: EdgeInsets.all(15),
                       child: Column(
-                          children: order.data.status.asMap().entries.map((e) {
+                          children: order.data.track.asMap().entries.map((e) {
                         int idx = e.key;
                         var val = e.value;
                         return TimelineTile(
@@ -250,19 +212,19 @@ class _TrackOrderState extends State<TrackOrder> {
                             width: 18,
                             indicator: Image.asset(
                               'assets/images/trackicon.png',
-                              color:  Colors.green ,
+                              color: val.status ? Colors.green : Colors.red,
                             ),
                             padding: EdgeInsets.all(6),
                           ),
                           endChild: _RightChild(
-                            asset: 'assets/images/trackicon.png',
+                            asset: val.asset,
                             title: val.info,
-                            message: val.info,
-                            disabled: !val.info.isNotEmpty,
+                            message: val.detail,
+                            disabled: !val.status,
                           ),
                           beforeLineStyle: LineStyle(
                             thickness: 1.5,
-                            color:  Colors.green,
+                            color: val.status ? Colors.green : Colors.grey,
                           ),
                         );
                       }).toList()),
@@ -271,6 +233,46 @@ class _TrackOrderState extends State<TrackOrder> {
                   SizedBox(
                     height: 20,
                   ),
+               
+                //  Offstage(
+                //     offstage: order.data.orderStatus == 'cancelled',
+                //     child: Container(
+                //       padding: EdgeInsets.all(15),
+                //       child: Column(
+                //           children: order.data.status.asMap().entries.map((e) {
+                //         int idx = e.key;
+                //         var val = e.value;
+                //         return TimelineTile(
+                //           alignment: TimelineAlign.start,
+                //           lineXY: 0.1,
+                //           isFirst: idx == 0,
+                //           isLast: idx == order.data.status.length - 3,
+                //           indicatorStyle: IndicatorStyle(
+                //             width: 18,
+                //             indicator: Image.asset(
+                //               'assets/images/trackicon.png',
+                //               color:  Colors.green ,
+                //             ),
+                //             padding: EdgeInsets.all(6),
+                //           ),
+                //           endChild: _RightChild(
+                //             asset: 'assets/images/trackicon.png',
+                //             title: val.info,
+                //             message: val.info,
+                //             disabled: !val.info.isNotEmpty,
+                //           ),
+                //           beforeLineStyle: LineStyle(
+                //             thickness: 1.5,
+                //             color:  Colors.green,
+                //           ),
+                //         );
+                //       }).toList()),
+                //     ),
+                //   ),
+                 
+                //   SizedBox(
+                //     height: 20,
+                //   ),
                 
                   Divider(
                     thickness: 0.5,
@@ -384,11 +386,11 @@ Widget billItem({title, price, bold}) {
       children: [
         Text(
           title,
-          style: TextStyle(),
+          style: TextStyle(fontFamily: PrimaryFontName,),
         ),
         Text(
           '₹ ${(price).toStringAsFixed(2)}',
-          style: bold == true ? TextStyle() : TextStyle(),
+          style: bold == true ? TextStyle(fontFamily: PrimaryFontName,) : TextStyle(fontFamily: PrimaryFontName,),
         )
       ],
     ),
@@ -419,7 +421,7 @@ class _RightChild extends StatelessWidget {
               height: 28,
               width: 28,
               color: Colors.transparent,
-              child: Image.asset(
+              child: SvgPicture.asset(
                 asset,
                 height: (0.1),
                 width: (0.1),
@@ -447,8 +449,7 @@ class _RightChild extends StatelessWidget {
                         ? const Color(0xFFBABABA)
                         : const Color(0xFF636564),
                     fontSize: 14,
-                    fontFamily: 'Proxima Nova Font',
-                    fontWeight: FontWeight.w500,
+fontFamily: PrimaryFontName,                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
@@ -461,8 +462,7 @@ class _RightChild extends StatelessWidget {
                     ? const Color(0xFFD5D5D5)
                     : const Color(0xFF636564),
                 fontSize: 12,
-                fontFamily: 'Proxima Nova Font',
-              ),
+fontFamily: PrimaryFontName,              ),
             ),
           ],
         ),

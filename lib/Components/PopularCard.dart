@@ -16,11 +16,26 @@ Widget popularCard({@required item, @required BuildContext context}) {
     },
     child: Stack(
       children: [
-        SizedBox(
-          height: 120,
-          width: 80,
+        Container(
+          padding: EdgeInsets.all(1),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+         boxShadow: [
+           BoxShadow(
+             color: Colors.grey[300].withOpacity(0.2),
+             spreadRadius: 1,
+             blurRadius: 5,
+             offset: Offset(0, 0), // changes position of shadow
+           ),]
+        // boxShadow: [
+        //   BoxShadow(color: Color(0x48969696), spreadRadius: 1, blurRadius: 1)
+        // ],
+          ),
+          height: 135,
+          width: 95,
           child: Card(
-            elevation: 3,
+            // elevation: 3,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10))),
             child: Padding(

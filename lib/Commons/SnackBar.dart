@@ -1,3 +1,4 @@
+import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:flutter/material.dart';
 
 void showSnackBar(
@@ -12,7 +13,7 @@ void showSnackBar(
     content: Text(
       message,
       textScaleFactor: 1,
-      style: TextStyle(color: Colors.white),
+      style: TextStyle(color: Colors.white,fontFamily: PrimaryFontName),
     ),
     backgroundColor: Colors.black.withAlpha(200),
   );

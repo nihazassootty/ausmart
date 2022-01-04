@@ -1,3 +1,4 @@
+import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:ausmart/Models/SingleOrderModel.dart';
 
@@ -18,11 +19,11 @@ Widget orderDetailsCard({Item item, context}) {
                   child: Text.rich(
                     TextSpan(
                       text: item.name,
-                      style: TextStyle(fontSize: 14, color: Colors.black),
+                      style: TextStyle(fontFamily: PrimaryFontName,fontSize: 14, color: Colors.black),
                       children: <InlineSpan>[
                         TextSpan(
                           text: '\tx${item.qty.toString()}',
-                          style: TextStyle(fontSize: 14, color: Colors.black),
+                          style: TextStyle(fontFamily: PrimaryFontName,fontSize: 14, color: Colors.black),
                         ),
                       ],
                     ),

@@ -68,7 +68,7 @@ class _PaymentCompleteState extends State<PaymentComplete> {
                     child: TextButton(
                       child: Text(
                         'Track Order',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(fontFamily: PrimaryFontName,color: Colors.white),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -92,8 +92,7 @@ class _PaymentCompleteState extends State<PaymentComplete> {
                         'Go back to home',
                         style: TextStyle(
                             color: kPinkColor,
-                            fontFamily: 'Quicksand',
-                            fontWeight: FontWeight.w600),
+fontFamily: PrimaryFontName,                            fontWeight: FontWeight.w600),
                       ),
                       onPressed: () {
                         Navigator.pushAndRemoveUntil(

@@ -178,6 +178,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                 Text(
                                                   'Dishes',
                                                   style: TextStyle(
+                                                    fontFamily: PrimaryFontName,
                                                       fontSize: 18,
                                                       fontWeight:
                                                           FontWeight.w600),
@@ -187,6 +188,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                       .toString(),
                                                   style: TextStyle(
                                                       fontSize: 18,
+                                                      fontFamily: PrimaryFontName,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -285,6 +287,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                           maxLines: 1,
                                                           style: TextStyle(
                                                               fontSize: 16,
+                                                              fontFamily: PrimaryFontName,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w500),
@@ -295,10 +298,10 @@ class _SearchScreenState extends State<SearchScreen> {
                                                           child: Text(
                                                             'Currently not Deliverable to your area',
                                                             style: TextStyle(
+                                                              
                                                                 color: Colors
                                                                     .red[900],
-                                                                fontFamily:
-                                                                    'Quicksand',
+                                                                fontFamily: PrimaryFontName,
                                                                 fontSize: 10,
                                                                 fontWeight:
                                                                     FontWeight
@@ -310,7 +313,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                           e.vendor != null
                                                               ? e.vendor.name
                                                               : '',
-                                                          style: TextStyle(),
+                                                          style: TextStyle(fontFamily: PrimaryFontName,),
                                                         ),
                                                         Offstage(
                                                           offstage: e.status,
@@ -319,8 +322,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                             style: TextStyle(
                                                                 color: Colors
                                                                     .red[900],
-                                                                fontFamily:
-                                                                    'Quicksand',
+                                                               fontFamily: PrimaryFontName,
                                                                 fontSize: 10,
                                                                 fontWeight:
                                                                     FontWeight
@@ -359,12 +361,14 @@ class _SearchScreenState extends State<SearchScreen> {
                                     Text(
                                       'Restaurants',
                                       style: TextStyle(
+                                        fontFamily: PrimaryFontName,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w600),
                                     ),
                                     Text(
                                       result.vendors.count.toString(),
                                       style: TextStyle(
+                                        fontFamily: PrimaryFontName,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w600),
                                     ),
@@ -450,24 +454,24 @@ class _SearchScreenState extends State<SearchScreen> {
                                                     Text(
                                                       e.name,
                                                       maxLines: 1,
-                                                      style: TextStyle(),
+                                                      style: TextStyle(fontFamily: PrimaryFontName,),
                                                     ),
                                                     Text(
                                                       e.location.address ?? '',
                                                       maxLines: 1,
                                                       overflow:
                                                           TextOverflow.ellipsis,
-                                                      style: TextStyle(),
+                                                      style: TextStyle(fontFamily: PrimaryFontName,),
                                                     ),
                                                     Offstage(
                                                       offstage: e.storeStatus,
                                                       child: Text(
                                                         'Currently not available',
                                                         style: TextStyle(
+
                                                             color:
                                                                 Colors.red[900],
-                                                            fontFamily:
-                                                                'Quicksand',
+                                                            fontFamily: PrimaryFontName,
                                                             fontSize: 10,
                                                             fontWeight:
                                                                 FontWeight

@@ -88,8 +88,8 @@ flutter:
   fonts:
     - family: Proxima Nova
       fonts:
-        - asset: assets/fonts/Proxima Nova Font.otf
-        - asset: assets/fonts/Proxima Nova Bold.otf
+        - asset: fonts/Proxima Nova Font.otf
+        - asset: fonts/Proxima Nova Bold.otf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

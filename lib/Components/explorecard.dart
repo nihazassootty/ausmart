@@ -1,3 +1,4 @@
+import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:flutter/material.dart';
 
 Widget exploreCard(
@@ -45,7 +46,7 @@ Widget exploreCard(
                   Image.asset(image ?? 'assets/images/food.png'),
                   Text(
                     title ?? 'Item',
-                    style: TextStyle(fontWeight: FontWeight.bold, color: color,fontSize: 15),
+                    style: TextStyle(fontWeight: FontWeight.bold,fontFamily: PrimaryFontName, color: color,fontSize: 15),
                     textAlign: TextAlign.center,
                   ),
                 ],

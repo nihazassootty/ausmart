@@ -41,7 +41,7 @@ Widget marketInnercard({
                           "Best Selling",
                           style: TextStyle(
                             fontSize: 12,
-                            fontFamily: 'Proxima Nova Font',
+                            fontFamily: PrimaryFontName,
                             color: Colors.yellow[800],
                             fontWeight: FontWeight.w500,
                           ),
@@ -78,7 +78,7 @@ Widget marketInnercard({
                               '₹ ' + item.ausmartPrice.toString() + ' ',
                               style: TextStyle(
                                 fontSize: 12,
-                                fontFamily: 'Quicksand',
+                                fontFamily: PrimaryFontName,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.grey[400],
                                 decoration: TextDecoration.lineThrough,
@@ -241,13 +241,14 @@ Widget marketInnercard({
                       );
                     }
                   }
-
+                 
+                 
                   return incart == null && !_hasBeenPressed
                       ? GestureDetector(
                           onTap: item.status
                               ? () {
                                   setState(() {
-                                    addItemCart(Product, item, 1);
+                                    addItemCart(ProductProduct, item, 1);
                                     _hasBeenPressed = true;
                                   });
                                 }
@@ -266,6 +267,7 @@ Widget marketInnercard({
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: kPinkColor,
+                                  fontFamily: PrimaryFontName,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -307,6 +309,7 @@ Widget marketInnercard({
                                 middleNumberStyle: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w800,
+                                    fontFamily: PrimaryFontName,
                                     color: kGreyLight),
                                 // spinnerValue: 10,
                                 spinnerValue:
@@ -318,7 +321,7 @@ Widget marketInnercard({
                                       deleteItemCart(item);
                                     });
                                   } else {
-                                    addItemCart(Product, item, value);
+                                    addItemCart(ProductProduct, item, value);
                                   }
                                 },
                               ),

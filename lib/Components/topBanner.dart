@@ -11,7 +11,7 @@ class TopBanner extends StatelessWidget {
       builder: (context, getstore, child) => getstore.loading
           ? bannerShimmer()
           : Container(
-              height: 140,
+              height: 160,
               width: MediaQuery.of(context).size.width,
               child: ListView.builder(
                   padding: EdgeInsets.all(15),
@@ -34,7 +34,7 @@ class TopBanner extends StatelessWidget {
                               : null,
                       child: Container(
                         margin: EdgeInsets.only(right: 10),
-                        width: 120,
+                        width: 130,
                         clipBehavior: Clip.antiAlias,
                         decoration: ShapeDecoration(
                           color: Colors.black26,

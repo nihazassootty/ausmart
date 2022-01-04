@@ -158,15 +158,15 @@ Widget myOrdersCard({BuildContext context, Datum item}) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Order id: ${item.vendor}",
-                    style: TextStyle(),
+                    item.vendor.name,
+                    style: TextStyle(fontFamily: PrimaryFontName,fontWeight: FontWeight.w700,fontSize: 15,color: kDBlack),
                   ),
                   SizedBox(
                     height: 3,
                   ),
                   Text(
-                    item.address.landmark ?? '--',
-                    style: TextStyle(),
+                    item.vendor.location.address ?? '--',
+                    style: TextStyle(fontFamily: PrimaryFontName,fontWeight: FontWeight.w500,fontSize: 12,color: kGreyDark),
                   ),
                   SizedBox(
                     height: 5,
@@ -177,11 +177,11 @@ Widget myOrdersCard({BuildContext context, Datum item}) {
                     children: [
                       Text(
                         '${item.items.length.toString()}\titems ',
-                        style: TextStyle(fontSize: 12),
+                        style: TextStyle(fontFamily: PrimaryFontName,fontSize: 12),
                       ),
                       Text(
                         '₹${item.totalAmount.toString()}',
-                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                        style: TextStyle(fontFamily: PrimaryFontName,fontSize: 14, fontWeight: FontWeight.w600),
                       )
                     ],
                   ),

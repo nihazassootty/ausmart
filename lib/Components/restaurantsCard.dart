@@ -1,4 +1,5 @@
 import 'package:ausmart/Models/StoreModel.dart';
+import 'package:ausmart/Screens/App/HomeInnerScreens/restaurants/RestaurentDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
@@ -15,9 +16,9 @@ Widget restaurantsCard(
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => MarketDetail(
+            builder: (context) =>  RestaurentDetail(
               item: item,
-            ),
+            ),  
           ),
         );
       }
@@ -89,7 +90,7 @@ Widget restaurantsCard(
                           size: 12.0,
                         ),
                         Text(
-                          " 4/5 ",
+                          " ${item.rating.round()}/5 ",
                           style: kText144,
                         ),
                       ],

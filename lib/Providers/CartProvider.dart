@@ -39,7 +39,7 @@ class CartProvider extends ChangeNotifier {
     if (cart.length == 1) {
       store = {};
     }
-    cart.removeWhere((product) => product["id"] == item.ids);
+    cart.removeWhere((product) => product["id"] == item.id);
     notifyListeners();
   }
 

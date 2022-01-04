@@ -2,6 +2,7 @@
 //
 //     final marketProductModel = marketProductModelFromJson(jsonString);
 
+import 'package:meta/meta.dart';
 import 'dart:convert';
 
 MarketProductModel marketProductModelFromJson(String str) =>
@@ -12,12 +13,12 @@ String marketProductModelToJson(MarketProductModel data) =>
 
 class MarketProductModel {
   MarketProductModel({
-    this.vendor,
-    this.products,
+    @required this.vendor,
+    @required this.products,
   });
 
-  Vendor vendor;
-  List<MarketProductModelProduct> products;
+  final Vendor vendor;
+  final List<MarketProductModelProduct> products;
 
   factory MarketProductModel.fromJson(Map<String, dynamic> json) =>
       MarketProductModel(
@@ -38,14 +39,14 @@ class MarketProductModel {
 
 class MarketProductModelProduct {
   MarketProductModelProduct({
-    this.id,
-    this.category,
-    this.products,
+    @required this.id,
+    @required this.category,
+    @required this.products,
   });
 
-  String id;
-  ProductCategory category;
-  List<Product> products;
+  final String id;
+  final ProductCategory category;
+  final List<ProductProduct> products;
 
   factory MarketProductModelProduct.fromJson(Map<String, dynamic> json) =>
       MarketProductModelProduct(
@@ -55,8 +56,8 @@ class MarketProductModelProduct {
             : ProductCategory.fromJson(json["category"]),
         products: json["products"] == null
             ? null
-            : List<Product>.from(
-                json["products"].map((x) => Product.fromJson(x))),
+            : List<ProductProduct>.from(
+                json["products"].map((x) => ProductProduct.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -70,26 +71,26 @@ class MarketProductModelProduct {
 
 class ProductCategory {
   ProductCategory({
-    this.id,
-    this.status,
-    this.name,
-    this.type,
-    this.branch,
-    this.image,
-    this.createdAt,
-    this.updatedAt,
-    this.v,
+    @required this.id,
+    @required this.status,
+    @required this.name,
+    @required this.type,
+    @required this.branch,
+    @required this.image,
+    @required this.createdAt,
+    @required this.updatedAt,
+    @required this.v,
   });
 
-  String id;
-  bool status;
-  String name;
-  String type;
-  String branch;
-  StoreBg image;
-  String createdAt;
-  String updatedAt;
-  dynamic v;
+  final String id;
+  final bool status;
+  final String name;
+  final String type;
+  final String branch;
+  final StoreBg image;
+  final String createdAt;
+  final String updatedAt;
+  final dynamic v;
 
   factory ProductCategory.fromJson(Map<String, dynamic> json) =>
       ProductCategory(
@@ -119,12 +120,12 @@ class ProductCategory {
 
 class StoreBg {
   StoreBg({
-    this.key,
-    this.image,
+    @required this.key,
+    @required this.image,
   });
 
-  String key;
-  String image;
+  final String key;
+  final String image;
 
   factory StoreBg.fromJson(Map<String, dynamic> json) => StoreBg(
         key: json["key"] == null ? null : json["key"],
@@ -137,147 +138,164 @@ class StoreBg {
       };
 }
 
-class Product {
-  Product({
-    this.id,
-    this.status,
-    this.type,
-    this.name,
-    this.category,
-    this.price,
-    this.packingCharge,
-    this.offerPrice,
-    this.specialTag,
-    this.ausmartPrice,
-    this.description,
-    this.branch,
-    this.vendor,
-    this.createdAt,
-    this.updatedAt,
-    this.v,
-    this.image,
-    this.bestSeller,
+class ProductProduct {
+  ProductProduct({
+    @required this.id,
+    @required this.status,
+    @required this.type,
+    @required this.name,
+    @required this.category,
+    @required this.price,
+    @required this.packingCharge,
+    @required this.offerPrice,
+    @required this.specialTag,
+    @required this.ausmartPrice,
+    @required this.description,
+    @required this.branch,
+    @required this.vendor,
+    @required this.image,
+    @required this.createdAt,
+    @required this.updatedAt,
+    @required this.v,
+    @required this.bestSeller,
+    @required this.showAddon,
+    @required this.addons,
+    @required this.ids,
   });
 
-  String id;
-  bool status;
-  String type;
-  String name;
-  String category;
-  dynamic price;
-  dynamic packingCharge;
-  dynamic offerPrice;
-  String specialTag;
-  dynamic ausmartPrice;
-  String description;
-  String branch;
-  String vendor;
-  String createdAt;
-  String updatedAt;
-  dynamic v;
-  StoreBg image;
-  bool bestSeller;
+  final String id;
+  String ids;
 
-  factory Product.fromJson(Map<String, dynamic> json) => Product(
+  final bool status;
+  final String type;
+  final String name;
+  final String category;
+  final dynamic price;
+  final dynamic packingCharge;
+  final dynamic offerPrice;
+  final String specialTag;
+  final dynamic ausmartPrice;
+  final String description;
+  final String branch;
+  List<Addons> addons;
+  bool showAddon;
+
+  final String vendor;
+  final StoreBg image;
+  final String createdAt;
+  final String updatedAt;
+  final dynamic v;
+  final bool bestSeller;
+
+  factory ProductProduct.fromJson(Map<String, dynamic> json) => ProductProduct(
         id: json["_id"] == null ? null : json["_id"],
+        ids: json["id"] == null ? null : json["id"],
         status: json["status"] == null ? null : json["status"],
         type: json["type"] == null ? null : json["type"],
         name: json["name"] == null ? null : json["name"],
         category: json["category"] == null ? null : json["category"],
         price: json["price"] == null ? null : json["price"],
-        packingCharge:
-            json["packingCharge"] == null ? null : json["packingCharge"],
-        offerPrice: json["offerPrice"] == null ? null : json["offerPrice"],
+        packingCharge: json["packingCharge"],
+        offerPrice: json["offerPrice"],
         specialTag: json["specialTag"] == null ? null : json["specialTag"],
         ausmartPrice:
             json["ausmartPrice"] == null ? null : json["ausmartPrice"],
         description: json["description"] == null ? null : json["description"],
         branch: json["branch"] == null ? null : json["branch"],
         vendor: json["vendor"] == null ? null : json["vendor"],
+        image: json["image"] == null ? null : StoreBg.fromJson(json["image"]),
         createdAt: json["createdAt"] == null ? null : json["createdAt"],
         updatedAt: json["updatedAt"] == null ? null : json["updatedAt"],
+        showAddon: json["showAddon"] == null ? null : json["showAddon"],
+        addons: json["addons"] == null
+            ? null
+            : List<Addons>.from(json["addons"].map((x) => Addons.fromJson(x))),
         v: json["__v"] == null ? null : json["__v"],
-        image: json["image"] == null ? null : StoreBg.fromJson(json["image"]),
         bestSeller: json["bestSeller"] == null ? null : json["bestSeller"],
       );
 
   Map<String, dynamic> toJson() => {
         "_id": id == null ? null : id,
+        "id": ids == null ? null : ids,
         "status": status == null ? null : status,
         "type": type == null ? null : type,
         "name": name == null ? null : name,
         "category": category == null ? null : category,
         "price": price == null ? null : price,
-        "packingCharge": packingCharge == null ? null : packingCharge,
-        "offerPrice": offerPrice == null ? null : offerPrice,
+        "packingCharge": packingCharge,
+        "offerPrice": offerPrice,
         "specialTag": specialTag == null ? null : specialTag,
         "ausmartPrice": ausmartPrice == null ? null : ausmartPrice,
         "description": description == null ? null : description,
         "branch": branch == null ? null : branch,
         "vendor": vendor == null ? null : vendor,
+        "image": image == null ? null : image.toJson(),
         "createdAt": createdAt == null ? null : createdAt,
+        "showAddon": showAddon == null ? null : showAddon,
         "updatedAt": updatedAt == null ? null : updatedAt,
         "__v": v == null ? null : v,
-        "image": image == null ? null : image.toJson(),
         "bestSeller": bestSeller == null ? null : bestSeller,
       };
 }
 
 class Vendor {
   Vendor({
-    this.storeLogo,
-    this.storeBg,
-    this.location,
-    this.contactNumber,
-    this.quickDelivery,
-    this.storeStatus,
-    this.addons,
-    this.featured,
-    this.rating,
-    this.id,
-    this.name,
-    this.branch,
-    this.type,
-    this.openTime,
-    this.closeTime,
-    this.commission,
-    this.dCommission,
-    this.sortOrder,
-    this.fssai,
-    this.user,
-    this.storeBanner,
-    this.category,
-    this.createdAt,
-    this.updatedAt,
-    this.v,
-    this.minimumOrderValue,
+    @required this.storeLogo,
+    @required this.storeBg,
+    @required this.location,
+    @required this.contactNumber,
+    @required this.quickDelivery,
+    @required this.storeStatus,
+    @required this.addons,
+    @required this.featured,
+    @required this.rating,
+    @required this.id,
+    @required this.name,
+    @required this.branch,
+    @required this.type,
+    @required this.openTime,
+    @required this.closeTime,
+    @required this.commission,
+    @required this.dCommission,
+    @required this.sortOrder,
+    @required this.gst,
+    @required this.fssai,
+    @required this.user,
+    @required this.storeBanner,
+    @required this.category,
+    @required this.createdAt,
+    @required this.updatedAt,
+        this.minimumOrderValue,
+
+    @required this.v,
   });
 
-  StoreBg storeLogo;
-  StoreBg storeBg;
-  Location location;
-  dynamic contactNumber;
-  bool quickDelivery;
-  bool storeStatus;
-  List<dynamic> addons;
-  bool featured;
-  dynamic rating;
-  String id;
-  String name;
-  String branch;
-  String type;
-  String openTime;
-  String closeTime;
-  dynamic commission;
-  dynamic dCommission;
-  dynamic sortOrder;
-  String fssai;
-  String user;
-  List<dynamic> storeBanner;
-  List<CategoryElement> category;
-  String createdAt;
-  String updatedAt;
-  dynamic v;
+  final StoreBg storeLogo;
+  final StoreBg storeBg;
+  final Location location;
+  final dynamic contactNumber;
+  final bool quickDelivery;
+  final bool storeStatus;
+  final List<dynamic> addons;
+  final bool featured;
+  final dynamic rating;
+  final String id;
+  final String name;
+  final String branch;
+  final String type;
+  final String openTime;
+  final String closeTime;
+  final dynamic commission;
+  final dynamic dCommission;
+  final dynamic sortOrder;
+  final String gst;
+  final String fssai;
+  final String user;
+  final List<dynamic> storeBanner;
+  final List<CategoryElement> category;
+  final String createdAt;
+  final String updatedAt;
+  final dynamic v;
   int minimumOrderValue;
 
   factory Vendor.fromJson(Map<String, dynamic> json) => Vendor(
@@ -298,10 +316,10 @@ class Vendor {
             ? null
             : List<dynamic>.from(json["addons"].map((x) => x)),
         featured: json["featured"] == null ? null : json["featured"],
-        rating: json["rating"] == null ? null : json["rating"],
-        minimumOrderValue: json["minimumOrderValue"] == null
+         minimumOrderValue: json["minimumOrderValue"] == null
             ? null
             : json["minimumOrderValue"],
+        rating: json["rating"] == null ? null : json["rating"],
         id: json["_id"] == null ? null : json["_id"],
         name: json["name"] == null ? null : json["name"],
         branch: json["branch"] == null ? null : json["branch"],
@@ -311,6 +329,7 @@ class Vendor {
         commission: json["commission"] == null ? null : json["commission"],
         dCommission: json["dCommission"] == null ? null : json["dCommission"],
         sortOrder: json["sortOrder"] == null ? null : json["sortOrder"],
+        gst: json["gst"] == null ? null : json["gst"],
         fssai: json["fssai"] == null ? null : json["fssai"],
         user: json["user"] == null ? null : json["user"],
         storeBanner: json["storeBanner"] == null
@@ -342,11 +361,12 @@ class Vendor {
         "type": type == null ? null : type,
         "openTime": openTime == null ? null : openTime,
         "closeTime": closeTime == null ? null : closeTime,
+        "minimumOrderValue":
+            minimumOrderValue == null ? null : minimumOrderValue,
         "commission": commission == null ? null : commission,
         "dCommission": dCommission == null ? null : dCommission,
         "sortOrder": sortOrder == null ? null : sortOrder,
-        "minimumOrderValue":
-            minimumOrderValue == null ? null : minimumOrderValue,
+        "gst": gst == null ? null : gst,
         "fssai": fssai == null ? null : fssai,
         "user": user == null ? null : user,
         "storeBanner": storeBanner == null
@@ -363,14 +383,14 @@ class Vendor {
 
 class CategoryElement {
   CategoryElement({
-    this.status,
-    this.id,
-    this.category,
+    @required this.status,
+    @required this.id,
+    @required this.category,
   });
 
-  bool status;
-  String id;
-  String category;
+  final bool status;
+  final String id;
+  final String category;
 
   factory CategoryElement.fromJson(Map<String, dynamic> json) =>
       CategoryElement(
@@ -388,18 +408,18 @@ class CategoryElement {
 
 class Location {
   Location({
-    this.type,
-    this.formattedAddress,
-    this.address,
-    this.coordinates,
-    this.landmark,
+    @required this.type,
+    @required this.formattedAddress,
+    @required this.address,
+    @required this.coordinates,
+    @required this.landmark,
   });
 
-  String type;
-  String formattedAddress;
-  String address;
-  List<double> coordinates;
-  String landmark;
+  final String type;
+  final String formattedAddress;
+  final String address;
+  final List<double> coordinates;
+  final String landmark;
 
   factory Location.fromJson(Map<String, dynamic> json) => Location(
         type: json["type"] == null ? null : json["type"],
@@ -420,5 +440,42 @@ class Location {
             ? null
             : List<dynamic>.from(coordinates.map((x) => x)),
         "landmark": landmark == null ? null : landmark,
+      };
+}
+
+class Addons {
+  Addons({
+    this.id,
+    this.price,
+    this.name,
+    this.status,
+    this.offerPrice,
+    this.ausmartPrice,
+  });
+
+  String id;
+  String name;
+  dynamic price;
+  bool status;
+  dynamic offerPrice;
+  dynamic ausmartPrice;
+
+  factory Addons.fromJson(Map<String, dynamic> json) => Addons(
+        id: json["_id"] == null ? null : json["_id"],
+        name: json["name"] == null ? null : json["name"],
+        price: json["price"] == null ? null : json["price"],
+        offerPrice: json["offerPrice"] == null ? null : json["offerPrice"],
+        ausmartPrice:
+            json["ausmartPrice"] == null ? null : json["ausmartPrice"],
+        status: json["status"] == null ? null : json["status"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "name": name == null ? null : name,
+        "_id": id == null ? null : id,
+        "price": price == null ? null : price,
+        "offerPrice": offerPrice == null ? null : offerPrice,
+        "ausmartPrice": ausmartPrice == null ? null : ausmartPrice,
+        "status": status == null ? null : status,
       };
 }

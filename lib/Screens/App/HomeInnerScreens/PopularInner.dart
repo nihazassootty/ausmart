@@ -1,4 +1,7 @@
 import 'dart:convert';
+import 'package:ausmart/Commons/TextStyles.dart';
+import 'package:ausmart/Components/NearbyCard.dart';
+import 'package:ausmart/Components/popularCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:ausmart/Commons/AppConstants.dart';
@@ -120,6 +123,7 @@ class _PopularInnerState extends State<PopularInner> {
                                 category.category.name,
                                 style: TextStyle(
                                   fontSize: 24,
+                                  fontFamily: PrimaryFontName,
                                   letterSpacing: 0.8,
                                   color: Colors.white,
                                 ),
@@ -140,6 +144,7 @@ class _PopularInnerState extends State<PopularInner> {
                                       category.category.description,
                                       style: TextStyle(
                                         fontSize: 14,
+                                        fontFamily: PrimaryFontName,
                                         color: Colors.white,
                                       ),
                                     )
@@ -175,10 +180,9 @@ class _PopularInnerState extends State<PopularInner> {
                                 scrollDirection: Axis.vertical,
                                 itemBuilder: (context, index) {
                                   var item = category.stores[index];
-                                  return popularInnercard(
-                                    context: context,
-                                    item: item,
-                                  );
+                                  return popularResCard(
+                                item: item,
+                                context: context);
                                 }),
                   )
                 ],

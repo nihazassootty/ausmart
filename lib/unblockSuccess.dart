@@ -66,7 +66,7 @@ class _UnblockedPageState extends State<UnblockedPage> {
                             children: [
                               Text(
                                 'Continue',
-                                style: TextStyle(color: Colors.white),
+                                style: TextStyle(color: Colors.white,fontFamily: PrimaryFontName),
                               ),
                               SizedBox(
                                 width: 10,

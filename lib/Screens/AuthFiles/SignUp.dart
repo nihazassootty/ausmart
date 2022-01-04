@@ -123,8 +123,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                           "Sign Up",
                           style: TextStyle(
                             fontSize: 22,
-                            fontFamily: 'Proxima Nova Font',
-                            color: kPinkColor,
+fontFamily: PrimaryFontName,                            color: kPinkColor,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -135,8 +134,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                           "Please Enter Your Mobile Number",
                           style: TextStyle(
                             fontSize: 14,
-                            fontFamily: 'Proxima Nova Font',
-                            color: kGreyLight,
+fontFamily: PrimaryFontName,                            color: kGreyLight,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
@@ -242,6 +240,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                                     },
                                   text: ' Terms of Service',
                                   style: TextStyle(
+                                    fontFamily: PrimaryFontName,
                                     fontSize: 10,
                                     color: kPinkColor,
                                   ),
@@ -263,7 +262,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
                                       // );
                                     },
                                   text: 'Privacy Policy',
-                                  style: TextStyle(
+                                  style: TextStyle(fontFamily: PrimaryFontName,
                                     fontSize: 10,
                                     color: kPinkColor,
                                   ),

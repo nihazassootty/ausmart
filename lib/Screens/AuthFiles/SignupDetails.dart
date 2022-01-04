@@ -229,7 +229,7 @@ class _SignupDetailsState extends State<SignupDetails>
                                       // );
                                     },
                                   text: ' Terms of Service',
-                                  style: TextStyle(
+                                  style: TextStyle(fontFamily: PrimaryFontName,
                                     decoration: TextDecoration.underline,
                                     fontSize: 10,
                                     color: kPinkColor,
@@ -253,7 +253,7 @@ class _SignupDetailsState extends State<SignupDetails>
                                     },
                                   text: 'Privacy Policy',
                                   style: TextStyle(
-                                    fontSize: 10,
+                                    fontSize: 10,fontFamily: PrimaryFontName,
                                     decoration: TextDecoration.underline,
                                     color: kPinkColor,
                                   ),

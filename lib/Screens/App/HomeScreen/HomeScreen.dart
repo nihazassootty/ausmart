@@ -254,146 +254,166 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteColor,
-      appBar: new AppBar(
-        backgroundColor: kWhiteColor,
-        elevation: 0,
-        centerTitle: false,
-        automaticallyImplyLeading: false,
-        title: Container(
-          child: Image.asset(
-            "assets/images/ausmart.png",
-            height: 60,
-          ),
-        ),
-        actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 5),
-            child: GestureDetector(
-              child: Image.asset(
-                "assets/images/whatsappicon.png",
-                height: 60,
-              ),
-            ),
-          )
-        ],
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(50),
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: GestureDetector(
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SavedPage(),
-                  ),
-                ),
-                child: Container(
-                  height: 45,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF01D46F),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Icon(
-                          Icons.location_on,
-                          color: kWhiteColor,
-                          size: 20,
-                        ),
-                      ),
-                      Text(
-                        "Enter your Location",
-                        style: kText12white,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Icon(
-                          Icons.expand_more_outlined,
-                          color: kWhiteColor,
-                          size: 20,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-      bottomNavigationBar: cartBottomCard(),
+      //  appBar: new AppBar(
+      //   backgroundColor: kWhiteColor,
+      //   elevation: 0,
+      //   centerTitle: false,
+      //   automaticallyImplyLeading: false,
+      //   title: Container(
+      //     child: Image.asset(
+      //       "assets/images/ausmart.png",
+      //       height: 60,
+      //     ),
+      //   ),
+      //   actions: <Widget>[
+      //     Padding(
+      //       padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 5),
+      //       child: GestureDetector(
+      //         child: Image.asset(
+      //           "assets/images/whatsappicon.png",
+      //           height: 60,
+      //         ),
+      //       ),
+      //     )
+      //   ],
+      // ),
+      
+     bottomNavigationBar: cartBottomCard(),
       body: Consumer<StoreProvider>(
         builder: (context, data, child) => RefreshIndicator(
           backgroundColor: Colors.white,
           onRefresh: () => _refreshStores(),
           child: data.isServicable
-              ? SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => BottomNavigation(
-                                  index: 1,
+              ? SafeArea(
+                child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Image.asset(
+                                "assets/images/ausmart.png",
+                                height: 60,
+                              ), Container(
+                                margin: EdgeInsets.only(right: 17),
+                                child: SvgPicture.asset(
+                                  "assets/svg/whatsappIcon.svg",
+                                  height: 35,
                                 ),
                               ),
-                            );
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: Colors.grey[100],
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Search for hotels and dishes',
-                                  style: kTextgrey,
+                            ],
+                          ),
+                        ),
+                        Container(
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              child: GestureDetector(
+                                onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SavedPage(),
+                                  ),
                                 ),
-                                Icon(
-                                  Icons.search,
-                                  size: 20,
-                                  color: kGreyLight,
+                                child: Container(
+                                  height: 45,
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF01D46F),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: Icon(
+                                          Icons.location_on,
+                                          color: kWhiteColor,
+                                          size: 20,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Enter your Location",
+                                        style: kText12white,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(5.0),
+                                        child: Icon(
+                                          Icons.expand_more_outlined,
+                                          color: kWhiteColor,
+                                          size: 20,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      TopBanner(),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      PopularScreen(),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      QuickScreen(),
-                      BannerScreen(),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      CategoryScreen(),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      NearbyScreen(),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => BottomNavigation(
+                                    index: 1,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.grey[100],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Search for hotels and dishes',
+                                    style: kTextgrey,
+                                  ),
+                                  Icon(
+                                    Icons.search,
+                                    size: 20,
+                                    color: kGreyLight,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        TopBanner(),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        PopularScreen(),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        QuickScreen(),
+                        BannerScreen(),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        CategoryScreen(),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        NearbyScreen(),
+                      ],
+                    ),
                   ),
-                )
+              )
               : data.errorCode == 100
                   ? zerostate(
                       size: 220,

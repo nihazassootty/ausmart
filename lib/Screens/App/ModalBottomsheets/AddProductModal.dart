@@ -172,6 +172,7 @@ class _AddProductModalState extends State<AddProductModal> {
                               "ADD",
                               style: TextStyle(
                                 fontSize: 12,
+                                fontFamily: PrimaryFontName,
                                 color: kWhiteColor,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -330,6 +331,7 @@ class _AddProductModalState extends State<AddProductModal> {
                               "ADD",
                               style: TextStyle(
                                 fontSize: 12,
+                                fontFamily: PrimaryFontName,
                                 color: kWhiteColor,
                                 fontWeight: FontWeight.w500,
                               ),
