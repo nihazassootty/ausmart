@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:ausmart/Components/RestaurentInnerCard%20copy.dart';
 import 'package:ausmart/Models/RestoProductModel%20copy.dart';
+import 'package:ausmart/Providers/CartProvider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
@@ -178,7 +179,8 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                             ),
                             Offstage(
                               offstage: restaurant?.products?.length == 0,
-                              child: Padding(
+                              child: Container(
+                                margin: EdgeInsets.symmetric(vertical: 8),
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 15.0),
                                 child: Row(
@@ -208,75 +210,78 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                                 ),
                               ),
                             ),
-                            LimitedBox(
-                              maxHeight:
-                                  MediaQuery.of(context).size.height * 0.45,
-                              child: Container(
-                                height: MediaQuery.of(context)
-                                    .size
-                                    .height, //height of TabBarView
-                                child: TabBarView(
-                                  controller: _tabController,
-                                  children: restaurant.products.map((e) {
-                                    List check = e.products;
-                                    var store = restaurant.vendor;
-                                    return check.isEmpty
-                                        ? Container(
-                                            height: 560,
-                                            child: Center(
-                                                child: Column(
-                                              children: [
-                                                SvgPicture.asset(
-                                                    'assets/svg/noproducts.svg',
-                                                    height: 150),
-                                                SizedBox(height: 25),
-                                                Text(
-                                                  'Ohh No!',
-                                                  style: TextStyle(
-                                                      fontFamily:
-                                                          PrimaryFontName,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18),
-                                                ),
-                                                SizedBox(height: 10),
-                                                Text(
-                                                  'This Category has no more items!' ??
-                                                      '',
-                                                  style: TextStyle(
-                                                      fontFamily:
-                                                          PrimaryFontName,
-                                                      fontSize: 15),
-                                                )
-                                              ],
-                                            )),
-                                          )
-                                        : SingleChildScrollView(
-                                            child: Container(
-                                              color: Colors.white,
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 0, vertical: 0),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: check
-                                                      .map((e) =>
-                                                          restaurentInnercard(
-                                                            item: e,
-                                                            store: store,
-                                                            context: context,
-                                                          ))
-                                                      .toList(),
+                            Consumer<CartProvider>(
+                                    builder: (context, data, child) =>
+                              LimitedBox(
+                                maxHeight: data.cart.length == 0?  MediaQuery.of(context).size.height /2.1:
+                                    MediaQuery.of(context).size.height * 0.42,
+                                child: Container(
+                                  height: MediaQuery.of(context)
+                                      .size
+                                      .height, //height of TabBarView
+                                  child: TabBarView(
+                                    controller: _tabController,
+                                    children: restaurant.products.map((e) {
+                                      List check = e.products;
+                                      var store = restaurant.vendor;
+                                      return check.isEmpty
+                                          ? Container(
+                                              height: 560,
+                                              child: Center(
+                                                  child: Column(
+                                                children: [
+                                                  SvgPicture.asset(
+                                                      'assets/svg/noproducts.svg',
+                                                      height: 150),
+                                                  SizedBox(height: 25),
+                                                  Text(
+                                                    'Ohh No!',
+                                                    style: TextStyle(
+                                                        fontFamily:
+                                                            PrimaryFontName,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18),
+                                                  ),
+                                                  SizedBox(height: 10),
+                                                  Text(
+                                                    'This Category has no more items!' ??
+                                                        '',
+                                                    style: TextStyle(
+                                                        fontFamily:
+                                                            PrimaryFontName,
+                                                        fontSize: 15),
+                                                  )
+                                                ],
+                                              )),
+                                            )
+                                          : SingleChildScrollView(
+                                              child: Container(
+                                                color: Colors.white,
+                                                margin: EdgeInsets.symmetric(
+                                                    horizontal: 0, vertical: 0),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.start,
+                                                    children: check
+                                                        .map((e) =>
+                                                            restaurentInnercard(
+                                                              item: e,
+                                                              store: store,
+                                                              context: context,
+                                                            ))
+                                                        .toList(),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          );
-                                  }).toList(),
+                                            );
+                                    }).toList(),
+                                  ),
                                 ),
                               ),
                             )

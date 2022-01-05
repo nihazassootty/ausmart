@@ -134,7 +134,8 @@ Widget cartItemCard({item, context, index}) {
                   },
                 ),
               ),
-              Padding(
+              Container(
+                width: 60   ,
                 padding: const EdgeInsets.only(left: 10),
                 child: Text(
                   '\u20B9' + (item["price"] * item["qty"]).round().toString(),

@@ -16,13 +16,11 @@ import 'package:ausmart/Screens/App/Cart/change_address.dart';
 import 'package:ausmart/Shimmers/nearbydummy.dart';
 import 'package:provider/provider.dart';
 // import 'package:razorpay_flutter/razorpay_flutter.dart';
-
 // // ignore: must_be_immutable
 // class CheckoutScreen extends StatefulWidget {
 //   double discountedTotal;
 //   var discount;
 //   var tip;
-
 //   CheckoutScreen({
 //     Key key,
 //     this.discountedTotal,
@@ -32,7 +30,6 @@ import 'package:provider/provider.dart';
 //   @override
 //   _CheckoutScreenState createState() => _CheckoutScreenState();
 // }
-
 // class _CheckoutScreenState extends State<CheckoutScreen> {
 //   // ignore: unused_field
 //   String _value = "cash";
@@ -42,7 +39,6 @@ import 'package:provider/provider.dart';
 //   // Razorpay _razorpay;
 //   dynamic charge = 0;
 //   bool isProcessing = false;
-
 //   Future<String> generateOrderId(double amount) async {
 //     var headers = {
 //       'content-type': 'application/json',
@@ -60,15 +56,12 @@ import 'package:provider/provider.dart';
 //       throw Exception('http.post error: statusCode= ${response.statusCode}');
 //     return json.decode(response.body)['id'].toString();
 //   }
-
 //   void placeorder(itemtotal, totalpayable, deliverycharge, paymentType) async {
 //     var getcart = Provider.of<CartProvider>(context, listen: false);
 //     var getuser = Provider.of<GetDataProvider>(context, listen: false);
-
 //     setState(() {
 //       isProcessing = true;
 //     });
-
 //     if (paymentType == null) {
 //       setState(() {
 //         isProcessing = false;
@@ -80,7 +73,6 @@ import 'package:provider/provider.dart';
 //     //   // print("here"+totalpayable.toString());
 //     //   generateOrderId(totalpayable)
 //     //       .then((value) => openCheckout(value, getuser));
-
 //     //   //online payment here
 //     // } else {
 //     //   Map<String, dynamic> data = {
@@ -97,8 +89,7 @@ import 'package:provider/provider.dart';
 //     //   print(data.toString());
 //     //   FlutterSecureStorage storage = FlutterSecureStorage();
 //     //   final String token = await storage.read(key: "token");
-//     //   final Uri url = Uri.https(baseUrl, apiUrl + "/order");
-
+//     //   final Uri url = Uri.https(baseUrl, apiUrl + "/order")
 //     //   final response = await http.post(
 //     //     url,
 //     //     headers: {
@@ -110,9 +101,7 @@ import 'package:provider/provider.dart';
 //     //   );
 //     //   print(response.statusCode.toString());
 //     //   var result = await jsonDecode(response.body);
-
 //     //   print("helloo" + result.toString());
-
 //     //   if (response.statusCode == 200) {
 //     //     Navigator.pushAndRemoveUntil(
 //     //         context,
@@ -133,13 +122,11 @@ import 'package:provider/provider.dart';
 //     //   }
 //     // }
 //   }
-
-//   Future placeorderOnline(body) async {
+//  Future placeorderOnline(body) async {
 //     FlutterSecureStorage storage = FlutterSecureStorage();
 //     final String token = await storage.read(key: "token");
 //     final Uri url = Uri.https(baseUrl, apiUrl + "/order");
 //     print("heloo" + url.toString());
-
 //     final response = await http.post(
 //       url,
 //       headers: {
@@ -170,7 +157,6 @@ import 'package:provider/provider.dart';
 //       );
 //     }
 //   }
-
 //   Future deliverycharge({latitude, longitude, restaurentid}) async {
 //     print("testing");
 //     setState(() {
@@ -188,15 +174,12 @@ import 'package:provider/provider.dart';
 //           "longitude": longitude.toString(),
 //         },
 //       );
-
 //       final response = await http.get(url, headers: {
 //         'Content-Type': 'application/json',
 //         'Accept': 'application/json',
 //         "Authorization": "Bearer $token"
 //       });
-
 //       var data = jsonDecode(response.body);
-
 //       if (response.statusCode == 200) {
 //         setState(() {
 //           isServicable = true;
@@ -215,7 +198,6 @@ import 'package:provider/provider.dart';
 //       print(e);
 //     }
 //   }
-
 //   callBack() {
 //     final getmodel = Provider.of<GetDataProvider>(context, listen: false);
 //     final getcartmodel = Provider.of<CartProvider>(context, listen: false);
@@ -245,9 +227,7 @@ import 'package:provider/provider.dart';
 //   //     }
 //   //   };
 //   //   placeorderOnline(body);
-
 //   // }
-
 //   // void openCheckout(value, GetDataProvider user) async {
 //   //   var options = {
 //   //     'key': '$razorpayKey',
@@ -269,7 +249,6 @@ import 'package:provider/provider.dart';
 //   //     debugPrint(e);
 //   //   }
 //   // }
-
 //   // void initState() {
 //   //   super.initState();
 //   //   final getmodel = Provider.of<GetDataProvider>(context, listen: false);
@@ -278,7 +257,6 @@ import 'package:provider/provider.dart';
 //   //       latitude: getmodel.latitude,
 //   //       longitude: getmodel.longitude,
 //   //       restaurentid: getcartmodel.store["storeId"]);
-
 //   //   _razorpay = Razorpay();
 //   //   _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS,
 //   //       (PaymentSuccessResponse response) => _onlinePayment(response));
@@ -289,7 +267,6 @@ import 'package:provider/provider.dart';
 //   //     });
 //   //   });
 //   // }
-
 //   var totalamnt;
 //   TextEditingController _instructionController;
 //   // ignore: unused_field
@@ -312,7 +289,6 @@ import 'package:provider/provider.dart';
 //                 : double.parse(widget.tip) + itemtotal + charge.toDouble()
 //             : itemtotal + charge.toDouble();
 //     totalamnt = totalpayable;
-
 //     return Scaffold(
 //       appBar: AppBar(
 //           backgroundColor: kWhiteColor,

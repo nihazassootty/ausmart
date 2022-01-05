@@ -10,6 +10,7 @@ Widget restaurantInfoCard({Vendor restaurant, context}) {
       (date) => DateFormat('hh:mm a').format(DateFormat('HH:mm').parse(date));
   return Stack(
     children: [
+     
       Container(
         decoration: ShapeDecoration(
           shape: ContinuousRectangleBorder(
@@ -31,27 +32,27 @@ Widget restaurantInfoCard({Vendor restaurant, context}) {
         //   fit: BoxFit.fitHeight,
         // ),
       ),
-      Container(
-        height: 250,
-        width: MediaQuery.of(context).size.width,
-        decoration: ShapeDecoration(
-          shape: ContinuousRectangleBorder(
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(80),
-                bottomRight: Radius.circular(80)),
-          ),
-          color: Colors.transparent,
-          // borderRadius: BorderRadius.only(
-          //     bottomLeft: Radius.circular(25),
-          //     bottomRight: Radius.circular(25)),
-          image: DecorationImage(
-            image: AssetImage(
-              'assets/images/Rectangle1.png',
-            ),
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
+      // Container(
+      //   height: 250,
+      //   width: MediaQuery.of(context).size.width,
+      //   decoration: ShapeDecoration(
+      //     shape: ContinuousRectangleBorder(
+      //       borderRadius: BorderRadius.only(
+      //           bottomLeft: Radius.circular(80),
+      //           bottomRight: Radius.circular(80)),
+      //     ),
+      //     color: Colors.transparent,
+      //     // borderRadius: BorderRadius.only(
+      //     //     bottomLeft: Radius.circular(25),
+      //     //     bottomRight: Radius.circular(25)),
+      //     image: DecorationImage(
+      //       image: AssetImage(
+      //         'assets/images/Rectangle1.png',
+      //       ),
+      //       fit: BoxFit.cover,
+      //     ),
+      //   ),
+      // ),
       Positioned(
         bottom: 5,
         left: 20,
@@ -189,6 +190,33 @@ Widget restaurantInfoCard({Vendor restaurant, context}) {
                   //   ],
                   // ),
                 ],
+              ),
+            ),
+          ),
+        ),
+      ),
+       Positioned(
+        top: 0,
+        child: RotatedBox(
+          quarterTurns: 2,
+          child: Container(
+            height:32,
+            width: MediaQuery.of(context).size.width,
+            decoration: ShapeDecoration(
+              shape: ContinuousRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(80),
+                    bottomRight: Radius.circular(80)),
+              ),
+              color: Colors.transparent,
+              // borderRadius: BorderRadius.only(
+              //     bottomLeft: Radius.circular(25),
+              //     bottomRight: Radius.circular(25)),
+              image: DecorationImage(
+                image: AssetImage(
+                  'assets/images/Rectangle1.png',
+                ),
+                fit: BoxFit.cover,
               ),
             ),
           ),

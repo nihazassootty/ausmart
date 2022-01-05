@@ -29,6 +29,8 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
+      bool isDelay = true;
+
   bool completed = false;
   int serverOtp;
   int typedotp;
@@ -39,6 +41,11 @@ class _OtpScreenState extends State<OtpScreen> {
       serverOtp = widget.otp;
     });
     super.initState();
+     Future.delayed(Duration(seconds: 5), () {
+        setState(() {
+          isDelay = false;
+        });
+      });
   }
 
   @override
@@ -102,23 +109,77 @@ class _OtpScreenState extends State<OtpScreen> {
       // }
     }
 
+    // void _resendOtp() async {
+    //   FlutterSecureStorage storage = FlutterSecureStorage();
+    //   final String token = await storage.read(key: "token");
+    //   final Uri url = Uri.https(baseUrl, apiUrl + "/customer/resendOTP");
+    //   final response = await http.get(url, headers: {
+    //     "Content-Type": "application/json",
+    //     "Accept": "application/json",
+    //     "Authorization": "Bearer $token"
+    //   });
+    //   var jsonData = jsonDecode(response.body);
+    //   if (response.statusCode == 200) {
+    //     setState(() {
+    //       serverOtp = jsonData["otp"];
+    //     });
+    //     print(serverOtp);
+    //   } else {
+    //     print("error in verification");
+    //   }
+    // }
+
+
     void _resendOtp() async {
+      setState(() {
+        isDelay = true;
+      });
+     
+      Map<String, String> data = {
+        "username": widget.phoneNumber,
+      };
       FlutterSecureStorage storage = FlutterSecureStorage();
       final String token = await storage.read(key: "token");
-      final Uri url = Uri.https(baseUrl, apiUrl + "/customer/resendOTP");
-      final response = await http.get(url, headers: {
+      final Uri url = Uri.https(baseUrl, apiUrl + "/auth/login");
+      final response = await http.post(url, body: jsonEncode(data), headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
         "Authorization": "Bearer $token"
       });
-      var jsonData = jsonDecode(response.body);
+
       if (response.statusCode == 200) {
+        showSnackBar(
+          duration: Duration(milliseconds: 10000),
+          context: context,
+          message: "Resend Otp Sent",
+        );
         setState(() {
+          var jsonData = jsonDecode(response.body);
+
           serverOtp = jsonData["otp"];
         });
+
         print(serverOtp);
+        Map<String, dynamic> output = json.decode(response.body);
+        await storage.write(key: "token", value: output["token"]);
+        if (output['verified'] == true) {
+          print(output['verified']);
+
+          await storage.write(key: "verified", value: 'true');
+        } else {
+          await storage.write(key: "verified", value: 'false');
+        }
+            Future.delayed(Duration(seconds: 5), () {
+        setState(() {
+          isDelay = false;
+        });
+      });
       } else {
-        print("error in verification");
+        showSnackBar(
+          duration: Duration(milliseconds: 10000),
+          context: context,
+          message: "Resend Otp Failed",
+        );
       }
     }
 
@@ -161,7 +222,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         height: 10,
                       ),
                       Text(
-                        "A one-time password has been sent to ${widget.phoneNumber}.\notp is : $serverOtp",
+                        "A one-time password has been sent to ${widget.phoneNumber}",
                         style: kTextgrey,
                       ),
                       SizedBox(
@@ -196,12 +257,23 @@ class _OtpScreenState extends State<OtpScreen> {
                               style: kTextgrey,
                             ),
                             GestureDetector(
-                              onTap: () => _resendOtp(),
+                              onTap: isDelay == true
+                                  ? null
+                                  : () {
+                                      _resendOtp();
+                                    },
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 5),
                                 child: Text(
                                   "Resend",
-                                  style: kNavBarTitle,
+                                  style: isDelay
+                                      ? TextStyle(
+                                          fontFamily: PrimaryFontName,
+                                          fontWeight: FontWeight.w400,
+                                          color: kGreyLight1,
+                                          fontSize: 14,
+                                        )
+                                      : kNavBarTitle,
                                 ),
                               ),
                             ),

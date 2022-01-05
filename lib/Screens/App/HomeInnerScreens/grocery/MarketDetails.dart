@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:ausmart/Components/RestaurantInfoCard.dart';
 import 'package:ausmart/Components/RestaurentInnerCard.dart';
+import 'package:ausmart/Providers/CartProvider.dart';
 import 'package:ausmart/Screens/App/HomeInnerScreens/meetNFish/meetNFishItemCard.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
@@ -126,7 +127,7 @@ class _MarketDetailState extends State<MarketDetail> {
           ? nearrestaurantShimmer()
           : Column(
               children: [
-                marketInfoCard(restaurant: restaurant, context: context),
+                marketInfoCard(restaurant: restaurant.vendor, context: context),
                 SizedBox(
                   height: 60,
                 ),
@@ -169,75 +170,78 @@ class _MarketDetailState extends State<MarketDetail> {
                               ),
                             ),
                          
-                            LimitedBox(
-                              maxHeight:
-                                  MediaQuery.of(context).size.height * 0.45,
-                              child: Container(
-                                height: MediaQuery.of(context)
-                                    .size
-                                    .height, //height of TabBarView
-                                child: TabBarView(
-                                  controller: _tabController,
-                                  children: restaurant.products.map((e) {
-                                    List check = e.products;
-                                    var store = restaurant.vendor;
-                                    return check.isEmpty
-                                        ? Container(
-                                            height: 560,
-                                            child: Center(
-                                                child: Column(
-                                              children: [
-                                                SvgPicture.asset(
-                                                    'assets/svg/noproducts.svg',
-                                                    height: 150),
-                                                SizedBox(height: 25),
-                                                Text(
-                                                  'Ohh No!',
-                                                  style: TextStyle(
-                                                      fontFamily:
-                                                          PrimaryFontName,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18),
-                                                ),
-                                                SizedBox(height: 10),
-                                                Text(
-                                                  'This Category has no more items!' ??
-                                                      '',
-                                                  style: TextStyle(
-                                                      fontFamily:
-                                                          PrimaryFontName,
-                                                      fontSize: 15),
-                                                )
-                                              ],
-                                            )),
-                                          )
-                                        : SingleChildScrollView(
-                                            child: Container(
-                                              color: Colors.white,
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 0, vertical: 0),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: check
-                                                      .map((e) =>
-                                                          meetNFishItemCard(
-                                                            item: e,
-                                                            store: restaurant.vendor,
-                                                            context: context,
-                                                          ))
-                                                      .toList(),
+                             Consumer<CartProvider>(
+                                    builder: (context, data, child) =>
+                              LimitedBox(
+                                maxHeight: data.cart.length == 0?  MediaQuery.of(context).size.height /1.9:
+                                    MediaQuery.of(context).size.height * 0.49,
+                                child: Container(
+                                  height: MediaQuery.of(context)
+                                      .size
+                                      .height, //height of TabBarView
+                                  child: TabBarView(
+                                    controller: _tabController,
+                                    children: restaurant.products.map((e) {
+                                      List check = e.products;
+                                      var store = restaurant.vendor;
+                                      return check.isEmpty
+                                          ? Container(
+                                              height: 560,
+                                              child: Center(
+                                                  child: Column(
+                                                children: [
+                                                  SvgPicture.asset(
+                                                      'assets/svg/noproducts.svg',
+                                                      height: 150),
+                                                  SizedBox(height: 25),
+                                                  Text(
+                                                    'Ohh No!',
+                                                    style: TextStyle(
+                                                        fontFamily:
+                                                            PrimaryFontName,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18),
+                                                  ),
+                                                  SizedBox(height: 10),
+                                                  Text(
+                                                    'This Category has no more items!' ??
+                                                        '',
+                                                    style: TextStyle(
+                                                        fontFamily:
+                                                            PrimaryFontName,
+                                                        fontSize: 15),
+                                                  )
+                                                ],
+                                              )),
+                                            )
+                                          : SingleChildScrollView(
+                                              child: Container(
+                                                color: Colors.white,
+                                                margin: EdgeInsets.symmetric(
+                                                    horizontal: 0, vertical: 0),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.start,
+                                                    children: check
+                                                        .map((e) =>
+                                                            marketInnercard(
+                                                              item: e,
+                                                              store: restaurant.vendor,
+                                                              context: context,
+                                                            ))
+                                                        .toList(),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          );
-                                  }).toList(),
+                                            );
+                                    }).toList(),
+                                  ),
                                 ),
                               ),
                             )

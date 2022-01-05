@@ -298,10 +298,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 "assets/images/ausmart.png",
                                 height: 60,
                               ), Container(
-                                margin: EdgeInsets.only(right: 17),
+                                margin: EdgeInsets.only(right: 20),
                                 child: SvgPicture.asset(
                                   "assets/svg/whatsappIcon.svg",
-                                  height: 35,
+                                  height: 30,
                                 ),
                               ),
                             ],

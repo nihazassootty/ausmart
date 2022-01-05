@@ -193,7 +193,6 @@ class _TrackOrderState extends State<TrackOrder> {
                     style: kNavBarTitle,
                   ),
 
-                  // TODO: ADD TRACK ORDER
 
                   Offstage(
                     offstage: order.data.orderStatus == 'cancelled',
@@ -298,15 +297,15 @@ class _TrackOrderState extends State<TrackOrder> {
                         billItem(
                             title: 'Item Total',
                             price: order.data.subTotalAmount),
-                        //TODO: ADD DELIVERY TIP
-                        billItem(
-                            title: 'Delivery Tip',
-                            price: order.data.deliveryCharge),
+                        // //TODO: ADD DELIVERY TIP
+                        // billItem(
+                        //     title: 'Delivery Tip',
+                        //     price: order.data.deliveryCharge),
                         //TODO: ADD DELIVERY Discount
 
                         billItem(
                             title: 'Discount',
-                            price: order.data.deliveryDistance),
+                            price: 0),
                         billItem(
                             title: 'Delivery Charge',
                             price: order.data.deliveryCharge),

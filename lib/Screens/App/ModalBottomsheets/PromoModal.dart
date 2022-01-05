@@ -14,9 +14,7 @@ import 'package:provider/provider.dart';
 
 class PromoModal extends StatefulWidget {
   final itemtotal;
-  final String tip;
-  const PromoModal({Key key, @required this.itemtotal, this.tip})
-      : super(key: key);
+  const PromoModal({Key key, @required this.itemtotal}) : super(key: key);
 
   @override
   _PromoModalState createState() => _PromoModalState();
@@ -43,6 +41,7 @@ class _PromoModalState extends State<PromoModal> {
       var data = jsonDecode(response.body);
 
       if (response.statusCode == 200) {
+        print(data);
         setState(() {
           coupons = PromoModel.fromJson(data);
           loading = false;
@@ -66,7 +65,6 @@ class _PromoModalState extends State<PromoModal> {
   Widget build(BuildContext context) {
     var getcart = Provider.of<CartProvider>(context, listen: false);
     // ignore: unused_local_variable
-
     var discount;
     var discountedTotal;
     Future _selectCoupon(details) async {
@@ -88,16 +86,18 @@ class _PromoModalState extends State<PromoModal> {
             message: "Coupon Applied Succesfully!",
             context: context,
           );
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CheckoutScreen(
-                discount: discount,
-                discountedTotal: discountedTotal,
-                tip: widget.tip == '' ? null : widget.tip,
-              ),
-            ),
-          );
+            print('discount : $discount');
+            print('discountedTotal : $discountedTotal');
+          Navigator.of(context).pop();
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (context) => CheckoutScreen(
+          //       discount: discount,
+          //       discountedTotal: discountedTotal,
+          //     ),
+          //   ),
+          // );
           return discountedTotal;
         } else {
           if (widget.itemtotal >= details.minAmount) {
@@ -108,17 +108,21 @@ class _PromoModalState extends State<PromoModal> {
               message: "Coupon Applied Succesfully!",
               context: context,
             );
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => CheckoutScreen(
-                  discount: discount,
-                  discountedTotal: discountedTotal,
-                  tip: widget.tip == '' ? null : widget.tip,
-                ),
-                // OrderPlaced(orderData: result["data"]["orderId"]),
-              ),
-            );
+            print('discount : $discount');
+            print('discountedTotal : $discountedTotal');
+            Navigator.of(context).pop();
+            
+
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => CheckoutScreen(
+            //       discount: discount,
+            //       discountedTotal: discountedTotal,
+            //     ),
+            //     // OrderPlaced(orderData: result["data"]["orderId"]),
+            //   ),
+            // );
           } else {
             showSnackBar(
               duration: Duration(milliseconds: 1500),
@@ -216,7 +220,7 @@ class _PromoModalState extends State<PromoModal> {
                                     children: [
                                       Expanded(
                                         child: Container(
-                                          height: 70,
+                                          height: 80,
                                           decoration: BoxDecoration(
                                             color: details.vendors
                                                     .map((id) => id)
@@ -233,9 +237,9 @@ class _PromoModalState extends State<PromoModal> {
                                             children: [
                                               Padding(
                                                 padding:
-                                                    const EdgeInsets.all(20.0),
+                                                    const EdgeInsets.all(10.0),
                                                 child: Image.asset(
-                                                    'assets/images/promo1.png'),
+                                                    'assets/images/AusmartLogo.png'),
                                               ),
                                               Expanded(
                                                 child: Container(
@@ -271,7 +275,8 @@ class _PromoModalState extends State<PromoModal> {
                                                                 "Coupon Not Applicable",
                                                                 style:
                                                                     TextStyle(
-                                                                      fontFamily: PrimaryFontName,
+                                                                  fontFamily:
+                                                                      PrimaryFontName,
                                                                   fontSize: 12,
                                                                   color: Colors
                                                                       .red,
@@ -508,4 +513,7 @@ class _PromoModalState extends State<PromoModal> {
       ),
     );
   }
+
 }
+
+
