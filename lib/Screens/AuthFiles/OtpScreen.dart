@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 class OtpScreen extends StatefulWidget {
+  final token;
   final String phoneNumber;
   final int otp;
   final bool verified;
@@ -21,7 +22,8 @@ class OtpScreen extends StatefulWidget {
       {Key key,
       @required this.phoneNumber,
       @required this.otp,
-      @required this.verified})
+      @required this.verified,
+      this.token})
       : super(key: key);
 
   @override
@@ -29,7 +31,7 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
-      bool isDelay = true;
+  bool isDelay = true;
 
   bool completed = false;
   int serverOtp;
@@ -41,16 +43,18 @@ class _OtpScreenState extends State<OtpScreen> {
       serverOtp = widget.otp;
     });
     super.initState();
-     Future.delayed(Duration(seconds: 5), () {
-        setState(() {
-          isDelay = false;
-        });
+    Future.delayed(Duration(seconds: 5), () {
+      setState(() {
+        isDelay = false;
       });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     void _verifyUser(typedotp) async {
+      FlutterSecureStorage storage = FlutterSecureStorage();
+
       if (serverOtp == typedotp) {
         if (widget.verified == false) {
           Navigator.pushAndRemoveUntil(
@@ -60,6 +64,8 @@ class _OtpScreenState extends State<OtpScreen> {
               ),
               (route) => false);
         } else {
+          await storage.write(key: "token", value: widget.token);
+
           Provider.of<GetDataProvider>(context, listen: false).getData(context);
         }
       } else {
@@ -129,12 +135,11 @@ class _OtpScreenState extends State<OtpScreen> {
     //   }
     // }
 
-
     void _resendOtp() async {
       setState(() {
         isDelay = true;
       });
-     
+
       Map<String, String> data = {
         "username": widget.phoneNumber,
       };
@@ -161,7 +166,6 @@ class _OtpScreenState extends State<OtpScreen> {
 
         print(serverOtp);
         Map<String, dynamic> output = json.decode(response.body);
-        await storage.write(key: "token", value: output["token"]);
         if (output['verified'] == true) {
           print(output['verified']);
 
@@ -169,11 +173,11 @@ class _OtpScreenState extends State<OtpScreen> {
         } else {
           await storage.write(key: "verified", value: 'false');
         }
-            Future.delayed(Duration(seconds: 5), () {
-        setState(() {
-          isDelay = false;
+        Future.delayed(Duration(seconds: 20), () {
+          setState(() {
+            isDelay = false;
+          });
         });
-      });
       } else {
         showSnackBar(
           duration: Duration(milliseconds: 10000),

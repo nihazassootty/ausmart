@@ -26,10 +26,19 @@ class _SplashScreenState extends State<SplashScreen> {
     String token = await storage.read(key: "token");
 
     if (verified == 'true') {
+      print('verified : true');
       if (token != null) {
+        print('token is not empley');
         Provider.of<GetDataProvider>(context, listen: false).getData(context);
+      } else {
+        print('token is empley');
+
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => SignUp()));
       }
     } else {
+            print('verified : false');
+
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
           transitionDuration: const Duration(seconds: 5),
@@ -250,10 +259,21 @@ class _SplashScreenState extends State<SplashScreen> {
     String token = await storage.read(key: "token");
 
     if (verified == 'true') {
+              print('verified true');
+
       if (token != null) {
+                print('token is no empty');
+
         Provider.of<GetDataProvider>(context, listen: false).getData(context);
+      } else {
+        print('token is empty');
+
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => SignUp()));
       }
     } else {
+                    print('verified false');
+
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
@@ -274,7 +294,6 @@ class _SplashScreenState extends State<SplashScreen> {
           'assets/images/splashBg.jpeg',
           fit: BoxFit.cover,
         ),
-       
       ),
     );
   }

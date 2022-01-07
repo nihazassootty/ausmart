@@ -22,7 +22,7 @@ class PopularScreen extends StatelessWidget {
                   : Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: Container(
-                        height: MediaQuery.of(context).size.height / 7.5,
+                        height: MediaQuery.of(context).size.height / 6.8,
                         child: MediaQuery.removePadding(
                           context: context,
                           removeTop: true,

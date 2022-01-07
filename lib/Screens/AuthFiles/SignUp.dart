@@ -22,7 +22,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController _phoneController = TextEditingController(text: '9142705120');
+  TextEditingController _phoneController = TextEditingController();
 
   bool circular = false;
   final storage = new FlutterSecureStorage();
@@ -47,7 +47,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
 
       if (response.statusCode == 200) {
         Map<String, dynamic> output = json.decode(response.body);
-        await storage.write(key: "token", value: output["token"]);
+        // await storage.write(key: "token", value: output["token"]);
         if (output['verified'] == true) {
           await storage.write(key: "verified", value: 'true');
         } else {
@@ -57,6 +57,7 @@ class _SignUpState extends State<SignUp> with SingleTickerProviderStateMixin {
             context,
             MaterialPageRoute(
               builder: (context) => OtpScreen(
+                token: output["token"],
                 phoneNumber: _phoneController.text,
                 otp: output["otp"],
                 verified: output["verified"],

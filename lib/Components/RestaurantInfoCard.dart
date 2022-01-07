@@ -108,10 +108,11 @@ Widget restaurantInfoCard({Vendor restaurant, context}) {
                             color: kGreyLight,
                           ),
                         ),
-                        restaurant.featured
+                        SizedBox(height: 4,),
+                        !restaurant.featured
                             ? Container(
-                                height: 20,
-                                width: 76,
+                                height: 17,
+                                width: 66,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   color: Colors.yellow[900],

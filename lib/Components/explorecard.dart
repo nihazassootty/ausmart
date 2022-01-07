@@ -37,20 +37,19 @@ Widget exploreCard(
           //   image: AssetImage(image ?? 'assets/images/food.png'),
           // ),
         ),
-        child: Stack(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Positioned(
-              bottom: 0,
-              child: Column(
-                children: [
-                  Image.asset(image ?? 'assets/images/food.png'),
-                  Text(
-                    title ?? 'Item',
-                    style: TextStyle(fontWeight: FontWeight.bold,fontFamily: PrimaryFontName, color: color,fontSize: 15),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
+            Image.asset(image),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              title ?? 'Item',
+              
+              style: TextStyle(fontWeight: FontWeight.bold,fontFamily: PrimaryFontName, color: color,fontSize: 13),
+              textAlign: TextAlign.center,
             ),
           ],
         ),

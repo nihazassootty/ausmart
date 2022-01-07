@@ -264,7 +264,7 @@ class _SavedPageState extends State<SavedPage> {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10),
-                                          color: Colors.black,
+                                          color: Color(0xff5F5F5F),
                                         ),
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),

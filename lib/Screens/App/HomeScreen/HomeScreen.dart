@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Components/topBanner.dart';
 import 'package:ausmart/Providers/GroceryProvider.dart';
@@ -23,6 +25,7 @@ import 'package:ausmart/Screens/App/HomeScreen/PopularScreen.dart';
 import 'package:ausmart/Screens/App/HomeScreen/QuickScreen.dart';
 import 'package:provider/provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -247,7 +250,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteColor,
+      backgroundColor: Color(0xFFFEFEFE),
       //  appBar: new AppBar(
       //   backgroundColor: kWhiteColor,
       //   elevation: 0,
@@ -271,15 +274,18 @@ class _HomeScreenState extends State<HomeScreen> {
       //     )
       //   ],
       // ),
-      
-     bottomNavigationBar: cartBottomCard(),
+
+      bottomNavigationBar: cartBottomCard(),
       body: Consumer<StoreProvider>(
-        builder: (context, data, child) => RefreshIndicator(
+        builder: (context, data, child) {
+          // var supportNumber = data.store.branch.supportNumber;
+          var message = 'Hi, I need help with my order';
+          return RefreshIndicator(
           backgroundColor: Colors.white,
           onRefresh: () => _refreshStores(),
           child: data.isServicable
               ? SafeArea(
-                child: SingleChildScrollView(
+                  child: SingleChildScrollView(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -291,11 +297,26 @@ class _HomeScreenState extends State<HomeScreen> {
                               Image.asset(
                                 "assets/images/ausmart.png",
                                 height: 60,
-                              ), Container(
-                                margin: EdgeInsets.only(right: 20),
-                                child: SvgPicture.asset(
-                                  "assets/svg/whatsappIcon.svg",
-                                  height: 30,
+                              ),
+                              GestureDetector(
+                                onTap: () async {
+                                  print(data.store.branch.supportNumber);
+                                  var url = Platform.isAndroid
+                                      ? "https://wa.me/${data.store.branch.supportNumber}/?text=${Uri.encodeFull(message)}"
+                                      : "https://send?phone=${data.store.branch.supportNumber}&text=${Uri.encodeFull(message)}";
+                               
+                                  if (await canLaunch(url)) {
+                                    await launch(url);
+                                  } else {
+                                    // can't launch url
+                                  }
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.only(right: 20),
+                                  child: SvgPicture.asset(
+                                    "assets/svg/whatsappIcon.svg",
+                                    height: 30,
+                                  ),
                                 ),
                               ),
                             ],
@@ -370,7 +391,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Colors.grey[100],
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Search for hotels and dishes',
@@ -407,7 +429,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-              )
+                )
               : data.errorCode == 100
                   ? zerostate(
                       size: 220,
@@ -421,7 +443,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       head: 'Dang!',
                       sub: "We are currently under maintenance",
                     ),
-        ),
+        );
+        },
       ),
     );
   }
