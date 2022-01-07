@@ -1,15 +1,14 @@
+// ignore_for_file: non_constant_identifier_names, unused_local_variable
+
 import 'dart:math';
 import 'dart:typed_data';
 
-import 'package:ausmart/Models/MarketProductModel.dart';
 import 'package:ausmart/Models/RestoProductModel%20copy.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:ausmart/Commons/SnackBar.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
-import 'package:ausmart/Models/RestoProductModel.dart';
 import 'package:ausmart/Providers/CartProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:spinner_input/spinner_input.dart';
@@ -294,7 +293,6 @@ Widget restaurentInnercard({
                   }
 
                   bool _hasBeenPressed = getmodel.cart.contains("id");
-                  // ignore: non_constant_identifier_names
                   addItemCart(
                       Product, val, qty, List<dynamic> addons, totalprice) {
                     if (getmodel.cart.length == 0 && getmodel.store.isEmpty) {

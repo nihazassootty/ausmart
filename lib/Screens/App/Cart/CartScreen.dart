@@ -1,4 +1,4 @@
-// ignore_for_file: unrelated_type_equality_checks
+// ignore_for_file: unrelated_type_equality_checks, unused_local_variable, duplicate_ignore
 
 import 'dart:convert';
 
@@ -17,8 +17,6 @@ import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Commons/zerostate.dart';
 import 'package:ausmart/Components/CartItemCard.dart';
 import 'package:ausmart/Providers/CartProvider.dart';
-import 'package:ausmart/Screens/App/Cart/CheckoutScreen.dart';
-import 'package:ausmart/Screens/App/ModalBottomsheets/PromoModal.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
@@ -499,9 +497,9 @@ class _CartScreenState extends State<CartScreen> {
             ? item["offerPrice"] * item["qty"]
             : item["ausmartPrice"] * item["qty"])
         .fold(0, (prev, amount) => prev + amount);
-    double totalpayable = mainDiscount != 0
-        ? (mainDiscount) - itemtotal + charge.toDouble()
-        : itemtotal + charge.toDouble();
+    // double totalpayable = mainDiscount != 0
+    //     ? (mainDiscount) - itemtotal + charge.toDouble()
+    //     : itemtotal + charge.toDouble();
     return Scaffold(
       // resizeToAvoidBottomInset: true,
       backgroundColor: kWhiteColor,

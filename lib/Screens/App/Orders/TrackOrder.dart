@@ -297,10 +297,7 @@ class _TrackOrderState extends State<TrackOrder> {
                         billItem(
                             title: 'Item Total',
                             price: order.data.subTotalAmount),
-                        // //TODO: ADD DELIVERY TIP
-                        // billItem(
-                        //     title: 'Delivery Tip',
-                        //     price: order.data.deliveryCharge),
+                        
                         //TODO: ADD DELIVERY Discount
 
                         billItem(
@@ -322,7 +319,7 @@ class _TrackOrderState extends State<TrackOrder> {
                         title: 'Paid Via\t${order.data.paymentType}',
 
                         // 'Paid Via Cash',
-                        price: order.data.totalAmount,
+                        price: order.data.vendorTotalAmount,
                         bold: true),
                   ),
                   SizedBox(

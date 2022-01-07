@@ -5,7 +5,6 @@ import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Commons/zerostate.dart';
 import 'package:ausmart/Components/CartBottomCard.dart';
-import 'package:ausmart/Components/NearbyCard.dart';
 import 'package:ausmart/Providers/StoreProvider.dart';
 import 'package:ausmart/Shimmers/nearbydummy.dart';
 import 'package:provider/provider.dart';

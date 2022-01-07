@@ -5,7 +5,6 @@ import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Screens/App/AccountScreen.dart';
 import 'package:ausmart/Screens/App/Cart/CartScreen.dart';
 import 'package:ausmart/Screens/App/HomeScreen/HomeScreen.dart';
-import 'package:ausmart/Screens/App/MarketScreen.dart';
 import 'package:ausmart/Screens/App/SearchScreen.dart';
 
 class BottomNavigation extends StatefulWidget {

@@ -2,8 +2,6 @@ import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Components/topBanner.dart';
 import 'package:ausmart/Providers/GroceryProvider.dart';
 import 'package:ausmart/Screens/App/HomeScreen/BottomNav.dart';
-import 'package:ausmart/Screens/App/ModalBottomsheets/SavedAddressmodal.dart';
-import 'package:ausmart/Screens/App/SearchScreen.dart';
 import 'package:ausmart/Screens/App/saved_address.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,12 +9,9 @@ import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:ausmart/Commons/AppConstants.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
-
 import 'package:ausmart/Commons/SnackBar.dart';
 import 'package:ausmart/Commons/zerostate.dart';
-import 'package:ausmart/Components/ActiveMessageCard.dart';
 import 'package:ausmart/Components/BannerCard.dart';
-
 import 'package:ausmart/Components/CartBottomCard.dart';
 import 'package:ausmart/Providers/GetDataProvider.dart';
 import 'package:ausmart/Providers/MeatnFishProvider.dart';
@@ -26,7 +21,6 @@ import 'package:ausmart/Screens/App/HomeScreen/CategoryScreen.dart';
 import 'package:ausmart/Screens/App/HomeScreen/NearbyScreen.dart';
 import 'package:ausmart/Screens/App/HomeScreen/PopularScreen.dart';
 import 'package:ausmart/Screens/App/HomeScreen/QuickScreen.dart';
-import 'package:ausmart/Screens/App/HomeScreen/RecommendedScreen.dart';
 import 'package:provider/provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 

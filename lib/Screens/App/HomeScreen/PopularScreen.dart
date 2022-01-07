@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Commons/zerostate.dart';
 import 'package:ausmart/Components/PopularCard.dart';
 import 'package:ausmart/Providers/PopularProvider.dart';

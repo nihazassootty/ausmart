@@ -6,7 +6,6 @@ import 'package:ausmart/Commons/AppConstants.dart';
 import 'package:ausmart/Models/AccountModel.dart';
 import 'package:ausmart/Screens/App/HomeScreen/BottomNav.dart';
 import 'package:ausmart/Screens/AuthFiles/SignUp.dart';
-import 'package:ausmart/Screens/blockScreen.dart';
 
 class GetDataProvider extends ChangeNotifier {
   var recentBranch;

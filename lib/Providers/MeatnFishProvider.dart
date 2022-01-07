@@ -7,7 +7,6 @@ import 'package:http/http.dart' as http;
 import 'package:ausmart/Commons/AppConstants.dart';
 import 'package:ausmart/Models/MeatnFishModel.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
-import 'dart:developer';
 
 class MeetnFishProvider extends ChangeNotifier {
   bool loading = true;

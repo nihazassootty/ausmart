@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import 'dart:convert';
 import 'package:ausmart/Components/RestaurentInnerCard%20copy.dart';
 import 'package:ausmart/Models/RestoProductModel%20copy.dart';
@@ -12,14 +14,9 @@ import 'package:ausmart/Commons/AppConstants.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Commons/zerostate.dart';
-import 'package:ausmart/Components/ActiveMessageCard.dart';
 import 'package:ausmart/Components/CartBottomCard.dart';
 import 'package:ausmart/Components/RestaurantInfoCard.dart';
-import 'package:ausmart/Components/RestaurentInnerCard.dart';
-import 'package:ausmart/Models/RestoProductModel.dart';
-import 'package:ausmart/Providers/StoreProvider.dart';
 import 'package:ausmart/Shimmers/nearbydummy.dart';
-import 'package:ausmart/Shimmers/restaurentdetaildummy.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 

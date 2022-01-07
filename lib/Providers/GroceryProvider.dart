@@ -7,7 +7,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:ausmart/Commons/AppConstants.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
-import 'dart:developer';
 
 class GroceryProvider extends ChangeNotifier {
   bool loading = true;

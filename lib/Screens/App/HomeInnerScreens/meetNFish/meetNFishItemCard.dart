@@ -3,10 +3,8 @@
 import 'dart:math';
 import 'dart:typed_data';
 
-import 'package:ausmart/Models/MarketProductModel.dart';
 import 'package:ausmart/Models/RestoProductModel%20copy.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:ausmart/Commons/SnackBar.dart';
 import 'package:ausmart/Commons/TextStyles.dart';

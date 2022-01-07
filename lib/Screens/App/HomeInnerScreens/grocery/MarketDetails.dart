@@ -1,8 +1,7 @@
+// ignore_for_file: unused_element, unused_local_variable
+
 import 'dart:convert';
-import 'package:ausmart/Components/RestaurantInfoCard.dart';
-import 'package:ausmart/Components/RestaurentInnerCard.dart';
 import 'package:ausmart/Providers/CartProvider.dart';
-import 'package:ausmart/Screens/App/HomeInnerScreens/meetNFish/meetNFishItemCard.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
@@ -13,14 +12,11 @@ import 'package:ausmart/Commons/AppConstants.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Commons/zerostate.dart';
-import 'package:ausmart/Components/ActiveMessageCard.dart';
 import 'package:ausmart/Components/CartBottomCard.dart';
 import 'package:ausmart/Components/MarketInfoCard.dart';
 import 'package:ausmart/Components/MarketInnerCard.dart';
 import 'package:ausmart/Models/MarketProductModel.dart';
-import 'package:ausmart/Providers/StoreProvider.dart';
 import 'package:ausmart/Shimmers/nearbydummy.dart';
-import 'package:ausmart/Shimmers/restaurentdetaildummy.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 

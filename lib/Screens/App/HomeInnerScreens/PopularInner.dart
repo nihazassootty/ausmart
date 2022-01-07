@@ -1,6 +1,7 @@
+// ignore_for_file: implementation_imports
+
 import 'dart:convert';
 import 'package:ausmart/Commons/TextStyles.dart';
-import 'package:ausmart/Components/NearbyCard.dart';
 import 'package:ausmart/Components/popularCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -9,10 +10,8 @@ import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:http/http.dart' as http;
 import 'package:ausmart/Commons/zerostate.dart';
 import 'package:ausmart/Components/CartBottomCard.dart';
-import 'package:ausmart/Components/PopularInnercard.dart';
 import 'package:ausmart/Models/PopularInnerModel.dart';
 import 'package:ausmart/Providers/GetDataProvider.dart';
-// ignore: implementation_imports
 import 'package:intl/src/intl/date_format.dart' show DateFormat;
 import 'package:ausmart/Shimmers/nearbydummy.dart';
 import 'package:ausmart/Shimmers/quickdummy.dart';

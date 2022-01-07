@@ -6,7 +6,6 @@ import 'package:ausmart/Commons/SnackBar.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Models/MarketProductModel.dart';
 import 'package:ausmart/Providers/CartProvider.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:spinner_input/spinner_input.dart';
 

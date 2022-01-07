@@ -1,6 +1,7 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:ausmart/Models/RestoProductModel%20copy.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:intl/intl.dart';

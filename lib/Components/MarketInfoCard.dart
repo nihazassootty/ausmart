@@ -1,12 +1,14 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:intl/intl.dart';
 
 Widget marketInfoCard({ restaurant, context}) {
-  var outputDate =
-      (date) => DateFormat('hh:mm a').format(DateFormat('HH:mm').parse(date));
+  // var outputDate =
+  //     (date) => DateFormat('hh:mm a').format(DateFormat('HH:mm').parse(date));
+  
   return Stack(
     children: [
      

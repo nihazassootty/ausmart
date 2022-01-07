@@ -6,8 +6,6 @@ import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Commons/zerostate.dart';
 import 'package:ausmart/Components/CartBottomCard.dart';
-import 'package:ausmart/Components/restaurantsCard.dart';
-import 'package:ausmart/Providers/MeatnFishProvider.dart';
 import 'package:ausmart/Shimmers/nearbydummy.dart';
 import 'package:provider/provider.dart';
 

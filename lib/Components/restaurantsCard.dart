@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:intl/intl.dart';
-import 'package:ausmart/Screens/App/HomeInnerScreens/grocery/MarketDetails.dart';
 
 Widget restaurantsCard(
     {@required Quick item, @required branch, @required BuildContext context}) {

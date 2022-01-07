@@ -8,7 +8,6 @@ import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Commons/zerostate.dart';
 import 'package:ausmart/Models/PromoModel.dart';
 import 'package:ausmart/Providers/CartProvider.dart';
-import 'package:ausmart/Screens/App/Cart/CheckoutScreen.dart';
 import 'package:ausmart/Shimmers/nearbydummy.dart';
 import 'package:provider/provider.dart';
 

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:ausmart/Providers/GetDataProvider.dart';
 import 'package:ausmart/Screens/AuthFiles/SignUp.dart';
 import 'package:provider/provider.dart';

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:ausmart/Models/OrdersModel.dart';
 import 'package:flutter/material.dart';
