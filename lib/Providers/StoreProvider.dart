@@ -1,3 +1,5 @@
+// ignore_for_file: missing_required_param
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -31,7 +33,7 @@ class StoreProvider extends ChangeNotifier {
       (data) => print('connected'),
     );
     socket.on('branch', (data) {
-      message(data);
+      // message(data);
       //*MANAGE IN-APP MESSAGE
       // if (data["type"] == 'message') _message(data);
     });
@@ -40,14 +42,14 @@ class StoreProvider extends ChangeNotifier {
     });
   }
 
-  message(val) {
-    if (val["visible"] == 'true') {
-      store.branch.activeMessage = ActiveMessage.fromJson(val["data"]);
-    } else {
-      store.branch.activeMessage = null;
-    }
-    notifyListeners();
-  }
+  // message(val) {
+  //   if (val["visible"] == 'true') {
+  //     store.branch.activeMessage = ActiveMessage.fromJson(val["data"]);
+  //   } else {
+  //     store.branch.activeMessage = null;
+  //   }
+  //   notifyListeners();
+  // }
 
   //* FETCH NEAREST STORES
   Future<StoreModel> fetchStores({latitude, longitude, context}) async {

@@ -109,7 +109,7 @@ Widget restaurantInfoCard({Vendor restaurant, context}) {
                           ),
                         ),
                         SizedBox(height: 4,),
-                        !restaurant.featured
+                        restaurant.featured
                             ? Container(
                                 height: 17,
                                 width: 66,

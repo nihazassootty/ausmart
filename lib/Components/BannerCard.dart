@@ -17,21 +17,25 @@ class BannerScreen extends StatelessWidget {
                   padding: EdgeInsets.all(15),
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
-                  itemCount: getstore.store.branch.branchBanner.length,
+                  itemCount: getstore.store.branch.branchMiddleBanner.length,
                   itemBuilder: (context, int index) {
                     return GestureDetector(
-                      onTap: () =>
-                          getstore.store.branch.branchBanner[index].clickable
-                              ? Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    // ignore: missing_required_param
-                                    builder: (context) => RestaurentDetail(
-                                        restoId: getstore.store.branch
-                                            .branchBanner[index].linkId),
-                                  ),
-                                )
-                              : null,
+                      onTap: () {
+                        print(getstore.store.branch.branchMiddleBanner[index]
+                            .image.image);
+                        return getstore.store.branch.branchMiddleBanner[index]
+                                .clickable
+                            ? Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  // ignore: missing_required_param
+                                  builder: (context) => RestaurentDetail(
+                                      restoId: getstore.store.branch
+                                          .branchMiddleBanner[index].linkId),
+                                ),
+                              )
+                            : null;
+                      },
                       child: Container(
                         margin: EdgeInsets.only(right: 10),
                         width: 260,
@@ -49,7 +53,7 @@ class BannerScreen extends StatelessWidget {
                             fit: BoxFit.cover,
                             image: NetworkImage(
                               getstore
-                                  .store.branch.branchBanner[index].image.image,
+                                  .store.branch.branchMiddleBanner[index].image.image,
                             ),
                             // image:
                             //     ExactAssetImage('assets/images/populartest.png'),

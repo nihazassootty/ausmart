@@ -1,4 +1,4 @@
-package com.example.ausmart
+package com.backb.ausmart
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -150,15 +150,15 @@ fontFamily: PrimaryFontName,              letterSpacing: -0.2,
                                   thickness: 1,
                                 ),
                               ),
-                              Offstage(
-                                offstage: restaurant?.products?.length == 0,
-                                child: Consumer<StoreProvider>(
-                                  builder: (context, data, child) {
-                                    return MessageCard(
-                                        data: data.store.branch?.activeMessage);
-                                  },
-                                ),
-                              ),
+                              // Offstage(
+                              //   offstage: restaurant?.products?.length == 0,
+                              //   child: Consumer<StoreProvider>(
+                              //     builder: (context, data, child) {
+                              //       return MessageCard(
+                              //           data: data.store.branch?.activeMessage);
+                              //     },
+                              //   ),
+                              // ),
                             ],
                           ),
                         ),

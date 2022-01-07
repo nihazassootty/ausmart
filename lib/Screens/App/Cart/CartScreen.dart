@@ -1671,10 +1671,10 @@ class _CartScreenState extends State<CartScreen> {
                             child: ElevatedButton(
                               onPressed: () {
                                 print(
-                                  '$itemtotal'+
-                                  '$grandTotal'+
-                                  '$charge'+
-                                  '$_value',
+                                  'item total : $itemtotal'+
+                                  'grand total :$grandTotal'+
+                                  'delivery charge :$charge'+
+                                  'payment type :$_value',
                                 ); placeorder(
                                   itemtotal,
                                   grandTotal,
