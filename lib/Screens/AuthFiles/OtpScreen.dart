@@ -42,6 +42,7 @@ class _OtpScreenState extends State<OtpScreen> {
     setState(() {
       serverOtp = widget.otp;
     });
+    print(serverOtp);
     super.initState();
     Future.delayed(Duration(seconds: 5), () {
       setState(() {
@@ -57,6 +58,8 @@ class _OtpScreenState extends State<OtpScreen> {
 
       if (serverOtp == typedotp) {
         if (widget.verified == false) {
+          await storage.write(key: "token", value: widget.token);
+
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(

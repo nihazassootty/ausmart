@@ -26,14 +26,15 @@ Widget popularCard({@required item, @required BuildContext context}) {
           height: 130,
           width: 97,
           child: Container(
+
             margin: EdgeInsets.all(8),
             decoration: ShapeDecoration(
                 shadows: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
+                    color: Colors.grey.withOpacity(0.08),
                     spreadRadius: 8,
                     blurRadius: 15,
-                    offset: Offset(0, 2), // changes position of shadow
+                    offset: Offset(0, 3), // changes position of shadow
                   ),
                 ],
                 color: Colors.white,
@@ -73,6 +74,7 @@ Widget popularCard({@required item, @required BuildContext context}) {
                     padding: const EdgeInsets.only(bottom: 10, top: 5),
                     child: Text(
                       item.name,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: PrimaryFontName,
                         fontWeight: FontWeight.w400,

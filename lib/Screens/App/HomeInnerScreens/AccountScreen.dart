@@ -1,4 +1,5 @@
 import 'package:ausmart/Screens/App/saved_address.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
@@ -8,6 +9,7 @@ import 'package:ausmart/Providers/GetDataProvider.dart';
 import 'package:ausmart/Screens/App/Orders/MyOrders.dart';
 import 'package:ausmart/Screens/AuthFiles/SignUp.dart';
 import 'package:ausmart/Shimmers/nearbydummy.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,7 +27,7 @@ class _AccountScreenState extends State<AccountScreen> {
       appBar: AppBar(
         centerTitle: true,
         leadingWidth: 0,
-        backgroundColor: kWhiteColor,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         title: Text(
           "My Account",
@@ -43,18 +45,18 @@ class _AccountScreenState extends State<AccountScreen> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        child: Card(
-                          elevation: 1,
+                        child: Container(
+                          // elevation: 1,
                           margin: EdgeInsets.all(0),
-                          color: Colors.white,
+                          // color: Colors.white,
                           child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   vertical: 20, horizontal: 20),
                               child: Row(
                                 children: [
                                   Container(
-                                    width: 50,
-                                    height: 50,
+                                    width: 55,
+                                    height: 55,
                                     margin: EdgeInsets.only(right: 10),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(6),
@@ -63,8 +65,10 @@ class _AccountScreenState extends State<AccountScreen> {
                                     ),
                                     child: Center(
                                         child: Text(
-                                      getmodel.get.customer.name[0].toUpperCase() +
-                                          getmodel.get.customer.name[1].toUpperCase(),
+                                      getmodel.get.customer.name[0]
+                                              .toUpperCase() +
+                                          getmodel.get.customer.name[1]
+                                              .toUpperCase(),
                                       style: Text18,
                                     )),
                                   ),
@@ -78,7 +82,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                         style: Text18,
                                       ),
                                       SizedBox(
-                                        height: 8,
+                                        height: 4,
                                       ),
                                       Text(
                                         '+91 ${getmodel?.get?.customer?.user?.username}',
@@ -103,125 +107,48 @@ class _AccountScreenState extends State<AccountScreen> {
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
                         children: [
-                          ListTile(
-                            leading: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                  height: 25,
-                                  child: Image.asset(
-                                    'assets/images/shopping-bag.png',
-                                  )),
-                            ),
-                            title: Text(
-                              "My Orders",
-                              style: kNavBarTitle1,
-                            ),
+                          AccountCard(
+                            title: "My Orders",
+                            icon: 'assets/svg/myOrders.svg',
                             onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
+                                CupertinoPageRoute(
                                   builder: (context) => MyOrders(),
                                 ),
                               );
                             },
                           ),
-                          Divider(
-                            thickness: 1,
-                          ),
-                          ListTile(
-                            leading: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8),
-                              child: Icon(
-                                Icons.fmd_good,
-                                color: Colors.black87,
-                                size: 25.0,
-                              ),
-                            ),
-                            title: Text(
-                              "Saved Address",
-                              style: kNavBarTitle1,
-                            ),
+                          AccountCard(
+                            title: "Saved Address",
+                            icon: 'assets/svg/savedAddress.svg',
                             onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
+                                CupertinoPageRoute(
                                   builder: (context) => SavedPage(),
                                 ),
                               );
                             },
                           ),
-                          Divider(
-                            thickness: 1,
+                          AccountCard(
+                            title: "Terms & Conditions",
+                            icon: 'assets/svg/terms.svg',
+                            onTap: () {},
                           ),
-                          ListTile(
-                            leading: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8),
-                              child: Icon(
-                                Icons.description,
-                                color: Colors.black87,
-                                size: 25.0,
-                              ),
-                            ),
-                            title: Text(
-                              "Terms & Conditions",
-                              style: kNavBarTitle1,
-                            ),
+                          AccountCard(
+                            title: "About Us",
+                            icon: 'assets/svg/aboutUs.svg',
+                            onTap: () {},
                           ),
-                          Divider(
-                            thickness: 1,
+                          AccountCard(
+                            title: "Customer Support",
+                            icon: 'assets/svg/customer.svg',
+                            onTap: () {},
                           ),
-                          ListTile(
-                            leading: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8),
-                              child: Icon(
-                                Icons.groups,
-                                color: Colors.black87,
-                                size: 25.0,
-                              ),
-                            ),
-                            title: Text(
-                              "About Us",
-                              style: kNavBarTitle1,
-                            ),
-                          ),
-                          Divider(
-                            thickness: 1,
-                          ),
-                          ListTile(
-                            leading: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8),
-                              child: Icon(
-                                Icons.local_phone,
-                                color: Colors.black87,
-                                size: 25.0,
-                              ),
-                            ),
-                            title: Text(
-                              "Customer Support",
-                              style: kNavBarTitle1,
-                            ),
-                          ),
-                          Divider(
-                            thickness: 1,
-                          ),
-                          ListTile(
-                            leading: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 8),
-                              child: Icon(
-                                Icons.login_rounded,
-                                color: Colors.black87,
-                                size: 25.0,
-                              ),
-                            ),
-                            title: Text(
-                              "Sign Out",
-                              style: kNavBarTitle1,
-                            ),
+                          AccountCard(
+                            title: "Sign Out",
+                            icon: 'assets/svg/signOut.svg',
                             onTap: () async {
                               FlutterSecureStorage storage =
                                   FlutterSecureStorage();
@@ -231,26 +158,20 @@ class _AccountScreenState extends State<AccountScreen> {
                               await preferences.clear();
                               Navigator.pushAndRemoveUntil(
                                 context,
-                                MaterialPageRoute(
+                                CupertinoPageRoute(
                                   builder: (context) => SignUp(),
                                 ),
                                 (_) => false,
                               );
                             },
                           ),
-                          Divider(
-                            thickness: 1,
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
                         ],
                       ),
                     ),
                     Container(
-                      height: 60,
+                      height: MediaQuery.of(context).size.height / 6,
                       child: Image.asset(
-                        'assets/images/drawerbottom.png',
+                        'assets/images/AusmartLogo.png',
                       ),
                     ),
                     SizedBox(
@@ -259,6 +180,61 @@ class _AccountScreenState extends State<AccountScreen> {
                   ],
                 ),
               ),
+      ),
+    );
+  }
+}
+
+class AccountCard extends StatelessWidget {
+  final String title;
+  final String icon;
+  final Function onTap;
+  // final
+  const AccountCard({
+    Key key,
+    this.icon,
+    this.title,
+    this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 13),
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Color(0xffECECEC),
+            width: 1.5,
+          ),
+          borderRadius: BorderRadius.circular(6),
+        ),
+        child: Row(
+          children: [
+            Container(
+              height: 30,
+              child: SvgPicture.asset(
+                icon,
+                fit: BoxFit.contain,
+              ),
+            ),
+            SizedBox(
+              width: 15,
+            ),
+            Text(
+              title,
+              style: TextStyle(
+                fontFamily: PrimaryFontName,
+                fontWeight: FontWeight.w700,
+                letterSpacing: -0.5,
+                color: Color(0xff444444),
+                fontSize: 15,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

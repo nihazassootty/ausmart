@@ -9,7 +9,7 @@ import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Commons/zerostate.dart';
 import 'package:ausmart/Providers/GetDataProvider.dart';
 import 'package:ausmart/Providers/StoreProvider.dart';
-import 'package:ausmart/Screens/App/MapScreen.dart';
+import 'package:ausmart/Screens/App/mapScreen/MapScreen.dart';
 import 'package:provider/provider.dart';
 
 class SavedPage extends StatefulWidget {

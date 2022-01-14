@@ -55,7 +55,7 @@ class TopBanner extends StatelessWidget {
                             //     ExactAssetImage('assets/images/populartest.png'),
                           ),
                           shape: ContinuousRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(35),
                           ),
                         ),
                       ),

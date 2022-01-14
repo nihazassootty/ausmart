@@ -171,7 +171,7 @@ const Text16 = TextStyle(
 const Text18 = TextStyle(
   fontFamily: PrimaryFontName,
   fontSize: 18,
-  color: Colors.black87,
+  color: Color(0xff444444),
   fontWeight: FontWeight.w700,
 );
 const Text18Pink = TextStyle(

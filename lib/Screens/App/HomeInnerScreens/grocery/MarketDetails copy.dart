@@ -8,15 +8,15 @@ import 'package:ausmart/Commons/AppConstants.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Commons/zerostate.dart';
-import 'package:ausmart/Components/ActiveMessageCard.dart';
+// import 'package:ausmart/Components/ActiveMessageCard.dart';
 import 'package:ausmart/Components/CartBottomCard.dart';
 import 'package:ausmart/Components/MarketInfoCard.dart';
 import 'package:ausmart/Components/MarketInnerCard.dart';
 import 'package:ausmart/Models/MarketProductModel.dart';
-import 'package:ausmart/Providers/StoreProvider.dart';
+// import 'package:ausmart/Providers/StoreProvider.dart';
 import 'package:ausmart/Shimmers/nearbydummy.dart';
 import 'package:ausmart/Shimmers/restaurentdetaildummy.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class MarketDetail extends StatefulWidget {

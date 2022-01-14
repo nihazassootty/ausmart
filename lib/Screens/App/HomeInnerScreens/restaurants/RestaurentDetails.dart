@@ -211,7 +211,7 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                                     builder: (context, data, child) =>
                               LimitedBox(
                                 maxHeight: data.cart.length == 0?  MediaQuery.of(context).size.height /2.1:
-                                    MediaQuery.of(context).size.height * 0.42,
+                                    MediaQuery.of(context).size.height / 2.5,
                                 child: Container(
                                   height: MediaQuery.of(context)
                                       .size

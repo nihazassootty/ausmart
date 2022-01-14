@@ -1677,7 +1677,7 @@ class _CartScreenState extends State<CartScreen> {
                                   'payment type :$_value',
                                 ); placeorder(
                                   itemtotal,
-                                  grandTotal,
+                                  grandTotal + charge,
                                   charge,
                                   _value,
                                 );

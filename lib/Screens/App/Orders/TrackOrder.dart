@@ -193,7 +193,6 @@ class _TrackOrderState extends State<TrackOrder> {
                     style: kNavBarTitle,
                   ),
 
-
                   Offstage(
                     offstage: order.data.orderStatus == 'cancelled',
                     child: Container(
@@ -232,47 +231,47 @@ class _TrackOrderState extends State<TrackOrder> {
                   SizedBox(
                     height: 20,
                   ),
-               
-                //  Offstage(
-                //     offstage: order.data.orderStatus == 'cancelled',
-                //     child: Container(
-                //       padding: EdgeInsets.all(15),
-                //       child: Column(
-                //           children: order.data.status.asMap().entries.map((e) {
-                //         int idx = e.key;
-                //         var val = e.value;
-                //         return TimelineTile(
-                //           alignment: TimelineAlign.start,
-                //           lineXY: 0.1,
-                //           isFirst: idx == 0,
-                //           isLast: idx == order.data.status.length - 3,
-                //           indicatorStyle: IndicatorStyle(
-                //             width: 18,
-                //             indicator: Image.asset(
-                //               'assets/images/trackicon.png',
-                //               color:  Colors.green ,
-                //             ),
-                //             padding: EdgeInsets.all(6),
-                //           ),
-                //           endChild: _RightChild(
-                //             asset: 'assets/images/trackicon.png',
-                //             title: val.info,
-                //             message: val.info,
-                //             disabled: !val.info.isNotEmpty,
-                //           ),
-                //           beforeLineStyle: LineStyle(
-                //             thickness: 1.5,
-                //             color:  Colors.green,
-                //           ),
-                //         );
-                //       }).toList()),
-                //     ),
-                //   ),
-                 
-                //   SizedBox(
-                //     height: 20,
-                //   ),
-                
+
+                  //  Offstage(
+                  //     offstage: order.data.orderStatus == 'cancelled',
+                  //     child: Container(
+                  //       padding: EdgeInsets.all(15),
+                  //       child: Column(
+                  //           children: order.data.status.asMap().entries.map((e) {
+                  //         int idx = e.key;
+                  //         var val = e.value;
+                  //         return TimelineTile(
+                  //           alignment: TimelineAlign.start,
+                  //           lineXY: 0.1,
+                  //           isFirst: idx == 0,
+                  //           isLast: idx == order.data.status.length - 3,
+                  //           indicatorStyle: IndicatorStyle(
+                  //             width: 18,
+                  //             indicator: Image.asset(
+                  //               'assets/images/trackicon.png',
+                  //               color:  Colors.green ,
+                  //             ),
+                  //             padding: EdgeInsets.all(6),
+                  //           ),
+                  //           endChild: _RightChild(
+                  //             asset: 'assets/images/trackicon.png',
+                  //             title: val.info,
+                  //             message: val.info,
+                  //             disabled: !val.info.isNotEmpty,
+                  //           ),
+                  //           beforeLineStyle: LineStyle(
+                  //             thickness: 1.5,
+                  //             color:  Colors.green,
+                  //           ),
+                  //         );
+                  //       }).toList()),
+                  //     ),
+                  //   ),
+
+                  //   SizedBox(
+                  //     height: 20,
+                  //   ),
+
                   Divider(
                     thickness: 0.5,
                   ),
@@ -297,15 +296,15 @@ class _TrackOrderState extends State<TrackOrder> {
                         billItem(
                             title: 'Item Total',
                             price: order.data.subTotalAmount),
-                        
-                        //TODO: ADD DELIVERY Discount
 
-                        billItem(
-                            title: 'Discount',
-                            price: 0),
-                        billItem(
-                            title: 'Delivery Charge',
-                            price: order.data.deliveryCharge),
+                        // //TODO: ADD Discount
+
+                        // billItem(title: 'Discount', price: 0),
+                        // //TODO: ADD DELIVERY charge
+
+                        // billItem(
+                        //     title: 'Delivery Charge',
+                        //     price: order.data.deliveryCharge),
                       ],
                     ),
                   ),
@@ -382,11 +381,19 @@ Widget billItem({title, price, bold}) {
       children: [
         Text(
           title,
-          style: TextStyle(fontFamily: PrimaryFontName,),
+          style: TextStyle(
+            fontFamily: PrimaryFontName,
+          ),
         ),
         Text(
           '₹ ${(price).toStringAsFixed(2)}',
-          style: bold == true ? TextStyle(fontFamily: PrimaryFontName,) : TextStyle(fontFamily: PrimaryFontName,),
+          style: bold == true
+              ? TextStyle(
+                  fontFamily: PrimaryFontName,
+                )
+              : TextStyle(
+                  fontFamily: PrimaryFontName,
+                ),
         )
       ],
     ),
@@ -445,7 +452,8 @@ class _RightChild extends StatelessWidget {
                         ? const Color(0xFFBABABA)
                         : const Color(0xFF636564),
                     fontSize: 14,
-fontFamily: PrimaryFontName,                    fontWeight: FontWeight.w500,
+                    fontFamily: PrimaryFontName,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ],
@@ -458,7 +466,8 @@ fontFamily: PrimaryFontName,                    fontWeight: FontWeight.w500,
                     ? const Color(0xFFD5D5D5)
                     : const Color(0xFF636564),
                 fontSize: 12,
-fontFamily: PrimaryFontName,              ),
+                fontFamily: PrimaryFontName,
+              ),
             ),
           ],
         ),

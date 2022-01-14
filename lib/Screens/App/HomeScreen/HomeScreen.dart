@@ -281,169 +281,179 @@ class _HomeScreenState extends State<HomeScreen> {
           // var supportNumber = data.store.branch.supportNumber;
           var message = 'Hi, I need help with my order';
           return RefreshIndicator(
-          backgroundColor: Colors.white,
-          onRefresh: () => _refreshStores(),
-          child: data.isServicable
-              ? SafeArea(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Image.asset(
-                                "assets/images/ausmart.png",
-                                height: 60,
-                              ),
-                              GestureDetector(
-                                onTap: () async {
-                                  print(data.store.branch.supportNumber);
-                                  var url = Platform.isAndroid
-                                      ? "https://wa.me/${data.store.branch.supportNumber}/?text=${Uri.encodeFull(message)}"
-                                      : "https://send?phone=${data.store.branch.supportNumber}&text=${Uri.encodeFull(message)}";
-                               
-                                  if (await canLaunch(url)) {
-                                    await launch(url);
-                                  } else {
-                                    // can't launch url
-                                  }
-                                },
-                                child: Container(
-                                  margin: EdgeInsets.only(right: 20),
-                                  child: SvgPicture.asset(
-                                    "assets/svg/whatsappIcon.svg",
-                                    height: 30,
+            backgroundColor: Colors.white,
+            onRefresh: () => _refreshStores(),
+            child: data.isServicable
+                ? SafeArea(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image.asset(
+                                  "assets/images/ausmart.png",
+                                  height: 60,
+                                ),
+                                GestureDetector(
+                                  onTap: () async {
+                                    print(data.store.branch.supportNumber);
+                                    var url = Platform.isAndroid
+                                        ? "https://wa.me/${data.store.branch.supportNumber}/?text=${Uri.encodeFull(message)}"
+                                        : "https://send?phone=${data.store.branch.supportNumber}&text=${Uri.encodeFull(message)}";
+
+                                    if (await canLaunch(url)) {
+                                      await launch(url);
+                                    } else {
+                                      // can't launch url
+                                    }
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(right: 20),
+                                    child: SvgPicture.asset(
+                                      "assets/svg/whatsappIcon.svg",
+                                      height: 30,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 10),
+                                child: GestureDetector(
+                                  onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SavedPage(),
+                                    ),
+                                  ),
+                                  child: Container(
+                                    height: 45,
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFF01D46F),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(5.0),
+                                          child: Icon(
+                                            Icons.location_on,
+                                            color: kWhiteColor,
+                                            size: 20,
+                                          ),
+                                        ),
+                                        Text(
+                                          "Enter your Location",
+                                          style: kText12white,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(5.0),
+                                          child: Icon(
+                                            Icons.expand_more_outlined,
+                                            color: kWhiteColor,
+                                            size: 20,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                        Container(
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              child: GestureDetector(
-                                onTap: () => Navigator.push(
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => SavedPage(),
+                                    builder: (context) => BottomNavigation(
+                                      index: 1,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(15),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  // color: Colors.grey[100],
+                                  border: Border.all(
+                                    color: Color(0xffECECEC),
+                                    width: 1,
                                   ),
                                 ),
-                                child: Container(
-                                  height: 45,
-                                  width: MediaQuery.of(context).size.width,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF01D46F),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(5.0),
-                                        child: Icon(
-                                          Icons.location_on,
-                                          color: kWhiteColor,
-                                          size: 20,
-                                        ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Search for Restaurants and food',
+                                      style: TextStyle(
+                                        fontFamily: PrimaryFontName,
+                                        fontWeight: FontWeight.w400,
+                                      color: Color(0xff333333).withOpacity(0.3),
+                                        fontSize: 14,
                                       ),
-                                      Text(
-                                        "Enter your Location",
-                                        style: kText12white,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(5.0),
-                                        child: Icon(
-                                          Icons.expand_more_outlined,
-                                          color: kWhiteColor,
-                                          size: 20,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                    SvgPicture.asset(
+                                      "assets/svg/search.svg",
+                                      height: 20,
+                                      color: Color(0xff333333).withOpacity(0.3),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => BottomNavigation(
-                                    index: 1,
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Container(
-                              padding: EdgeInsets.all(15),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: Colors.grey[100],
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Search for hotels and dishes',
-                                    style: kTextgrey,
-                                  ),
-                                  Icon(
-                                    Icons.search,
-                                    size: 20,
-                                    color: kGreyLight,
-                                  ),
-                                ],
-                              ),
-                            ),
+                          TopBanner(),
+                          SizedBox(
+                            height: 5,
                           ),
-                        ),
-                        TopBanner(),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        PopularScreen(),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        QuickScreen(),
-                        BannerScreen(),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        CategoryScreen(),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        NearbyScreen(),
-                      ],
+                          PopularScreen(),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          QuickScreen(),
+                          BannerScreen(),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          CategoryScreen(),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          NearbyScreen(),
+                        ],
+                      ),
                     ),
-                  ),
-                )
-              : data.errorCode == 100
-                  ? zerostate(
-                      size: 220,
-                      icon: 'assets/svg/noavailable.svg',
-                      head: 'Wish We Were Here!',
-                      sub: "We don't currently deliver here yet.",
-                    )
-                  : zerostate(
-                      size: 140,
-                      icon: 'assets/svg/noservice.svg',
-                      head: 'Dang!',
-                      sub: "We are currently under maintenance",
-                    ),
-        );
+                  )
+                : data.errorCode == 100
+                    ? zerostate(
+                        size: 220,
+                        icon: 'assets/svg/noavailable.svg',
+                        head: 'Wish We Were Here!',
+                        sub: "We don't currently deliver here yet.",
+                      )
+                    : zerostate(
+                        size: 140,
+                        icon: 'assets/svg/noservice.svg',
+                        head: 'Dang!',
+                        sub: "We are currently under maintenance",
+                      ),
+          );
         },
       ),
     );

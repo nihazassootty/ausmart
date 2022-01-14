@@ -60,18 +60,18 @@ class _BottomNavigationState extends State<BottomNavigation> {
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.all(2.0),
-              child: Icon(
-                Icons.home,
-                size: 20,
-                color: kGreyLight,
+              child: SvgPicture.asset(
+                'assets/svg/home.svg',
+                height: 20,
+                color: Color(0xff444444).withOpacity(0.3),
               ),
             ),
             activeIcon: Padding(
               padding: const EdgeInsets.all(2.0),
-              child: Icon(
-                Icons.other_houses_rounded,
-                size: 25,
-                color: kGreenColor,
+              child: SvgPicture.asset(
+                'assets/svg/home.svg',
+                height: 25,
+                // color: kGreyLight,
               ),
             ),
             label: '',
@@ -82,7 +82,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               child: SvgPicture.asset(
                 'assets/svg/search.svg',
                 height: 20,
-                color: kGreyLight,
+                color: Color(0xff444444).withOpacity(0.3),
               ),
             ),
             activeIcon: Padding(
@@ -101,7 +101,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
              child: Icon(
                 Icons.shopping_cart_rounded,
                 size: 20,
-                color: kGreyLight,
+                color: Color(0xff444444).withOpacity(0.3),
               ),
             ),
             activeIcon: Padding(
@@ -115,23 +115,24 @@ class _BottomNavigationState extends State<BottomNavigation> {
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Padding(
+               icon: Padding(
               padding: const EdgeInsets.all(2.0),
-              child: Icon(
-                Icons.account_circle,
-                size: 20,
-                color: kGreyLight,
+              child: SvgPicture.asset(
+                'assets/svg/acount.svg',
+                height: 20,
+                // color: Color(0xff444444).withOpacity(0.3),
               ),
             ),
             activeIcon: Padding(
               padding: const EdgeInsets.all(2.0),
-              child: Icon(
-                Icons.account_circle,
-                size: 25,
+              child: SvgPicture.asset(
+                'assets/svg/acount.svg',
+                height: 25,
                 color: kGreenColor,
               ),
             ),
             label: '',
+          
           ),
         ],
       ),

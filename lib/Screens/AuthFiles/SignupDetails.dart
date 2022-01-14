@@ -40,6 +40,7 @@ class _SignupDetailsState extends State<SignupDetails>
       };
       FlutterSecureStorage storage = FlutterSecureStorage();
       final String token = await storage.read(key: "token");
+    
       final Uri url = Uri.https(baseUrl, apiUrl + "/auth/register/customer");
       final response = await http.post(url, body: jsonEncode(data), headers: {
         "Content-Type": "application/json",
@@ -47,25 +48,32 @@ class _SignupDetailsState extends State<SignupDetails>
         "Authorization": "Bearer $token"
       });
 
-      if (response.statusCode == 200) {
-        Map<String, dynamic> output = json.decode(response.body);
-        if (output['data']['verification'] == true) {
-          await storage.write(key: "verified", value: 'true');
-        } else {
-          await storage.write(key: "verified", value: 'false');
+      try {
+        if (response.statusCode == 200) {
+          Map<String, dynamic> output = json.decode(response.body);
+          if (output['data']['verification'] == true) {
+            await storage.write(key: "verified", value: 'true');
+          } else {
+            await storage.write(key: "verified", value: 'false');
+          }
+          Provider.of<GetDataProvider>(context, listen: false).getData(context);
+          // Navigator.pushAndRemoveUntil(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) => BottomNavigation(),
+          //     ),
+          //     (route) => false);
         }
-        Provider.of<GetDataProvider>(context, listen: false).getData(context);
-        // Navigator.pushAndRemoveUntil(
-        //     context,
-        //     MaterialPageRoute(
-        //       builder: (context) => BottomNavigation(),
-        //     ),
-        //     (route) => false);
-      } else {
+        else{
+            print(token);
+          print(response.body);
+          print(response.statusCode);
+        }
+      } catch (e) {
         showSnackBar(
             duration: Duration(milliseconds: 10000),
             context: context,
-            message: "User Exist");
+            message: e.toString());
       }
     }
   }
@@ -229,7 +237,8 @@ class _SignupDetailsState extends State<SignupDetails>
                                       // );
                                     },
                                   text: ' Terms of Service',
-                                  style: TextStyle(fontFamily: PrimaryFontName,
+                                  style: TextStyle(
+                                    fontFamily: PrimaryFontName,
                                     decoration: TextDecoration.underline,
                                     fontSize: 10,
                                     color: kPinkColor,
@@ -253,7 +262,8 @@ class _SignupDetailsState extends State<SignupDetails>
                                     },
                                   text: 'Privacy Policy',
                                   style: TextStyle(
-                                    fontSize: 10,fontFamily: PrimaryFontName,
+                                    fontSize: 10,
+                                    fontFamily: PrimaryFontName,
                                     decoration: TextDecoration.underline,
                                     color: kPinkColor,
                                   ),

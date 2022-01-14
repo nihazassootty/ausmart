@@ -126,7 +126,8 @@ Widget nearbyCard(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SvgPicture.asset(
-                                'assets/svg/cooking.svg',
+                                                                'assets/svg/clock.svg',
+
                                 color: Colors.black45,
                                 height: 13.0,
                               ),
@@ -134,7 +135,7 @@ Widget nearbyCard(
                                 width: 5,
                               ),
                               Text(
-                                '${item.avgCookingTime.toString()}mnts',
+                                '${item.avgCookingTime.toString()} min',
                                 style: TextStyle(
                                   fontFamily: PrimaryFontName,
                                   fontSize: 10,
@@ -144,8 +145,9 @@ Widget nearbyCard(
                               SizedBox(
                                 width: 5,
                               ),
+                              
                               SvgPicture.asset(
-                                'assets/svg/clock.svg',
+                                'assets/svg/cooking.svg',
                                 color: Colors.black45,
                                 height: 13.0,
                               ),
