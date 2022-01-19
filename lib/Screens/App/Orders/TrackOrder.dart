@@ -295,10 +295,12 @@ class _TrackOrderState extends State<TrackOrder> {
                         billItem(
                             title: 'Item Total',
                             price: order.data.subTotalAmount),
-                      order.data.discount ==0?Container():  billItem(
-                          title: 'Discount',
-                          price: order.data.discount,
-                        ),
+                        order.data.discount == 0
+                            ? Container()
+                            : billItem(
+                                title: 'Discount',
+                                price: order.data.discount,
+                              ),
                         billItem(
                             title: 'Delivery Charge',
                             price: order.data.deliveryCharge),

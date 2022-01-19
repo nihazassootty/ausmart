@@ -61,17 +61,17 @@ class _BottomNavigationState extends State<BottomNavigation> {
             icon: Padding(
               padding: const EdgeInsets.all(2.0),
               child: SvgPicture.asset(
-                'assets/svg/home.svg',
+                'assets/svg/homeN.svg',
                 height: 20,
-                color: Color(0xff444444).withOpacity(0.3),
+                color: Color(0xff444444).withOpacity(0.7),
               ),
             ),
             activeIcon: Padding(
               padding: const EdgeInsets.all(2.0),
               child: SvgPicture.asset(
-                'assets/svg/home.svg',
-                height: 25,
-                // color: kGreyLight,
+                'assets/svg/HomeN.svg',
+                height: 23,
+                color: kGreenColor,
               ),
             ),
             label: '',

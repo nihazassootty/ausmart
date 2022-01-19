@@ -87,7 +87,7 @@ Widget restaurentInnercard({
   ]);
   return Container(
     height: 111,
-    margin: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
     clipBehavior: Clip.antiAlias,
     // margin: EdgeInsets.symmetric(vertical: 5.0),
     decoration: BoxDecoration(
@@ -109,7 +109,7 @@ Widget restaurentInnercard({
           children: [
             Container(
               height: 111,
-              width: 132,
+              width: 130,
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
                 color: Colors.grey[200],
@@ -172,7 +172,7 @@ Widget restaurentInnercard({
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width / 3.5,
+                    width: MediaQuery.of(context).size.width / 3.8,
                     child: Text(
                       item.name,
                       // softWrap: false,

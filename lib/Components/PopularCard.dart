@@ -22,9 +22,9 @@ Widget popularCard({@required item, @required BuildContext context}) {
               // color: Colors.white,
 
               ),
-          margin: EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+          margin: EdgeInsets.symmetric( vertical: 1),
           height: 130,
-          width: 97,
+          width: 103,
           child: Container(
             margin: EdgeInsets.all(8),
             decoration: ShapeDecoration(

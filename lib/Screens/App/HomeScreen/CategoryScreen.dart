@@ -10,7 +10,7 @@ class CategoryScreen extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 5.0),
           child: Row(
             children: [
               // Expanded(
