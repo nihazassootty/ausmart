@@ -26,7 +26,6 @@ Widget popularCard({@required item, @required BuildContext context}) {
           height: 130,
           width: 97,
           child: Container(
-
             margin: EdgeInsets.all(8),
             decoration: ShapeDecoration(
                 shadows: [
@@ -63,8 +62,9 @@ Widget popularCard({@required item, @required BuildContext context}) {
                             ),
                           ],
                         ),
-                        child: Image.network(
-                          item.image.image,
+                        child: FadeInImage.assetNetwork(
+                          placeholder: 'assets/images/AusmartLogo.png',
+                          image: item.image.image,
                           fit: BoxFit.cover,
                         ),
                       ),

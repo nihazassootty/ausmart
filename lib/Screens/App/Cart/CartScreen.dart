@@ -67,6 +67,8 @@ class _CartScreenState extends State<CartScreen> {
     var result = json.decode(response.body);
 
     if (response.statusCode == 200) {
+      Provider.of<CartProvider>(context, listen: false).clearItem(context);
+
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
@@ -76,7 +78,6 @@ class _CartScreenState extends State<CartScreen> {
             ),
           ),
           (route) => false);
-      Provider.of<CartProvider>(context, listen: false).clearItem(context);
     } else {
       showSnackBar(
         duration: Duration(milliseconds: 100),
@@ -838,7 +839,7 @@ class _CartScreenState extends State<CartScreen> {
                                                   } else {
                                                     showSnackBar(
                                                         message:
-                                                            'No Coupon Code Found',
+                                                            'No Coupon Found, Try the view coupons',
                                                         context: context);
                                                   }
                                                 } else {
@@ -1671,11 +1672,12 @@ class _CartScreenState extends State<CartScreen> {
                             child: ElevatedButton(
                               onPressed: () {
                                 print(
-                                  'item total : $itemtotal'+
-                                  'grand total :$grandTotal'+
-                                  'delivery charge :$charge'+
-                                  'payment type :$_value',
-                                ); placeorder(
+                                  'item total : $itemtotal' +
+                                      'grand total :${grandTotal + charge}' +
+                                      'delivery charge :$charge' +
+                                      'payment type :$_value',
+                                );
+                                placeorder(
                                   itemtotal,
                                   grandTotal + charge,
                                   charge,

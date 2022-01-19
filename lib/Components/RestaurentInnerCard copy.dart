@@ -159,7 +159,7 @@ Widget restaurentInnercard({
                               image: item.image.image,
                               imageErrorBuilder: (context, error, stacktrace) {
                                 return Center(
-                                    child: Text('Image Not Available'));
+                                    child: Image.asset('assets/images/placeholder.jpg'));
                               },
                             );
                           },

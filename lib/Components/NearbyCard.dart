@@ -46,7 +46,7 @@ Widget nearbyCard(
             width: 145,
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
-              color: Colors.red,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(7),
             ),
             child: ColorFiltered(

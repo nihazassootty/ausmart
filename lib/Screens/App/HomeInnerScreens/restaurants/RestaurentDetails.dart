@@ -210,7 +210,7 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                             Consumer<CartProvider>(
                                     builder: (context, data, child) =>
                               LimitedBox(
-                                maxHeight: data.cart.length == 0?  MediaQuery.of(context).size.height /2.1:
+                                maxHeight: data.cart.length == 0?  MediaQuery.of(context).size.height /2.5:
                                     MediaQuery.of(context).size.height / 2.5,
                                 child: Container(
                                   height: MediaQuery.of(context)
@@ -254,6 +254,9 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                                             )
                                           : SingleChildScrollView(
                                               child: Container(
+                                                height: MediaQuery.of(context)
+                                                    .size
+                                                    .height /2,
                                                 color: Colors.white,
                                                 margin: EdgeInsets.symmetric(
                                                     horizontal: 0, vertical: 0),
