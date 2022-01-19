@@ -23,18 +23,19 @@ class PopularScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 10),
                       child: Container(
                         decoration: BoxDecoration(
+                              color: Colors.transparent,
                           boxShadow: [
                             BoxShadow(
-                              color: Color(0xff494949).withOpacity(0.06),
-                              spreadRadius: 0,
-                              blurRadius: 20,
+                              color: Color(0xff494949).withOpacity(0.08),
+                              spreadRadius:12,
+                              blurRadius: 15,
                               offset:
-                                  Offset(0, 16), // changes position of shadow
+                                  Offset(0, 0), // changes position of shadow
                             ),
                             
                           ],
                         ),
-                        height: MediaQuery.of(context).size.height / 6.8,
+                        height: MediaQuery.of(context).size.height / 6.0,
                         child: MediaQuery.removePadding(
                           context: context,
                           removeTop: true,

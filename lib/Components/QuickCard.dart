@@ -55,14 +55,14 @@ Widget quickCard(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 5),
                     child: Container(
-                      width: 89,
+                      width: MediaQuery.of(context).size.width /4.2 ,
                       child: Text(
                         item.name,
                         style: TextStyle(
                           color: Color(0xff444444),
                           fontFamily: PrimaryFontName,
                           fontSize: 14,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                         ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
@@ -75,7 +75,7 @@ Widget quickCard(
                   decoration: BoxDecoration(
                     color: item.rating < 4.0
                         ? Color(0xffF9963A)
-                        : Color(0xFF03940F),
+                        : Colors.green[500],
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: Row(

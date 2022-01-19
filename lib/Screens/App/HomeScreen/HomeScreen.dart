@@ -291,11 +291,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Container(
                         child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Image.asset(
-                              "assets/images/ausmart.png",
-                              height: 60,
+                            Container(
+                              margin: EdgeInsets.only(left: 15),
+                              child: Image.asset(
+                                "assets/images/ausmart.png",
+                                height: 60,
+                              ),
                             ),
                             GestureDetector(
                               onTap: () async {
@@ -426,10 +430,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 TopBanner(),
                                
                                 PopularScreen(),
-                                SizedBox(
-                                  height: 5,
-                                ),
+                            
                                 QuickScreen(),
+                                
                                 BannerScreen(),
                                 SizedBox(
                                   height: 5,

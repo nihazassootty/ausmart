@@ -32,7 +32,7 @@ Widget popularCard({@required item, @required BuildContext context}) {
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.08),
                     spreadRadius: 8,
-                    blurRadius: 15,
+                    blurRadius: 5,
                     offset: Offset(0, 3), // changes position of shadow
                   ),
                
@@ -78,7 +78,7 @@ Widget popularCard({@required item, @required BuildContext context}) {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontFamily: PrimaryFontName,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w600,
                         color: Color(0xFF444444),
                         fontSize: 12,
                       ),
