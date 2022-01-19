@@ -1,5 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:ausmart/Providers/StoreProvider.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -13,6 +16,7 @@ import 'package:ausmart/Shimmers/checkoutdummy.dart';
 import 'package:provider/provider.dart';
 
 import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:url_launcher/url_launcher.dart';
 
 class MyOrders extends StatefulWidget {
   const MyOrders({Key key}) : super(key: key);
@@ -80,7 +84,6 @@ class _MyOrdersState extends State<MyOrders> {
       });
       var data = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        print(data);
         setState(() {
           if (data['pagination']['next'] != null) {
             isPagination = true;
@@ -157,6 +160,8 @@ class _MyOrdersState extends State<MyOrders> {
 
   @override
   Widget build(BuildContext context) {
+    var message = 'Hi, I need help with my order';
+
     return Scaffold(
       appBar: new AppBar(
         backgroundColor: kWhiteColor,
@@ -176,15 +181,31 @@ class _MyOrdersState extends State<MyOrders> {
         ),
 
         actions: <Widget>[
-          new IconButton(
-            icon: new Icon(
-              Icons.phone,
-              color: kBlackColor,
+          Consumer<StoreProvider>(
+            builder: (context, data, child) => GestureDetector(
+              onTap: () async {
+                print(data.store.branch.supportNumber == null);
+                var url = Platform.isAndroid
+                    ? "https://wa.me/${data.store.branch.supportNumber}/?text=${Uri.encodeFull(message)}"
+                    : "https://send?phone=${data.store.branch.supportNumber}&text=${Uri.encodeFull(message)}";
+
+                if (await canLaunch(url)) {
+                  await launch(url);
+                } else {
+                  // can't launch url
+                }
+              },
+              child: Container(
+                margin: EdgeInsets.only(right: 20),
+                child: SvgPicture.asset(
+                  "assets/svg/whatsappIcon.svg",
+                  height: 30,
+                ),
+              ),
             ),
-            onPressed: null,
           ),
         ],
-        ),
+      ),
       body: loading
           ? checkoutShimmer()
           : orders.length == 0

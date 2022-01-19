@@ -54,6 +54,7 @@ class Data {
         @required this.vendorCommissionTotal,
         @required this.deliveryDistanceKm,
         @required this.deliveryDistance,
+        @required this.discount,
         @required this.orderId,
         @required this.expense,
         @required this.createdAt,
@@ -84,6 +85,7 @@ class Data {
     final dynamic vendorCommissionTotal;
     final double deliveryDistanceKm;
     final dynamic deliveryDistance;
+    final dynamic discount;
     final String orderId;
     final List<dynamic> expense;
     final String createdAt;
@@ -114,6 +116,7 @@ class Data {
         vendorCommissionTotal: json["vendorCommissionTotal"] == null ? null : json["vendorCommissionTotal"],
         deliveryDistanceKm: json["deliveryDistanceKm"] == null ? null : json["deliveryDistanceKm"].toDouble(),
         deliveryDistance: json["deliveryDistance"] == null ? null : json["deliveryDistance"],
+        discount: json["discount"] == null ? null : json["discount"],
         orderId: json["orderId"] == null ? null : json["orderId"],
         expense: json["expense"] == null ? null : List<dynamic>.from(json["expense"].map((x) => x)),
         createdAt: json["createdAt"] == null ? null : json["createdAt"],
@@ -145,6 +148,7 @@ class Data {
         "vendorCommissionTotal": vendorCommissionTotal == null ? null : vendorCommissionTotal,
         "deliveryDistanceKm": deliveryDistanceKm == null ? null : deliveryDistanceKm,
         "deliveryDistance": deliveryDistance == null ? null : deliveryDistance,
+        "discount": discount == null ? null : discount,
         "orderId": orderId == null ? null : orderId,
         "expense": expense == null ? null : List<dynamic>.from(expense.map((x) => x)),
         "createdAt": createdAt == null ? null : createdAt,

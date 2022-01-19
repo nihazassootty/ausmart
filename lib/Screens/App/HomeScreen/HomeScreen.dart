@@ -424,9 +424,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 TopBanner(),
-                                SizedBox(
-                                  height: 5,
-                                ),
+                               
                                 PopularScreen(),
                                 SizedBox(
                                   height: 5,

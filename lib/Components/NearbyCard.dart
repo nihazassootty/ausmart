@@ -60,7 +60,7 @@ Widget nearbyCard(
                       BlendMode.saturation,
                     ),
               child: FadeInImage.assetNetwork(
-                placeholder:'assets/images/AusmartLogo.png',
+                placeholder: 'assets/images/AusmartLogo.png',
                 image: item.storeBg.image,
                 fit: BoxFit.cover,
               ),
@@ -69,7 +69,7 @@ Widget nearbyCard(
           Container(
             margin: EdgeInsets.all(10),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
@@ -79,15 +79,15 @@ Widget nearbyCard(
                       item.name,
                       style: TextStyle(
                           fontSize: 17,
-                          color: Colors.black87,
+                          color: Color(0xff444444),
                           fontFamily: PrimaryFontName,
-                          fontWeight: FontWeight.w700),
+                          fontWeight: FontWeight.w600),
                     ),
                     Text(
                       item.location.address,
                       maxLines: 1,
                       style: TextStyle(
-                        fontFamily: PrimaryFontName,
+                          fontFamily: PrimaryFontName,
                           fontSize: 12,
                           color: Colors.black45,
                           fontWeight: FontWeight.w500),
@@ -105,7 +105,7 @@ Widget nearbyCard(
                       child: Text(
                         item.cuisine,
                         style: TextStyle(
-                          fontFamily: PrimaryFontName,
+                            fontFamily: PrimaryFontName,
                             fontSize: 9,
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
@@ -116,7 +116,7 @@ Widget nearbyCard(
                         ? Text(
                             "Currently Not Accepting Orders",
                             style: TextStyle(
-                              fontFamily: PrimaryFontName,
+                                fontFamily: PrimaryFontName,
                                 fontSize: 10,
                                 color: Colors.black45,
                                 fontWeight: FontWeight.w700),
@@ -126,8 +126,7 @@ Widget nearbyCard(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               SvgPicture.asset(
-                                                                'assets/svg/clock.svg',
-
+                                'assets/svg/clock.svg',
                                 color: Colors.black45,
                                 height: 13.0,
                               ),
@@ -145,7 +144,6 @@ Widget nearbyCard(
                               SizedBox(
                                 width: 5,
                               ),
-                              
                               SvgPicture.asset(
                                 'assets/svg/cooking.svg',
                                 color: Colors.black45,
@@ -155,7 +153,7 @@ Widget nearbyCard(
                                 width: 5,
                               ),
                               Text(
-                                '${outputDate(item.openTime)}-${outputDate(item.closeTime)}',
+                                '${outputDate(item.openTime)} - ${outputDate(item.closeTime)}',
                                 style: TextStyle(
                                   fontFamily: PrimaryFontName,
                                   fontSize: 10,
@@ -166,10 +164,13 @@ Widget nearbyCard(
                           ),
                   ],
                 ),
+                // Container(
+                //   width: MediaQuery.of(context).size.width * 0.02,
+                // ),
                 Container(
                   padding: EdgeInsets.all(5),
                   decoration: BoxDecoration(
-                    color: item.rating <= 3.0
+                    color: item.rating < 4.0
                         ? Colors.orange[400]
                         : Colors.green[500],
                     borderRadius: BorderRadius.circular(5),
@@ -182,8 +183,11 @@ Widget nearbyCard(
                         color: Color(0xFFFFFFFF),
                         size: 12.0,
                       ),
+                      SizedBox(
+                        width: 2,
+                      ),
                       Text(
-                        item.rating.toString(),
+                        item.rating.toString().padRight(2, '.0'),
                         style: kText144,
                       ),
                     ],

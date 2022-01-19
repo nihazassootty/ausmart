@@ -132,7 +132,8 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
           ? nearrestaurantShimmer()
           : Column(
               children: [
-                restaurantInfoCard(restaurant: restaurant.vendor, context: context),
+                restaurantInfoCard(
+                    restaurant: restaurant.vendor, context: context),
                 SizedBox(
                   height: 60,
                 ),
@@ -160,11 +161,11 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                                 indicatorColor: Colors.transparent,
                                 indicator: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
-                                    color: Colors.white),
+                                    color: Color(0xffECECEC)),
                                 labelStyle: TextStyle(
                                     fontFamily: PrimaryFontName,
                                     fontSize: 15,
-                                    fontWeight: FontWeight.w500),
+                                    fontWeight: FontWeight.w600),
                                 labelColor: kGreyDark,
                                 unselectedLabelColor: Colors.white,
                                 tabs: restaurant.products.map((e) {
@@ -201,17 +202,22 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                                     ),
                                     Text(
                                       'VEG',
-                                      style: kTextgrey,
+                                      style: TextStyle(
+                                        fontFamily: PrimaryFontName,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.grey,
+                                        fontSize: 13,
+                                      ),
                                     )
                                   ],
                                 ),
                               ),
                             ),
                             Consumer<CartProvider>(
-                                    builder: (context, data, child) =>
-                              LimitedBox(
-                                maxHeight: data.cart.length == 0?  MediaQuery.of(context).size.height /2.5:
-                                    MediaQuery.of(context).size.height / 2.5,
+                              builder: (context, data, child) => LimitedBox(
+                                maxHeight: data.cart.length == 0
+                                    ? MediaQuery.of(context).size.height / 2.5
+                                    : MediaQuery.of(context).size.height / 2.5,
                                 child: Container(
                                   height: MediaQuery.of(context)
                                       .size
@@ -255,19 +261,21 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                                           : SingleChildScrollView(
                                               child: Container(
                                                 height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /2,
+                                                        .size
+                                                        .height /
+                                                    2,
                                                 color: Colors.white,
                                                 margin: EdgeInsets.symmetric(
                                                     horizontal: 0, vertical: 0),
                                                 child: Padding(
                                                   padding:
-                                                      const EdgeInsets.all(8.0),
+                                                      const EdgeInsets.symmetric(horizontal: 0),
                                                   child: Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.start,
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: check
                                                         .map((e) =>
                                                             restaurentInnercard(
@@ -290,8 +298,6 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                       ),
               ],
             ),
-    
-    
     );
   }
 }

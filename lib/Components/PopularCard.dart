@@ -35,6 +35,7 @@ Widget popularCard({@required item, @required BuildContext context}) {
                     blurRadius: 15,
                     offset: Offset(0, 3), // changes position of shadow
                   ),
+               
                 ],
                 color: Colors.white,
                 shape: ContinuousRectangleBorder(

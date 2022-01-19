@@ -14,13 +14,14 @@ Widget quickCard(
           ));
     },
     child: Container(
-      margin: EdgeInsets.only(right: 10),
       width: 150,
       clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
+      decoration: ShapeDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
+        shape: ContinuousRectangleBorder(
+          borderRadius: BorderRadius.circular(32.0),
+        ),
+        shadows: [
           BoxShadow(color: Color(0x48969696), spreadRadius: 1, blurRadius: 1)
         ],
       ),
@@ -38,7 +39,6 @@ Widget quickCard(
                   fit: BoxFit.cover,
                 ),
               ),
-        
             ],
           ),
           Padding(
@@ -55,10 +55,15 @@ Widget quickCard(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 5),
                     child: Container(
-                      width:70 ,
+                      width: 89,
                       child: Text(
                         item.name,
-                        style: Text16,
+                        style: TextStyle(
+                          color: Color(0xff444444),
+                          fontFamily: PrimaryFontName,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -68,7 +73,9 @@ Widget quickCard(
                 Container(
                   padding: EdgeInsets.all(3),
                   decoration: BoxDecoration(
-                    color: Color(0xFF03940F),
+                    color: item.rating < 4.0
+                        ? Color(0xffF9963A)
+                        : Color(0xFF03940F),
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: Row(
@@ -80,7 +87,7 @@ Widget quickCard(
                         size: 12.0,
                       ),
                       Text(
-                        '${item.rating}',
+                        ' ${item.rating}',
                         style: kText10white,
                       ),
                     ],
@@ -95,7 +102,12 @@ Widget quickCard(
               width: 110,
               child: Text(
                 item.location.address,
-                style: kTextgrey,
+                style: TextStyle(
+                  fontFamily: PrimaryFontName,
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xff333333).withOpacity(0.6),
+                  fontSize: 12,
+                ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

@@ -82,7 +82,6 @@ class _TrackOrderState extends State<TrackOrder> {
 
       var data = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        log(response.body);
         setState(() {
           order = SingleOrderModel.fromJson(data);
 
@@ -296,15 +295,13 @@ class _TrackOrderState extends State<TrackOrder> {
                         billItem(
                             title: 'Item Total',
                             price: order.data.subTotalAmount),
-
-                        // //TODO: ADD Discount
-
-                        // billItem(title: 'Discount', price: 0),
-                        // //TODO: ADD DELIVERY charge
-
-                        // billItem(
-                        //     title: 'Delivery Charge',
-                        //     price: order.data.deliveryCharge),
+                      order.data.discount ==0?Container():  billItem(
+                          title: 'Discount',
+                          price: order.data.discount,
+                        ),
+                        billItem(
+                            title: 'Delivery Charge',
+                            price: order.data.deliveryCharge),
                       ],
                     ),
                   ),
@@ -316,9 +313,7 @@ class _TrackOrderState extends State<TrackOrder> {
                         const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                     child: billItem(
                         title: 'Paid Via\t${order.data.paymentType}',
-
-                        // 'Paid Via Cash',
-                        price: order.data.vendorTotalAmount,
+                        price: order.data.totalAmount,
                         bold: true),
                   ),
                   SizedBox(

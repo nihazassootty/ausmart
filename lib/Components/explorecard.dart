@@ -13,7 +13,7 @@ Widget exploreCard(
       padding: const EdgeInsets.only(left: 10.0, bottom: 10),
       child: Container(
         width: 115,
-        padding: EdgeInsets.fromLTRB(17, 10, 17, 10),
+        padding: EdgeInsets.fromLTRB(12, 8, 12, 8),
         height: 100,
         decoration: ShapeDecoration(
           gradient: LinearGradient(
