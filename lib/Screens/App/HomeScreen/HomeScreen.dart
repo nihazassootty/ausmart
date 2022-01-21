@@ -5,6 +5,7 @@ import 'package:ausmart/Components/topBanner.dart';
 import 'package:ausmart/Providers/GroceryProvider.dart';
 import 'package:ausmart/Screens/App/HomeScreen/BottomNav.dart';
 import 'package:ausmart/Screens/App/mapScreen/saved_address.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geocoder/geocoder.dart';
@@ -26,6 +27,7 @@ import 'package:ausmart/Screens/App/HomeScreen/QuickScreen.dart';
 import 'package:provider/provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -35,10 +37,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // FirebaseMessaging messaging = FirebaseMessaging.instance;
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
   ScrollController _scrollController = ScrollController();
-  // var getStore;
-  // IO.Socket socket;
+  var getStore;
+  IO.Socket socket;
 
   Future _check() async {
     LocationPermission permission = await Geolocator.checkPermission();
@@ -147,25 +149,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  // void connectSocket(id) {
-  //   socket = IO.io(socketUrl, <String, dynamic>{
-  //     "transports": ["websocket"],
-  //     "autoConnect": false,
-  //   });
-  //   socket.connect();
-  //   socket.onConnect(
-  //         (data) => socket.emit('join', 'branch_$id'),
-  //   );
-  //   socket.onConnect(
-  //         (data) => print('connected'),
-  //   );
-  //   socket.on('branch', (data) {
-  //     getStore.message(data);
-  //     //*MANAGE IN-APP MESSAGE
-  //     // if (data["type"] == 'message') _message(data);
-  //   });
-  //
-  // }
   Future _refreshStores() async {
     final customer = Provider.of<GetDataProvider>(context, listen: false);
     Provider.of<StoreProvider>(context, listen: false).fetchStores(
@@ -191,39 +174,37 @@ class _HomeScreenState extends State<HomeScreen> {
           latitude: customer.latitude, longitude: customer.longitude);
   }
 
-  // getFCM() async {
-  //   NotificationSettings settings = await messaging.requestPermission(
-  //     alert: true,
-  //     announcement: false,
-  //     badge: true,
-  //     carPlay: false,
-  //     criticalAlert: false,
-  //     provisional: false,
-  //     sound: true,
-  //   );
-  //   if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-  //     messaging = FirebaseMessaging.instance;
-  //     messaging.getToken().then((value) {
-  //       Provider.of<GetDataProvider>(context, listen: false).updateFCM(value);
-  //     });
-  //   } else if (settings.authorizationStatus ==
-  //       AuthorizationStatus.provisional) {
-  //     messaging = FirebaseMessaging.instance;
-  //     messaging.getToken().then((value) {
-  //       Provider.of<GetDataProvider>(context, listen: false).updateFCM(value);
-  //     });
-  //   } else {
-  //     print('User declined or has not accepted permission');
-  //   }
-  // }
+  getFCM() async {
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      messaging = FirebaseMessaging.instance;
+      messaging.getToken().then((value) {
+        print(value);
+        Provider.of<GetDataProvider>(context, listen: false).updateFCM(value);
+      });
+    } else if (settings.authorizationStatus ==
+        AuthorizationStatus.provisional) {
+      messaging = FirebaseMessaging.instance;
+      messaging.getToken().then((value) {
+        Provider.of<GetDataProvider>(context, listen: false).updateFCM(value);
+      });
+    } else {
+      print('User declined or has not accepted permission');
+    }
+  }
+
   @override
   void initState() {
-    // getStore = Provider.of<StoreProvider>(context, listen: false);
-    // print(getStore.store.branch.id.toString());
-
-    // connectSocket(getStore.store.branch.id);
     final customer = Provider.of<GetDataProvider>(context, listen: false);
-    // getFCM();
+    getFCM();
     if (customer.currentAddress == 'Current Location') _check();
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
@@ -232,13 +213,6 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     });
     super.initState();
-    // initializeFCM();
-    // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    //   if (message.notification != null) {
-    //     print('notification:${message.notification.title}');
-    //   }
-    // }
-    // );
   }
 
   @override
@@ -251,30 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFFEFEFE),
-      //  appBar: new AppBar(
-      //   backgroundColor: kWhiteColor,
-      //   elevation: 0,
-      //   centerTitle: false,
-      //   automaticallyImplyLeading: false,
-      //   title: Container(
-      //     child: Image.asset(
-      //       "assets/images/ausmart.png",
-      //       height: 60,
-      //     ),
-      //   ),
-      //   actions: <Widget>[
-      //     Padding(
-      //       padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 5),
-      //       child: GestureDetector(
-      //         child: Image.asset(
-      //           "assets/images/whatsappicon.png",
-      //           height: 60,
-      //         ),
-      //       ),
-      //     )
-      //   ],
-      // ),
-
+ 
       bottomNavigationBar: cartBottomCard(),
       body: Consumer<StoreProvider>(
         builder: (context, data, child) {
@@ -303,8 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             GestureDetector(
                               onTap: () async {
-                                print(data.store.branch.supportNumber ==null);
-                                var url = Platform.isAndroid 
+                                var url = Platform.isAndroid
                                     ? "https://wa.me/${data.store.branch.supportNumber}/?text=${Uri.encodeFull(message)}"
                                     : "https://send?phone=${data.store.branch.supportNumber}&text=${Uri.encodeFull(message)}";
 
@@ -428,11 +378,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 TopBanner(),
-                               
                                 PopularScreen(),
-                            
                                 QuickScreen(),
-                                
                                 BannerScreen(),
                                 SizedBox(
                                   height: 5,

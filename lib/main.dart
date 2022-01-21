@@ -1,7 +1,7 @@
 import 'dart:io';
 
-// import 'package:firebase_core/firebase_core.dart';
 import 'package:ausmart/Providers/GroceryProvider.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ausmart/Providers/CartProvider.dart';
 import 'package:ausmart/Providers/GetDataProvider.dart';
@@ -23,9 +23,9 @@ class MyHttpOverrides extends HttpOverrides {
 }
 
 void main() async {
-  HttpOverrides.global = new MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  HttpOverrides.global = new MyHttpOverrides();
+  await Firebase.initializeApp();
   runApp(
     MultiProvider(
       providers: providers,
@@ -49,11 +49,12 @@ class MyApp extends StatelessWidget {
     return Sizer(
       builder: (context, orientation, deviceType) {
         return MaterialApp(
+          title: 'Ausmart',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             fontFamily: 'Proxima Nova',
             colorScheme: ThemeData().colorScheme.copyWith(
-                  secondary: Colors.blue,
+                  secondary: Colors.greenAccent,
                 ),
           ),
           home: SplashScreen(),

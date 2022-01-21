@@ -1,3 +1,4 @@
+import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:flutter/material.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Models/StoreModel.dart';
@@ -34,8 +35,9 @@ Widget quickCard(
               SizedBox(
                 height: 85,
                 width: MediaQuery.of(context).size.width,
-                child: Image.network(
-                  item.storeBg.image,
+                child: FadeInImage.assetNetwork(
+                  placeholder: 'assets/images/AusmartLogo.png',
+                  image: item.storeLogo.image,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -55,13 +57,13 @@ Widget quickCard(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 5),
                     child: Container(
-                      width: MediaQuery.of(context).size.width /4.2 ,
+                      width: MediaQuery.of(context).size.width / 4.2,
                       child: Text(
                         item.name,
                         style: TextStyle(
                           color: Color(0xff444444),
                           fontFamily: PrimaryFontName,
-                          fontSize: 14,
+                          fontSize: 13,
                           fontWeight: FontWeight.w600,
                         ),
                         maxLines: 2,
@@ -71,10 +73,10 @@ Widget quickCard(
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(3),
+                  padding: EdgeInsets.all(2),
                   decoration: BoxDecoration(
                     color: item.rating < 4.0
-                        ? Color(0xffF9963A)
+                        ? Colors.orange[400]
                         : Colors.green[500],
                     borderRadius: BorderRadius.circular(5),
                   ),
@@ -84,11 +86,19 @@ Widget quickCard(
                       Icon(
                         Icons.star,
                         color: Color(0xFFFFFFFF),
-                        size: 12.0,
+                        size: 10.0,
+                      ),
+                      SizedBox(
+                        width: 2,
                       ),
                       Text(
-                        ' ${item.rating}',
-                        style: kText10white,
+                        item.rating.toString().padRight(2, '.0'),
+                        style: TextStyle(
+                          fontFamily: PrimaryFontName,
+                          fontWeight: FontWeight.w400,
+                          color: kWhiteColor,
+                          fontSize: 10,
+                        ),
                       ),
                     ],
                   ),

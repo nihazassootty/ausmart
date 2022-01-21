@@ -62,6 +62,9 @@ class _MyOrdersState extends State<MyOrders> {
     socket.onConnect(
       (data) => socket.emit('join', 'customer_$id'),
     );
+       socket.onConnect(
+      (data) => print('My Orders connected to socket'),
+    );
     socket.on('orderUpdated', (data) {
       print(data.toString());
       // print("object");

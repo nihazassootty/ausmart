@@ -7,7 +7,6 @@ import 'package:http/http.dart' as http;
 import 'package:ausmart/Commons/AppConstants.dart';
 import 'package:ausmart/Models/StoreModel.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
-import 'dart:developer';
 class StoreProvider extends ChangeNotifier {
   bool loading = true;
   bool isServicable = true;
@@ -19,28 +18,28 @@ class StoreProvider extends ChangeNotifier {
   StoreModel store = StoreModel();
   FlutterSecureStorage storage = FlutterSecureStorage();
 
-  //* CONNECT BRANCH SOCKET
-  connectSocket(id) {
-    socket = IO.io(socketUrl, <String, dynamic>{
-      "transports": ["websocket"],
-      "autoConnect": false,
-    });
-    socket.connect();
-    socket.onConnect(
-      (data) => socket.emit('join', 'branch_$id'),
-    );
-    socket.onConnect(
-      (data) => print('connected'),
-    );
-    socket.on('branch', (data) {
-      // message(data);
-      //*MANAGE IN-APP MESSAGE
-      // if (data["type"] == 'message') _message(data);
-    });
-    socket.on('branchVendors', (data) {
-      fetchStores();
-    });
-  }
+  // //* CONNECT BRANCH SOCKET
+  // connectSocket(id) {
+  //   socket = IO.io(socketUrl, <String, dynamic>{
+  //     "transports": ["websocket"],
+  //     "autoConnect": false,
+  //   });
+  //   socket.connect();
+  //   socket.onConnect(
+  //     (data) => socket.emit('join', 'branch_$id'),
+  //   );
+  //   socket.onConnect(
+  //     (data) => print('connected'),
+  //   );
+  //   socket.on('branch', (data) {
+  //     // message(data);
+  //     //*MANAGE IN-APP MESSAGE
+  //     // if (data["type"] == 'message') _message(data);
+  //   });
+  //   socket.on('branchVendors', (data) {
+  //     fetchStores();
+  //   });
+  // }
 
   // message(val) {
   //   if (val["visible"] == 'true') {
@@ -76,7 +75,6 @@ class StoreProvider extends ChangeNotifier {
 
       if (response.statusCode == 200) {
         store = StoreModel.fromJson(data["data"]);
-        log(response.body);
         if (data['pagination']['next'] != null) {
           isPagination = true;
         } else {
@@ -86,7 +84,7 @@ class StoreProvider extends ChangeNotifier {
         isServicable = true;
         loading = false;
         initialPage = initialPage + 1;
-        connectSocket(store.branch.id);
+        // connectSocket(store.branch.id);
       }
       if (response.statusCode == 404 || response.statusCode == 400) {
         // socket.disconnect();

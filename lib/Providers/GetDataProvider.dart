@@ -1,4 +1,7 @@
+// ignore_for_file: missing_required_param
+
 import 'dart:convert';
+import 'package:ausmart/Models/AppVersion.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -23,18 +26,25 @@ class GetDataProvider extends ChangeNotifier {
   };
   FlutterSecureStorage storage = FlutterSecureStorage();
   AccountModel get = AccountModel();
-  // Future checkUpdate(
-  //   context,
-  // ) async {
-  //   final Uri url = Uri.https(baseUrl, apiUrl + "/branch/appversion",
-  //       {"app": "customer", "platform": Platform.operatingSystem.toString()});
-  //   final response = await http.get(url, headers: {
-  //     "Content-Type": "application/json",
-  //     "Accept": "application/json",
-  //   });
-  //   var jsonData = jsonDecode(response.body);
-  //   return jsonData["data"];
-  // }
+  AppVersion appVersion = AppVersion();
+
+  Future<AppVersion> checkUpdate(
+    context,
+  ) async {
+  
+
+    final Uri url = Uri.https(baseUrl, apiUrl + "/settings/version");
+    final response = await http.get(url, headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+    });
+    var jsonData = jsonDecode(response.body);
+      appVersion = AppVersion.fromJson(jsonData);
+
+    if (response.statusCode == 200) {
+    }
+    return appVersion;
+  }
 
   Future updateFCM(fcmtoken) async {
     String token = await storage.read(key: "token");
@@ -50,7 +60,6 @@ class GetDataProvider extends ChangeNotifier {
           'Authorization': 'Bearer $token',
         });
     if (response.statusCode == 200) {
-      print(response.body.toString());
       print('FCM UPDATED');
     }
   }

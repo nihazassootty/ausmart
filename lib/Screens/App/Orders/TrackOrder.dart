@@ -14,7 +14,6 @@ import 'package:timeline_tile/timeline_tile.dart';
 import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
-import 'dart:developer';
 
 class TrackOrder extends StatefulWidget {
   final orderid;
@@ -31,26 +30,6 @@ class _TrackOrderState extends State<TrackOrder> {
   IO.Socket socket;
   FlutterSecureStorage storage = FlutterSecureStorage();
 
-  // void connectSocket(id) {
-  //   socket = IO.io(socketUrl, <String, dynamic>{
-  //     "transports": ["websocket"],
-  //     "autoConnect": false,
-  //   });
-  //   socket.connect();
-  //   socket.onConnect(
-  //     (data) => socket.emit('join', 'order_$id'),
-  //   );
-  //   socket.onConnect(
-  //     (data) => print('connected to socket'),
-  //   );
-  //   socket.on('orderUpdated', (data) {
-  //     print("object");
-  //     //*MANAGE IN-APP MESSAGE
-  //     // if (data["type"] == 'message') status(data);
-  //     fetchDetails(id);
-  //   });
-  // }
-
   void connectSocket(id) {
     socket = IO.io(socketUrl, <String, dynamic>{
       "transports": ["websocket"],
@@ -58,10 +37,16 @@ class _TrackOrderState extends State<TrackOrder> {
     });
     socket.connect();
     socket.onConnect(
-      (data) => socket.emit('join', 'order_$id'),
+      (data) => socket.emit('join', 'customer_$id'),
     );
+
+    socket.onConnect(
+      (data) => print('Order connected to socket'),
+    );
+
     socket.on('orderUpdated', (data) {
       print(data.toString());
+
       // print("object");
       //*MANAGE IN-APP MESSAGE
       // if (data["type"] == 'message') status(data);
@@ -100,16 +85,15 @@ class _TrackOrderState extends State<TrackOrder> {
   @override
   void initState() {
     fetchDetails(widget.orderid);
-    // print(widget.orderid);
     connectSocket(widget.orderid);
     super.initState();
   }
 
-  // @override
-  // void dispose() {
-  //   socket.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    socket.dispose();
+    super.dispose();
+  }
 
   // void launchUrl(String url) async {
   //   if (await canLaunch(url)) {
