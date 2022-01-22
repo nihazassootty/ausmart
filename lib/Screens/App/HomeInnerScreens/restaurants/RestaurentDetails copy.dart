@@ -1,4 +1,10 @@
+// // ignore_for_file: unused_element
+
 // import 'dart:convert';
+// import 'package:ausmart/Components/RestaurentInnerCard%20copy.dart';
+// import 'package:ausmart/Models/RestoProductModel%20copy.dart';
+// import 'package:ausmart/Providers/CartProvider.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
 // import 'package:http/http.dart' as http;
 // import 'package:flutter/cupertino.dart';
 // import 'package:intl/intl.dart';
@@ -8,21 +14,17 @@
 // import 'package:ausmart/Commons/ColorConstants.dart';
 // import 'package:ausmart/Commons/TextStyles.dart';
 // import 'package:ausmart/Commons/zerostate.dart';
-// import 'package:ausmart/Components/ActiveMessageCard.dart';
 // import 'package:ausmart/Components/CartBottomCard.dart';
 // import 'package:ausmart/Components/RestaurantInfoCard.dart';
-// import 'package:ausmart/Components/RestaurentInnerCard.dart';
-// import 'package:ausmart/Models/RestoProductModel.dart';
-// import 'package:ausmart/Providers/StoreProvider.dart';
 // import 'package:ausmart/Shimmers/nearbydummy.dart';
-// import 'package:ausmart/Shimmers/restaurentdetaildummy.dart';
 // import 'package:provider/provider.dart';
 // import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 // class RestaurentDetail extends StatefulWidget {
 //   final String restoId;
 //   final item;
-//   const RestaurentDetail({Key key, @required this.item, this.restoId}) : super(key: key);
+//   const RestaurentDetail({Key key, @required this.item, this.restoId})
+//       : super(key: key);
 
 //   @override
 //   _RestaurentDetailState createState() => _RestaurentDetailState();
@@ -34,7 +36,7 @@
 //   bool isVeg = false;
 //   var outputDate =
 //       (date) => DateFormat('hh:mm a').format(DateFormat('HH:mm').parse(date));
-//   List products = [];
+//   // List products = [];
 //   List<RestoProductModelProduct> menu = [];
 //   final itemScrollController = ItemScrollController();
 
@@ -44,7 +46,7 @@
 //     final String token = await storage.read(key: "token");
 //     try {
 //       final Uri url = Uri.https(baseUrl, apiUrl + "/customer/rest-products/", {
-//         "restId":widget.restoId ?? widget.item.id,
+//         "restId": widget.restoId ?? widget.item.id,
 //         "veg": isVeg ? 'veg' : '',
 //       });
 //       final response = await http.get(url, headers: {
@@ -90,6 +92,8 @@
 //         ));
 //   }
 
+//   TabController _tabController;
+
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
@@ -126,53 +130,56 @@
 //       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
 //       body: loading
 //           ? nearrestaurantShimmer()
-//           : ScrollablePositionedList.builder(
-//               shrinkWrap: true,
-//               physics: ScrollPhysics(),
-//               itemScrollController: itemScrollController,
-//               itemCount: restaurant.products == null ? 1 : menu.length + 1,
-//               scrollDirection: Axis.vertical,
-//               itemBuilder: (context, index) {
-//                 if (index == 0) {
-//                   return Column(
-//                     children: <Widget>[
-//                       loading
-//                           ? restaurantdetailShimmer()
-//                           : restaurantInfoCard(
-//                               restaurant: restaurant, context: context),
-//                       SizedBox(
-//                         height: 60,
-//                       ),
-//                       Container(
-//                         clipBehavior: Clip.antiAlias,
-//                         // transform: Matrix4.translationValues(0, 50, 0),
-//                         decoration: BoxDecoration(
-//                           color: Colors.white,
-//                           // borderRadius: BorderRadius.vertical(top: Radius.circular(15.0)),
-//                         ),
-//                         child: Padding(
-//                           padding: const EdgeInsets.only(top: 10),
+//           : SingleChildScrollView(
+//             child: Column(
+//                 children: [
+//                   restaurantInfoCard(
+//                       restaurant: restaurant.vendor, context: context),
+//                   SizedBox(
+//                     height: 60,
+//                   ),
+//                   restaurant.products.length == 0
+//                       ? zerostate(
+//                           height: 400,
+//                           size: 180,
+//                           icon: 'assets/svg/noproducts.svg',
+//                           head: 'Ohh No!',
+//                           sub: 'Nothing is found here!')
+//                       : DefaultTabController(
+//                           length: restaurant.products.length, // length of tabs
+//                           initialIndex: 0,
 //                           child: Column(
+//                             crossAxisAlignment: CrossAxisAlignment.start,
 //                             children: [
-//                               Offstage(
-//                                 offstage: restaurant?.products?.length == 0,
-//                                 child: Consumer<StoreProvider>(
-//                                   builder: (context, data, child) {
-//                                     return MessageCard(
-//                                         data: data.store.branch?.activeMessage);
-//                                   },
+//                               Container(
+//                                 padding: EdgeInsets.only(left: 15),
+//                                 width: MediaQuery.of(context).size.width,
+//                                 height: 40,
+//                                 color: kGreyDark,
+//                                 child: TabBar(
+//                                   controller: _tabController,
+//                                   isScrollable: true,
+//                                   indicatorColor: Colors.transparent,
+//                                   indicator: BoxDecoration(
+//                                       borderRadius: BorderRadius.circular(8),
+//                                       color: Color(0xffECECEC)),
+//                                   labelStyle: TextStyle(
+//                                       fontFamily: PrimaryFontName,
+//                                       fontSize: 15,
+//                                       fontWeight: FontWeight.w600),
+//                                   labelColor: kGreyDark,
+//                                   unselectedLabelColor: Colors.white,
+//                                   tabs: restaurant.products.map((e) {
+//                                     return FittedBox(
+//                                         fit: BoxFit.fitWidth,
+//                                         child: Tab(text: e.category.name));
+//                                   }).toList(),
 //                                 ),
 //                               ),
-//                               Padding(
-//                                 padding:
-//                                     const EdgeInsets.symmetric(horizontal: 20),
-//                                 child: Divider(
-//                                   thickness: 1,
-//                                 ),
-//                               ),
 //                               Offstage(
 //                                 offstage: restaurant?.products?.length == 0,
-//                                 child: Padding(
+//                                 child: Container(
+//                                   margin: EdgeInsets.symmetric(vertical: 8),
 //                                   padding: const EdgeInsets.symmetric(
 //                                       horizontal: 15.0),
 //                                   child: Row(
@@ -191,74 +198,108 @@
 //                                         // inactiveThumbColor: Colors.grey[50],
 //                                         // inactiveTrackColor: Colors.grey[200],
 //                                       ),
-//                                       SizedBox(width: 5,),
+//                                       SizedBox(
+//                                         width: 5,
+//                                       ),
 //                                       Text(
 //                                         'VEG',
-//                                         style: kTextgrey,
+//                                         style: TextStyle(
+//                                           fontFamily: PrimaryFontName,
+//                                           fontWeight: FontWeight.w600,
+//                                           color: Colors.grey,
+//                                           fontSize: 13,
+//                                         ),
 //                                       )
 //                                     ],
 //                                   ),
 //                                 ),
 //                               ),
-//                               Offstage(
-//                                 offstage: restaurant.products.length != 0,
-//                                 child: zerostate(
-//                                   height: 400,
-//                                   size: 180,
-//                                   icon: 'assets/svg/noproducts.svg',
-//                                   head: 'Ohh No!',
-//                                   sub: 'No Products found!',
+//                               Consumer<CartProvider>(
+//                                 builder: (context, data, child) => LimitedBox(
+//                                   maxHeight: data.cart.length == 0
+//                                       ? MediaQuery.of(context).size.height / 2.2
+//                                       : MediaQuery.of(context).size.height / 2.5,
+//                                   child: Container(
+//                                     height: MediaQuery.of(context)
+//                                         .size
+//                                         .height, //height of TabBarView
+//                                     child: TabBarView(
+//                                       controller: _tabController,
+//                                       children: restaurant.products.map((e) {
+//                                         List check = e.products;
+//                                         var store = restaurant.vendor;
+//                                         return check.isEmpty
+//                                             ? Container(
+//                                                 height: 560,
+//                                                 child: Center(
+//                                                     child: Column(
+//                                                   children: [
+//                                                     SvgPicture.asset(
+//                                                         'assets/svg/noproducts.svg',
+//                                                         height: 150),
+//                                                     SizedBox(height: 25),
+//                                                     Text(
+//                                                       'Ohh No!',
+//                                                       style: TextStyle(
+//                                                           fontFamily:
+//                                                               PrimaryFontName,
+//                                                           fontWeight:
+//                                                               FontWeight.bold,
+//                                                           fontSize: 18),
+//                                                     ),
+//                                                     SizedBox(height: 10),
+//                                                     Text(
+//                                                       'This Category has no more items!' ??
+//                                                           '',
+//                                                       style: TextStyle(
+//                                                           fontFamily:
+//                                                               PrimaryFontName,
+//                                                           fontSize: 15),
+//                                                     )
+//                                                   ],
+//                                                 )),
+//                                               )
+//                                             : SingleChildScrollView(
+//                                                 child: Container(
+//                                                   // height: MediaQuery.of(context)
+//                                                   //         .size
+//                                                   //         .height /
+//                                                   //     2,
+//                                                   color: Colors.white,
+//                                                   margin: EdgeInsets.symmetric(
+//                                                       horizontal: 0, vertical: 0),
+//                                                   child: Padding(
+//                                                     padding:
+//                                                         const EdgeInsets.symmetric(horizontal: 0),
+//                                                     child: Column(
+//                                                       mainAxisAlignment:
+//                                                           MainAxisAlignment.start,
+//                                                       crossAxisAlignment:
+//                                                           CrossAxisAlignment
+//                                                               .start,
+//                                                       children: check
+//                                                           .map((e) =>
+//                                                               restaurentInnercard(
+//                                                                 item: e,
+//                                                                 store: store,
+//                                                                 context: context,
+//                                                               ))
+//                                                           .toList(),
+//                                                     ),
+//                                                   ),
+//                                                 ),
+//                                               );
+//                                       }).toList(),
+//                                     ),
+//                                   ),
 //                                 ),
-//                               ),
+//                               )
 //                             ],
 //                           ),
 //                         ),
-//                       ),
-//                     ],
-//                   );
-//                 }
-
-//                 index -= 1;
-
-//                 List products = menu[index].products;
-//                 return Offstage(
-//                   offstage: products.length == 0,
-//                   child: Padding(
-//                     padding: const EdgeInsets.only(top: 0),
-//                     child: Column(
-//                       crossAxisAlignment: CrossAxisAlignment.start,
-//                       children: [
-//                         Padding(
-//                           padding: const EdgeInsets.all(8.0),
-//                           child: Text(
-//                             menu[index].category.name,
-//                             style: TextHeadBlack,
-//                           ),
-//                         ),
-//                         Padding(
-//                           padding: const EdgeInsets.all(8.0),
-//                           child: Divider(
-//                             thickness: 0.5,
-//                           ),
-//                         ),
-//                         Container(
-//                           color: Color(0x8EF5F5F5),
-//                           child: Column(
-//                             crossAxisAlignment: CrossAxisAlignment.start,
-//                             children: products.map((val) {
-//                               return restaurentInnercard(
-//                                 item: val,
-//                                 store: restaurant.vendor,
-//                                 context: context,
-//                               );
-//                             }).toList(),
-//                           ),
-//                         ),
-//                       ],
-//                     ),
-//                   ),
-//                 );
-//               }),
+//                 ],
+//               ),
+//           ),
 //     );
 //   }
 // }

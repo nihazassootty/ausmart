@@ -16,10 +16,10 @@ Widget cartBottomCard({String name, onTap}) {
               Expanded(
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
                   child: Container(
                     clipBehavior: Clip.antiAlias,
-                    height: 50,
+                    height: 45,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.transparent),

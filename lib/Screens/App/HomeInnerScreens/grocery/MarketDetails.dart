@@ -84,8 +84,8 @@ class _MarketDetailState extends State<MarketDetail> {
           milliseconds: 400,
         ));
   }
-    TabController _tabController;
 
+  TabController _tabController;
 
   @override
   Widget build(BuildContext context) {
@@ -151,11 +151,11 @@ class _MarketDetailState extends State<MarketDetail> {
                                 indicatorColor: Colors.transparent,
                                 indicator: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
-                                    color: Colors.white),
+                                    color: Color(0xffECECEC)),
                                 labelStyle: TextStyle(
                                     fontFamily: PrimaryFontName,
                                     fontSize: 15,
-                                    fontWeight: FontWeight.w500),
+                                    fontWeight: FontWeight.w600),
                                 labelColor: kGreyDark,
                                 unselectedLabelColor: Colors.white,
                                 tabs: restaurant.products.map((e) {
@@ -165,12 +165,13 @@ class _MarketDetailState extends State<MarketDetail> {
                                 }).toList(),
                               ),
                             ),
-                         
-                             Consumer<CartProvider>(
-                                    builder: (context, data, child) =>
-                              LimitedBox(
-                                maxHeight: data.cart.length == 0?  MediaQuery.of(context).size.height /1.9:
-                                    MediaQuery.of(context).size.height * 0.49,
+                            Consumer<CartProvider>(
+                              builder: (context, data, child) => LimitedBox(
+                                maxHeight:
+                                    //  data.cart.length == 0
+                                    //     ? MediaQuery.of(context).size.height / 1.9
+                                    //     : MediaQuery.of(context).size.height * 0.49,
+                                    MediaQuery.of(context).size.height / 2,
                                 child: Container(
                                   height: MediaQuery.of(context)
                                       .size
@@ -201,8 +202,7 @@ class _MarketDetailState extends State<MarketDetail> {
                                                   ),
                                                   SizedBox(height: 10),
                                                   Text(
-                                                    'This Category has no more items!' ??
-                                                        '',
+                                                    'This Category has no more items!',
                                                     style: TextStyle(
                                                         fontFamily:
                                                             PrimaryFontName,
@@ -223,12 +223,14 @@ class _MarketDetailState extends State<MarketDetail> {
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.start,
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: check
                                                         .map((e) =>
                                                             marketInnercard(
                                                               item: e,
-                                                              store: restaurant.vendor,
+                                                              store: restaurant
+                                                                  .vendor,
                                                               context: context,
                                                             ))
                                                         .toList(),
@@ -246,7 +248,7 @@ class _MarketDetailState extends State<MarketDetail> {
                       ),
               ],
             ),
-    
+
       // body: loading
       //     ? restaurantdetailShimmer()
       //     : SingleChildScrollView(

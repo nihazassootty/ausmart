@@ -1,7 +1,7 @@
 // ignore_for_file: unused_element
 
 import 'dart:convert';
-import 'package:ausmart/Components/RestaurentInnerCard%20copy.dart';
+import 'package:ausmart/Components/RestaurentInnerCard.dart';
 import 'package:ausmart/Models/RestoProductModel%20copy.dart';
 import 'package:ausmart/Providers/CartProvider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -216,9 +216,11 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                               ),
                               Consumer<CartProvider>(
                                 builder: (context, data, child) => LimitedBox(
-                                  maxHeight: data.cart.length == 0
-                                      ? MediaQuery.of(context).size.height / 2.2
-                                      : MediaQuery.of(context).size.height / 2.5,
+                                  maxHeight: 
+                                  // data.cart.length == 0
+                                  //     ? MediaQuery.of(context).size.height / 2.2
+                                  //     :
+                                       MediaQuery.of(context).size.height /2,
                                   child: Container(
                                     height: MediaQuery.of(context)
                                         .size
@@ -266,26 +268,21 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                                                   //         .height /
                                                   //     2,
                                                   color: Colors.white,
-                                                  margin: EdgeInsets.symmetric(
-                                                      horizontal: 0, vertical: 0),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.symmetric(horizontal: 0),
-                                                    child: Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment.start,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: check
-                                                          .map((e) =>
-                                                              restaurentInnercard(
-                                                                item: e,
-                                                                store: store,
-                                                                context: context,
-                                                              ))
-                                                          .toList(),
-                                                    ),
+                                               
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: check
+                                                        .map((e) =>
+                                                            restaurentInnercard(
+                                                              item: e,
+                                                              store: store,
+                                                              context: context,
+                                                            ))
+                                                        .toList(),
                                                   ),
                                                 ),
                                               );

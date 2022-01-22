@@ -24,20 +24,20 @@ class NearbyScreen extends StatelessWidget {
                     text: TextSpan(
                       text: "Restaurants",
                       style: TextStyle(
-                          fontFamily: PrimaryFontName,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 18,
-                          color: Color(0xff444444),
-                        ),
+                        fontFamily: PrimaryFontName,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 18,
+                        color: Color(0xff444444),
+                      ),
                       children: <TextSpan>[
                         TextSpan(
                           text: "\tNearby",
                           style: TextStyle(
-                          fontFamily: PrimaryFontName,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 18,
-                          color: Color(0xff444444),
-                        ),
+                            fontFamily: PrimaryFontName,
+                            fontWeight: FontWeight.w800,
+                            fontSize: 18,
+                            color: Color(0xff444444),
+                          ),
                         ),
                       ],
                     ),
@@ -77,17 +77,6 @@ class NearbyScreen extends StatelessWidget {
                 SizedBox(
                   height: 40,
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 15),
-                //   child: SvgPicture.asset(
-                //     'assets/svg/logowhite.svg',
-                //     color: Colors.grey,
-                //     height: 35,
-                //   ),
-                // ),
-                // SizedBox(
-                //   height: 50,
-                // ),
               ],
             ),
     );

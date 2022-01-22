@@ -131,8 +131,7 @@ Widget marketInnercard({
                     child: FadeInImage.memoryNetwork(
                       width: 100,
                       height: 130,
-                      imageCacheWidth: 100 ~/
-                          1, // Used to set cache width as Widget size to avoid decode large image
+                       // Used to set cache width as Widget size to avoid decode large image
                       fit: BoxFit.cover,
                       placeholder:
                           kTransparentImage, // Transparent placeholder while loading image
@@ -142,7 +141,7 @@ Widget marketInnercard({
                         return FadeInImage.memoryNetwork(
                           width: 100,
                           height: 130,
-                          imageCacheWidth: 100 ~/ 1,
+                          
                           fit: BoxFit.cover,
                           placeholder: kTransparentImage,
                           image: item.image.image,
@@ -150,7 +149,7 @@ Widget marketInnercard({
                             return FadeInImage.memoryNetwork(
                               width: 100,
                               height: 130,
-                              imageCacheWidth: 100 ~/ 1,
+                              
                               fit: BoxFit.cover,
                               placeholder: kTransparentImage,
                               image: item.image.image,
