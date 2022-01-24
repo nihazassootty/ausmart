@@ -1,7 +1,7 @@
 import 'package:ausmart/Components/explorecard.dart';
 import 'package:ausmart/Screens/App/HomeInnerScreens/meetNFish/meetNFishList.dart';
 import 'package:flutter/material.dart';
-import 'package:ausmart/Screens/App/HomeInnerScreens/grocery/MarketInner.dart';
+import 'package:ausmart/Screens/App/HomeInnerScreens/grocery/groceryInner.dart';
 import 'package:ausmart/Screens/App/HomeInnerScreens/restaurants/RestaurentInner.dart';
 
 class CategoryScreen extends StatelessWidget {

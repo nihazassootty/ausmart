@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Commons/zerostate.dart';
-import 'package:ausmart/Components/NearbyCard.dart';
+import 'package:ausmart/Screens/App/HomeScreen/components/nearbyRestaurants/NearbyCard.dart';
 import 'package:ausmart/Providers/StoreProvider.dart';
 import 'package:ausmart/Shimmers/nearbydummy.dart';
 import 'package:provider/provider.dart';

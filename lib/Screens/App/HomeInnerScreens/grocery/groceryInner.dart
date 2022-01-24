@@ -1,4 +1,4 @@
-import 'package:ausmart/Components/GroceryCard.dart';
+import 'package:ausmart/Screens/App/HomeInnerScreens/grocery/GroceryCard.dart';
 import 'package:ausmart/Providers/GroceryProvider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

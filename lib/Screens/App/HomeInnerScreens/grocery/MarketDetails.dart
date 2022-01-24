@@ -91,33 +91,7 @@ class _MarketDetailState extends State<MarketDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteColor,
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   backgroundColor: Colors.white,
-      //   leading: IconButton(
-      //     icon: Icon(
-      //       Icons.arrow_back,
-      //       color: Colors.black,
-      //     ),
-      //     onPressed: () {
-      //       Navigator.pop(context);
-      //     },
-      //   ),
-      // ),
       bottomNavigationBar: cartBottomCard(),
-//       floatingActionButton: FloatingActionButton.extended(
-//         backgroundColor: Colors.grey[700],
-//         icon: Icon(Icons.menu),
-//         label: Text(
-//           'Menu',
-//           style: TextStyle(
-// fontFamily: PrimaryFontName,              letterSpacing: -0.2,
-//               fontWeight: FontWeight.w700),
-//         ),
-//         isExtended: true,
-//         onPressed: () =>
-//             _showMenuSheet(context, menu, (val) => scrollToItem(val)),
-//       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: loading
           ? nearrestaurantShimmer()
@@ -248,16 +222,6 @@ class _MarketDetailState extends State<MarketDetail> {
                       ),
               ],
             ),
-
-      // body: loading
-      //     ? restaurantdetailShimmer()
-      //     : SingleChildScrollView(
-      //         child: Column(
-      //           children: [
-      //             restaurantInfoCard(restaurant: restaurant, context: context),
-      //           ],
-      //         ),
-      //       ),
     );
   }
 }
@@ -386,107 +350,3 @@ Future<void> _showMenuSheet(
         );
       });
 }
-
-      // SingleChildScrollView(
-      //     child: Column(
-      //       children: [
-      //         Container(
-      //           clipBehavior: Clip.antiAlias,
-      //           transform: Matrix4.translationValues(0, 50, 0),
-      //           decoration: BoxDecoration(
-      //             color: Colors.white,
-      //             // borderRadius: BorderRadius.vertical(top: Radius.circular(15.0)),
-      //           ),
-      //           child: Padding(
-      //             padding: const EdgeInsets.only(top: 10),
-      //             child: Column(
-      //               children: [
-      //                 Offstage(
-      //                   offstage: restaurant?.products?.length == 0,
-      //                   child: Consumer<StoreProvider>(
-      //                     builder: (context, data, child) {
-      //                       return MessageCard(
-      //                           data: data.store.branch?.activeMessage);
-      //                     },
-      //                   ),
-      //                 ),
-      //                 Padding(
-      //                   padding: const EdgeInsets.symmetric(horizontal: 20),
-      //                   child: Divider(
-      //                     thickness: 1,
-      //                   ),
-      //                 ),
-      //                 restaurant.products.length == 0
-      //                     ? zerostate(
-      //                         height: 200,
-      //                         size: 130,
-      //                         icon: 'assets/svg/noproducts.svg',
-      //                         head: 'Ohh No!',
-      //                         sub: 'No Products found!')
-      //                     : ListView.builder(
-      //                         padding: EdgeInsets.all(10),
-      //                         shrinkWrap: true,
-      //                         itemCount: restaurant.products.length,
-      //                         physics: NeverScrollableScrollPhysics(),
-      //                         scrollDirection: Axis.vertical,
-      //                         itemBuilder: (context, index) {
-      //                           List check =
-      //                               restaurant.products[index].products;
-      //                           return loading
-      //                               ? nearrestaurantShimmer()
-      //                               : check.length == 0
-      //                                   ? Container(
-      //                                       height: 0,
-      //                                     )
-      //                                   : Column(
-      //                                       crossAxisAlignment:
-      //                                           CrossAxisAlignment.start,
-      //                                       children: [
-      //                                         Padding(
-      //                                           padding:
-      //                                               const EdgeInsets.all(
-      //                                                   8.0),
-      //                                           child: Text(
-      //                                             restaurant.products[index]
-      //                                                 .category.name,
-      //                                             style: TextHeadGrey,
-      //                                           ),
-      //                                         ),
-      //                                         Padding(
-      //                                           padding:
-      //                                               const EdgeInsets.all(
-      //                                                   8.0),
-      //                                           child: Divider(
-      //                                             thickness: 0.5,
-      //                                           ),
-      //                                         ),
-      //                                         Column(
-      //                                           crossAxisAlignment:
-      //                                               CrossAxisAlignment
-      //                                                   .start,
-      //                                           children: check.map((val) {
-      //                                             return marketInnercard(
-      //                                               item: val,
-      //                                               store:
-      //                                                   restaurant.vendor,
-      //                                               context: context,
-      //                                             );
-      //                                           }).toList(),
-      //                                         ),
-      //                                       ],
-      //                                     );
-      //                         },
-      //                       ),
-      //               ],
-      //             ),
-      //           ),
-      //         ),
-      //         SizedBox(
-      //           height: 50,
-      //         )
-      //       ],
-      //     ),
-      //   ),
-
-    
- 
