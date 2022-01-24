@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
-import 'package:ausmart/Screens/App/HomeInnerScreens/PopularInner.dart';
+import 'package:ausmart/Screens/App/HomeScreen/components/popularCard/PopularInner.dart';
 
 Widget popularCard({@required item, @required BuildContext context}) {
   return GestureDetector(
