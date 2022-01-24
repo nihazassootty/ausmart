@@ -18,7 +18,6 @@ class QuickScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: RichText(
                       textAlign: TextAlign.justify,
@@ -45,7 +44,6 @@ class QuickScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    
                     height: 165,
                     width: MediaQuery.of(context).size.width,
                     child: ListView.builder(

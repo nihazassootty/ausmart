@@ -38,21 +38,12 @@ class TopBanner extends StatelessWidget {
                         clipBehavior: Clip.antiAlias,
                         decoration: ShapeDecoration(
                           color: Colors.black26,
-                          // borderRadius: BorderRadius.circular(16),
-                          // boxShadow: [
-                          //   BoxShadow(
-                          //       color: Color(0x48EEEEEE),
-                          //       spreadRadius: 4,
-                          //       blurRadius: 20)
-                          // ],
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: NetworkImage(
                               getstore
                                   .store.branch.branchBanner[index].image.image,
                             ),
-                            // image:
-                            //     ExactAssetImage('assets/images/populartest.png'),
                           ),
                           shape: ContinuousRectangleBorder(
                             borderRadius: BorderRadius.circular(35),

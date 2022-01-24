@@ -18,10 +18,6 @@ Widget popularCard({@required item, @required BuildContext context}) {
       children: [
         Container(
           padding: EdgeInsets.all(1),
-          decoration: BoxDecoration(
-              // color: Colors.white,
-
-              ),
           margin: EdgeInsets.symmetric( vertical: 1),
           height: 130,
           width: 103,
@@ -35,7 +31,6 @@ Widget popularCard({@required item, @required BuildContext context}) {
                     blurRadius: 5,
                     offset: Offset(0, 3), // changes position of shadow
                   ),
-               
                 ],
                 color: Colors.white,
                 shape: ContinuousRectangleBorder(

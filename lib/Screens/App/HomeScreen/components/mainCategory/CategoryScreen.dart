@@ -13,7 +13,6 @@ class CategoryScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 5.0),
           child: Row(
             children: [
-             
               exploreCard(
                 innerColor: Colors.blue[50],
                 color: Color(0xff4BA2D2),

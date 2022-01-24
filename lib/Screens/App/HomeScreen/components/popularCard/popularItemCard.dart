@@ -84,7 +84,7 @@ Widget popularResCard(
                         overflow: TextOverflow.fade,
                         style: TextStyle(
                             fontSize: 15,
-                            
+
                             color: Colors.black87,
                             fontFamily: PrimaryFontName,
                             fontWeight: FontWeight.w700),

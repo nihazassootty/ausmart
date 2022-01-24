@@ -55,8 +55,6 @@ class BannerScreen extends StatelessWidget {
                               getstore
                                   .store.branch.branchMiddleBanner[index].image.image,
                             ),
-                            // image:
-                            //     ExactAssetImage('assets/images/populartest.png'),
                           ),
                         ),
                       ),

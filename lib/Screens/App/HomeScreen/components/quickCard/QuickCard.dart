@@ -49,10 +49,6 @@ Widget quickCard(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Image.asset(
-                //   'assets/images/veg.png',
-                //   fit: BoxFit.cover,
-                // ),
                 Flexible(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 5),
@@ -123,69 +119,6 @@ Widget quickCard(
               ),
             ),
           ),
-          // Offstage(
-          //   offstage: item.storeStatus,
-          //   child: Padding(
-          //     padding: const EdgeInsets.only(left: 10, bottom: 10),
-          //     child: Text(
-          //       "Currently Not Accepting Orders",
-          //       style: TextStyle(
-          //         color: Colors.red,
-          //         fontSize: 10,
-          //         fontWeight: FontWeight.w500,
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          // Offstage(
-          //   offstage: item.storeStatus == false,
-          //   child: Padding(
-          //     padding: const EdgeInsets.only(left: 10, bottom: 10),
-          //     child: Text(
-          //       '${(item.distance / 1000).toStringAsFixed(1)} km | ' +
-          //           item.location.address,
-          //       maxLines: 2,
-          //       style: TextStyle(
-          //         color: Colors.grey[700],
-          //         fontSize: 10,
-          //         fontWeight: FontWeight.w500,
-          //       ),
-          //     ),
-          //   ),
-          // ),
-          // Divider(
-          //   thickness: 1,
-          //   height: 0,
-          //   color: Colors.grey[200],
-          // ),
-          // Expanded(
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //     children: [
-          //       Text(
-          //         '${item.avgCookingTime} mins .',
-          //         style: TextStyle(
-          //           fontSize: 10,
-          //           fontWeight: FontWeight.w800,
-          //         ),
-          //       ),
-          //       Text(
-          //         '₹${item.avgPersonAmt} for two .',
-          //         style: TextStyle(
-          //           fontSize: 10,
-          //           fontWeight: FontWeight.w800,
-          //         ),
-          //       ),
-          //       Text(
-          //         '${outputDate(item.closeTime)} - ${outputDate(item.openTime)}',
-          //         style: TextStyle(
-          //           fontSize: 10,
-          //           fontWeight: FontWeight.w800,
-          //         ),
-          //       )
-          //     ],
-          //   ),
-          // ),
         ],
       ),
     ),

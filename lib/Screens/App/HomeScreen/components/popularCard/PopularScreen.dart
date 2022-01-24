@@ -32,7 +32,6 @@ class PopularScreen extends StatelessWidget {
                               offset:
                                   Offset(0, 0), // changes position of shadow
                             ),
-                            
                           ],
                         ),
                         height: MediaQuery.of(context).size.height / 6.0,
@@ -42,14 +41,7 @@ class PopularScreen extends StatelessWidget {
                           child: ListView.builder(
                             shrinkWrap: true,
                             itemCount: data.category.count,
-                            // physics: NeverScrollableScrollPhysics(),
                             scrollDirection: Axis.horizontal,
-
-                            // gridDelegate:
-                            //     SliverGridDelegateWithFixedCrossAxisCount(
-                            //         mainAxisSpacing: 10,
-                            //         crossAxisSpacing: 4,
-                            //         crossAxisCount: 4),
                             itemBuilder: (BuildContext context, int index) {
                               return popularCard(
                                 item: data.category.data[index],
