@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
-import 'package:ausmart/Screens/App/HomeInnerScreens/AccountScreen.dart';
+import 'package:ausmart/Screens/App/Account/AccountScreen.dart';
 import 'package:ausmart/Screens/App/Cart/CartScreen.dart';
 import 'package:ausmart/Screens/App/HomeScreen/HomeScreen.dart';
 import 'package:ausmart/Screens/App/searchScreen/SearchScreen.dart';

@@ -25,14 +25,12 @@ Widget nearbyCard(
       height: 110,
       margin: EdgeInsets.all(10.0),
       clipBehavior: Clip.antiAlias,
-      // margin: EdgeInsets.symmetric(vertical: 5.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
             color: Color(0x48A0A0A0),
-            // spreadRadius: 2,
             blurRadius: 2,
           )
         ],
@@ -164,9 +162,6 @@ Widget nearbyCard(
                           ),
                   ],
                 ),
-                // Container(
-                //   width: MediaQuery.of(context).size.width * 0.02,
-                // ),
                 Container(
                   padding: EdgeInsets.all(5),
                   decoration: BoxDecoration(

@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 import 'package:ausmart/Commons/TextStyles.dart';
-import 'package:ausmart/Components/popularCard.dart';
+import 'package:ausmart/Screens/App/HomeScreen/components/popularCard/popularItemCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:ausmart/Commons/AppConstants.dart';

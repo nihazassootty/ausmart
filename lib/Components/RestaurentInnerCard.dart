@@ -774,6 +774,7 @@ Widget restaurentInnercard({
                               minValue: 0,
                               maxValue: 80,
                               step: 1,
+                              disabledPopup: true,
                               plusButton: SpinnerButtonStyle(
                                   elevation: 0,
                                   color: Colors.transparent,

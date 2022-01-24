@@ -46,7 +46,7 @@ Widget popularResCard(
             width: 140,
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(
-              color: Colors.red,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(7),
             ),
             child: ColorFiltered(

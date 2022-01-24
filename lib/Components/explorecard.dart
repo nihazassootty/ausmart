@@ -32,10 +32,6 @@ Widget exploreCard(
           shape: ContinuousRectangleBorder(
               borderRadius: BorderRadius.circular(40),
               side: BorderSide(width: 1, color: color)),
-          // image: DecorationImage(
-          //   fit: BoxFit.cover,
-          //   image: AssetImage(image ?? 'assets/images/food.png'),
-          // ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -47,7 +43,6 @@ Widget exploreCard(
             ),
             Text(
               title ?? 'Item',
-              
               style: TextStyle(fontWeight: FontWeight.bold,fontFamily: PrimaryFontName, color: color,fontSize: 13),
               textAlign: TextAlign.center,
             ),

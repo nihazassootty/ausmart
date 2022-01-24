@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ausmart/Commons/zerostate.dart';
-import 'package:ausmart/Components/PopularCard.dart';
+import 'package:ausmart/Screens/App/HomeScreen/components/popularCard/PopularCard.dart';
 import 'package:ausmart/Providers/PopularProvider.dart';
 import 'package:ausmart/Shimmers/categorydummy.dart';
 import 'package:provider/provider.dart';

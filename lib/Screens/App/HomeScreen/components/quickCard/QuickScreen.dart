@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
-import 'package:ausmart/Components/QuickCard.dart';
+import 'package:ausmart/Screens/App/HomeScreen/components/quickCard/QuickCard.dart';
 import 'package:ausmart/Providers/StoreProvider.dart';
 import 'package:ausmart/Shimmers/quickdummy.dart';
 import 'package:provider/provider.dart';
