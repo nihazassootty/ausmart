@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:spinner_input/spinner_input.dart';
 
 Widget marketInnercard({
-  @required item,
+  @required ProductProduct item,
   @required store,
   @required BuildContext context,
 }) {
@@ -200,8 +200,9 @@ Widget marketInnercard({
                       height: 5,
                     ),
                     Visibility(
+                      visible: item.bestSeller,
                       child: Container(
-                        padding: EdgeInsets.all(4),
+                        padding: EdgeInsets.all(3),
                         decoration: BoxDecoration(
                           color: Colors.orangeAccent,
                           borderRadius: BorderRadius.circular(4),

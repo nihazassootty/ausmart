@@ -96,11 +96,11 @@ Widget myOrdersCard({BuildContext context, Datum item}) {
                         child: Text(
                           "Order ID: ${item.orderId}",
                           style: TextStyle(
-                                      fontFamily: PrimaryFontName,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.black87,
-                                      fontSize: 11,
-                                    ),
+                            fontFamily: PrimaryFontName,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black87,
+                            fontSize: 11,
+                          ),
                         ),
                       ),
                     ),
@@ -160,15 +160,23 @@ Widget myOrdersCard({BuildContext context, Datum item}) {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    item.vendor.name,
-                    style: TextStyle(fontFamily: PrimaryFontName,fontWeight: FontWeight.w700,fontSize: 15,color: kDBlack),
+                    item.vendor == null ? 'Vendor not Found!' : item.vendor.name,
+                    style: TextStyle(
+                        fontFamily: PrimaryFontName,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 15,
+                        color: kDBlack),
                   ),
                   SizedBox(
                     height: 3,
                   ),
                   Text(
-                    item.vendor.location.address ?? '--',
-                    style: TextStyle(fontFamily: PrimaryFontName,fontWeight: FontWeight.w500,fontSize: 12,color: kGreyDark),
+                    item.vendor == null ? 'Not Available' : item.vendor.location.address,
+                    style: TextStyle(
+                        fontFamily: PrimaryFontName,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                        color: kGreyDark),
                   ),
                   SizedBox(
                     height: 5,
@@ -179,11 +187,15 @@ Widget myOrdersCard({BuildContext context, Datum item}) {
                     children: [
                       Text(
                         '${item.items.length.toString()}\titems ',
-                        style: TextStyle(fontFamily: PrimaryFontName,fontSize: 12),
+                        style: TextStyle(
+                            fontFamily: PrimaryFontName, fontSize: 12),
                       ),
                       Text(
                         '₹${item.totalAmount.toString()}',
-                        style: TextStyle(fontFamily: PrimaryFontName,fontSize: 14, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                            fontFamily: PrimaryFontName,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600),
                       )
                     ],
                   ),

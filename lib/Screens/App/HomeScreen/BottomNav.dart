@@ -1,3 +1,4 @@
+import 'package:ausmart/Commons/SnackBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
@@ -23,6 +24,19 @@ class _BottomNavigationState extends State<BottomNavigation> {
     });
   }
 
+  DateTime currentBackPressTime;
+
+  Future<bool> onWillPop() {
+    DateTime now = DateTime.now();
+    if (currentBackPressTime == null ||
+        now.difference(currentBackPressTime) > Duration(seconds: 2)) {
+      currentBackPressTime = now;
+      showSnackBar(message: 'Press Again to Exit!', context: context);
+      return Future.value(false);
+    }
+    return Future.value(true);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -36,16 +50,19 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        children: [
-          HomeScreen(),
-          SearchScreen(),
-          CartScreen(
-            back: false,
-          ),
-          AccountScreen()
-        ],
-        index: _currentIndex,
+      body: WillPopScope(
+        onWillPop: onWillPop,
+        child: IndexedStack(
+          children: [
+            HomeScreen(),
+            SearchScreen(),
+            CartScreen(
+              back: false,
+            ),
+            AccountScreen()
+          ],
+          index: _currentIndex,
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
@@ -98,7 +115,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.all(2.0),
-             child: Icon(
+              child: Icon(
                 Icons.shopping_cart_rounded,
                 size: 20,
                 color: Color(0xff444444).withOpacity(0.3),
@@ -115,7 +132,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
             label: '',
           ),
           BottomNavigationBarItem(
-               icon: Padding(
+            icon: Padding(
               padding: const EdgeInsets.all(2.0),
               child: SvgPicture.asset(
                 'assets/svg/acount.svg',
@@ -132,7 +149,6 @@ class _BottomNavigationState extends State<BottomNavigation> {
               ),
             ),
             label: '',
-          
           ),
         ],
       ),
