@@ -98,7 +98,8 @@ class _PopularInnerState extends State<PopularInner> {
                     children: [
                       Container(
                         height: 250,
-                        child: FadeInImage.memoryNetwork(
+                        child:
+                         FadeInImage.memoryNetwork(
                           fit: BoxFit.cover,
                           placeholder:
                               kTransparentImage, // Transparent placeholder while loading image
@@ -126,6 +127,7 @@ class _PopularInnerState extends State<PopularInner> {
                             );
                           },
                         ),
+                    
                       ),
                       SizedBox(
                         height: 250,
