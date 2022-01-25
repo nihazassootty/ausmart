@@ -161,7 +161,7 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                                   isScrollable: true,
                                   indicatorColor: Colors.transparent,
                                   indicator: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
+                                      // borderRadius: BorderRadius.circular(8),
                                       color: Color(0xffECECEC)),
                                   labelStyle: TextStyle(
                                       fontFamily: PrimaryFontName,

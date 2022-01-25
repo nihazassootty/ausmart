@@ -101,7 +101,7 @@ Widget restaurantInfoCard({Vendor restaurant, context}) {
                           ),
                         ),
                         Text(
-                          '${restaurant.location.address}'.toLowerCase(),
+                          '${restaurant.location.landmark}'.toLowerCase(),
                           style: TextStyle(
                             fontFamily: PrimaryFontName,
                             fontSize: 10,

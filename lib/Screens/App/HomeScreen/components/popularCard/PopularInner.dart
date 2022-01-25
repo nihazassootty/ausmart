@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'package:ausmart/Commons/TextStyles.dart';
+import 'package:ausmart/Commons/helpers.dart';
 import 'package:ausmart/Screens/App/HomeScreen/components/popularCard/popularItemCard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -97,9 +98,33 @@ class _PopularInnerState extends State<PopularInner> {
                     children: [
                       Container(
                         height: 250,
-                        child: Image.network(
-                          category.category.banner.image,
+                        child: FadeInImage.memoryNetwork(
                           fit: BoxFit.cover,
+                          placeholder:
+                              kTransparentImage, // Transparent placeholder while loading image
+                          image: category.category.banner.image,
+                          imageErrorBuilder: (context, error, stacktrace) {
+                            return FadeInImage.memoryNetwork(
+                              fit: BoxFit.cover,
+                              placeholder: kTransparentImage,
+                              image: category.category.banner.image,
+                              imageErrorBuilder: (context, error, stacktrace) {
+                                return FadeInImage.memoryNetwork(
+                                  fit: BoxFit.cover,
+                                  placeholder: kTransparentImage,
+                                  image: category.category.banner.image,
+                                  imageErrorBuilder:
+                                      (context, error, stacktrace) {
+                                    return Container(
+                                        child: Image.asset(
+                                      'assets/images/placeholder1.jpg',
+                                      fit: BoxFit.cover,
+                                    ));
+                                  },
+                                );
+                              },
+                            );
+                          },
                         ),
                       ),
                       SizedBox(
@@ -180,8 +205,7 @@ class _PopularInnerState extends State<PopularInner> {
                                 itemBuilder: (context, index) {
                                   var item = category.stores[index];
                                   return popularResCard(
-                                item: item,
-                                context: context);
+                                      item: item, context: context);
                                 }),
                   )
                 ],

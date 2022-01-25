@@ -1,8 +1,8 @@
 // ignore_for_file: non_constant_identifier_names, unused_local_variable
 
 import 'dart:math';
-import 'dart:typed_data';
 
+import 'package:ausmart/Commons/helpers.dart';
 import 'package:ausmart/Models/RestoProductModel%20copy.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,77 +14,12 @@ import 'package:provider/provider.dart';
 import 'package:spinner_input/spinner_input.dart';
 
 Widget restaurentInnercard({
-  @required  item,
+  @required item,
   @required BuildContext context,
-  @required  store,
+  @required store,
 }) {
   final getmodel = Provider.of<CartProvider>(context, listen: false);
-  final Uint8List kTransparentImage = new Uint8List.fromList(<int>[
-    0x89,
-    0x50,
-    0x4E,
-    0x47,
-    0x0D,
-    0x0A,
-    0x1A,
-    0x0A,
-    0x00,
-    0x00,
-    0x00,
-    0x0D,
-    0x49,
-    0x48,
-    0x44,
-    0x52,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x08,
-    0x06,
-    0x00,
-    0x00,
-    0x00,
-    0x1F,
-    0x15,
-    0xC4,
-    0x89,
-    0x00,
-    0x00,
-    0x00,
-    0x0A,
-    0x49,
-    0x44,
-    0x41,
-    0x54,
-    0x78,
-    0x9C,
-    0x63,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x05,
-    0x00,
-    0x01,
-    0x0D,
-    0x0A,
-    0x2D,
-    0xB4,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x49,
-    0x45,
-    0x4E,
-    0x44,
-    0xAE,
-  ]);
+
   return Container(
     height: 111,
     margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -108,14 +43,14 @@ Widget restaurentInnercard({
         Row(
           children: [
             Container(
-              height: 111,
-              width: 130,
-              clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(7),
-              ),
-              child: ColorFiltered(
+                height: 111,
+                width: 130,
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(7),
+                ),
+                child: ColorFiltered(
                   colorFilter: item.status
                       ? ColorFilter.mode(
                           Colors.transparent,
@@ -130,43 +65,50 @@ Widget restaurentInnercard({
                   //   fit: BoxFit.cover,
                   // ),
 
-                  child: FadeInImage.memoryNetwork(
-                    width: 100,
-                    height: 130,
-                    imageCacheWidth: 100 ~/
-                        1, // Used to set cache width as Widget size to avoid decode large image
-                    fit: BoxFit.cover,
-                    placeholder:
-                        kTransparentImage, // Transparent placeholder while loading image
-                    image: item.image.image,
-                    imageErrorBuilder: (context, error, stacktrace) {
-                      // Handle error multiple time when first try is error
-                      return FadeInImage.memoryNetwork(
-                        width: 100,
-                        height: 130,
-                        imageCacheWidth: 100 ~/ 1,
-                        fit: BoxFit.cover,
-                        placeholder: kTransparentImage,
-                        image: item.image.image,
-                        imageErrorBuilder: (context, error, stacktrace) {
-                          return FadeInImage.memoryNetwork(
-                            width: 100,
-                            height: 130,
-                            imageCacheWidth: 100 ~/ 1,
-                            fit: BoxFit.cover,
-                            placeholder: kTransparentImage,
-                            image: item.image.image,
-                            imageErrorBuilder: (context, error, stacktrace) {
-                              return Center(
-                                  child: Image.asset('assets/images/placeholder.jpg'));
-                            },
-                          );
-                        },
-                      );
-                    },
-                  ),
-                  ),
-            ),
+                  child: item.image != null
+                      ? FadeInImage.memoryNetwork(
+                          width: 100,
+                          height: 130,
+                          imageCacheWidth: 100 ~/
+                              1, // Used to set cache width as Widget size to avoid decode large image
+                          fit: BoxFit.cover,
+                          placeholder:
+                              kTransparentImage, // Transparent placeholder while loading image
+                          image: item.image.image,
+                          imageErrorBuilder: (context, error, stacktrace) {
+                            // Handle error multiple time when first try is error
+                            return FadeInImage.memoryNetwork(
+                              width: 100,
+                              height: 130,
+                              imageCacheWidth: 100 ~/ 1,
+                              fit: BoxFit.cover,
+                              placeholder: kTransparentImage,
+                              image: item.image.image,
+                              imageErrorBuilder: (context, error, stacktrace) {
+                                return FadeInImage.memoryNetwork(
+                                  width: 100,
+                                  height: 130,
+                                  imageCacheWidth: 100 ~/ 1,
+                                  fit: BoxFit.cover,
+                                  placeholder: kTransparentImage,
+                                  image: item.image.image,
+                                  imageErrorBuilder:
+                                      (context, error, stacktrace) {
+                                    return Center(
+                                        child: Image.asset(
+                                            'assets/images/placeholder.jpg'));
+                                  },
+                                );
+                              },
+                            );
+                          },
+                        )
+                      : Container(
+                          child: Image.asset(
+                          'assets/images/placeholder1.jpg',
+                          fit: BoxFit.cover,
+                        ),),
+                )),
             Container(
               margin: EdgeInsets.all(9),
               child: Column(
@@ -235,15 +177,13 @@ Widget restaurentInnercard({
                                     fontWeight: FontWeight.bold),
                                 children: <InlineSpan>[
                                   TextSpan(
-                                      text:
-                                          '₹ ' + item.ausmartPrice.toString(),
+                                      text: '₹ ' + item.ausmartPrice.toString(),
                                       style: TextStyle(
                                         fontSize: 13,
                                         fontFamily: 'Quicksand',
                                         fontWeight: FontWeight.bold,
                                         color: Colors.grey[400],
-                                        decoration:
-                                            TextDecoration.lineThrough,
+                                        decoration: TextDecoration.lineThrough,
                                       )),
                                 ],
                               ),
@@ -256,7 +196,6 @@ Widget restaurentInnercard({
                                   color: kDBlack,
                                   fontWeight: FontWeight.bold),
                             ),
-                     
                     ],
                   ),
                 ],
@@ -524,8 +463,7 @@ Widget restaurentInnercard({
                   print(product.addons.toString());
                   List addon = product.addons;
                   List<bool> _isChecked;
-                  _isChecked =
-                      List<bool>.filled(product.addons.length, false);
+                  _isChecked = List<bool>.filled(product.addons.length, false);
                   showModalBottomSheet(
                       backgroundColor: Colors.transparent,
                       context: context,
@@ -547,8 +485,7 @@ Widget restaurentInnercard({
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Expanded(
                                       child: Column(
@@ -635,8 +572,8 @@ Widget restaurentInnercard({
                                                   setState(() {
                                                     addonIndex
                                                         .add(addon[index]);
-                                                    totalprice = totalprice +
-                                                        addonprice;
+                                                    totalprice =
+                                                        totalprice + addonprice;
                                                   });
                                                 }
                                                 if (value == false) {
@@ -645,8 +582,8 @@ Widget restaurentInnercard({
                                                   setState(() {
                                                     addonIndex
                                                         .remove(addon[index]);
-                                                    totalprice = totalprice -
-                                                        addonprice;
+                                                    totalprice =
+                                                        totalprice - addonprice;
                                                   });
                                                 }
                                               },
@@ -759,9 +696,9 @@ Widget restaurentInnercard({
                       )
                     : Consumer<CartProvider>(
                         builder: (context, data, child) {
-                          var qty = data.cart.firstWhere(
-                              (element) => element["id"] == item.id,
-                              orElse: () {
+                          var qty = data.cart
+                              .firstWhere((element) => element["id"] == item.id,
+                                  orElse: () {
                             return null;
                           });
                           return Container(
@@ -801,8 +738,8 @@ Widget restaurentInnercard({
                                     deleteItemCart(item);
                                   });
                                 } else {
-                                  addItemCart(Product, item, value,
-                                      item.addons, ttprice);
+                                  addItemCart(Product, item, value, item.addons,
+                                      ttprice);
                                 }
                               },
                             ),

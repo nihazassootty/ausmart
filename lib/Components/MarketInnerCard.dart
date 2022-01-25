@@ -1,5 +1,5 @@
-import 'dart:typed_data';
 
+import 'package:ausmart/Commons/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:ausmart/Commons/SnackBar.dart';
@@ -14,73 +14,6 @@ Widget marketInnercard({
   @required store,
   @required BuildContext context,
 }) {
-  final Uint8List kTransparentImage = new Uint8List.fromList(<int>[
-    0x89,
-    0x50,
-    0x4E,
-    0x47,
-    0x0D,
-    0x0A,
-    0x1A,
-    0x0A,
-    0x00,
-    0x00,
-    0x00,
-    0x0D,
-    0x49,
-    0x48,
-    0x44,
-    0x52,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x08,
-    0x06,
-    0x00,
-    0x00,
-    0x00,
-    0x1F,
-    0x15,
-    0xC4,
-    0x89,
-    0x00,
-    0x00,
-    0x00,
-    0x0A,
-    0x49,
-    0x44,
-    0x41,
-    0x54,
-    0x78,
-    0x9C,
-    0x63,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x05,
-    0x00,
-    0x01,
-    0x0D,
-    0x0A,
-    0x2D,
-    0xB4,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x49,
-    0x45,
-    0x4E,
-    0x44,
-    0xAE,
-  ]);
-
   final getmarket = Provider.of<CartProvider>(context, listen: false);
   return GestureDetector(
     child: Container(
@@ -114,54 +47,56 @@ Widget marketInnercard({
                   borderRadius: BorderRadius.circular(7),
                 ),
                 child: ColorFiltered(
-                    colorFilter: item.status
-                        ? ColorFilter.mode(
-                            Colors.transparent,
-                            BlendMode.multiply,
-                          )
-                        : ColorFilter.mode(
-                            Colors.grey,
-                            BlendMode.saturation,
-                          ),
-                    // child: Image.network(
-                    //   item.image.image,
-                    //   fit: BoxFit.cover,
-                    // ),
-
-                    child: FadeInImage.memoryNetwork(
-                      width: 100,
-                      height: 130,
-                       // Used to set cache width as Widget size to avoid decode large image
-                      fit: BoxFit.cover,
-                      placeholder:
-                          kTransparentImage, // Transparent placeholder while loading image
-                      image: item.image.image,
-                      imageErrorBuilder: (context, error, stacktrace) {
-                        // Handle error multiple time when first try is error
-                        return FadeInImage.memoryNetwork(
+                  colorFilter: item.status
+                      ? ColorFilter.mode(
+                          Colors.transparent,
+                          BlendMode.multiply,
+                        )
+                      : ColorFilter.mode(
+                          Colors.grey,
+                          BlendMode.saturation,
+                        ),
+                  child: item.image != null
+                      ? FadeInImage.memoryNetwork(
                           width: 100,
                           height: 130,
-                          
+                          // Used to set cache width as Widget size to avoid decode large image
                           fit: BoxFit.cover,
-                          placeholder: kTransparentImage,
+                          placeholder:
+                              kTransparentImage, // Transparent placeholder while loading image
                           image: item.image.image,
                           imageErrorBuilder: (context, error, stacktrace) {
+                            // Handle error multiple time when first try is error
                             return FadeInImage.memoryNetwork(
                               width: 100,
                               height: 130,
-                              
                               fit: BoxFit.cover,
                               placeholder: kTransparentImage,
                               image: item.image.image,
                               imageErrorBuilder: (context, error, stacktrace) {
-                                return Center(
-                                    child: Text('Image Not Available'));
+                                return FadeInImage.memoryNetwork(
+                                  width: 100,
+                                  height: 130,
+                                  fit: BoxFit.cover,
+                                  placeholder: kTransparentImage,
+                                  image: item.image.image,
+                                  imageErrorBuilder:
+                                      (context, error, stacktrace) {
+                                    return Center(
+                                        child: Text('Image Not Available'));
+                                  },
+                                );
                               },
                             );
                           },
-                        );
-                      },
-                    )),
+                        )
+                      : Container(
+                          child: Image.asset(
+                            'assets/images/placeholder1.jpg',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                ),
               ),
               Container(
                 margin: EdgeInsets.all(9),
@@ -416,7 +351,6 @@ Widget marketInnercard({
                                 color: Colors.black54,
                                 borderRadius: BorderRadius.only(
                                     bottomRight: Radius.circular(10)),
-                                
                               ),
                               child: SpinnerInput(
                                 minValue: 0,

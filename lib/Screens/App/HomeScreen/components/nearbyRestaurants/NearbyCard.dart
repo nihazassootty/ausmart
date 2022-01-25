@@ -1,3 +1,4 @@
+import 'package:ausmart/Models/StoreModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
@@ -5,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:ausmart/Screens/App/HomeInnerScreens/restaurants/RestaurentDetails.dart';
 
 Widget nearbyCard(
-    {@required item, @required branch, @required BuildContext context}) {
+    {@required Quick item, @required branch, @required BuildContext context}) {
   var outputDate =
       (date) => DateFormat('hh:mma').format(DateFormat('HH:mm').parse(date));
   return GestureDetector(
@@ -81,15 +82,18 @@ Widget nearbyCard(
                           fontFamily: PrimaryFontName,
                           fontWeight: FontWeight.w600),
                     ),
-                    Text(
-                      item.location.address,
-                      maxLines: 1,
-                      style: TextStyle(
-                          fontFamily: PrimaryFontName,
-                          fontSize: 12,
-                          color: Colors.black45,
-                          fontWeight: FontWeight.w500),
-                      overflow: TextOverflow.ellipsis,
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.4  ,
+                      child: Text(
+                        item.location.address,
+                        maxLines: 2,
+                        style: TextStyle(
+                            fontFamily: PrimaryFontName,
+                            fontSize: 11,
+                            color: Colors.black45,
+                            fontWeight: FontWeight.w500),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                     SizedBox(
                       height: 5,

@@ -1,4 +1,6 @@
+
 import 'package:ausmart/Commons/ColorConstants.dart';
+import 'package:ausmart/Commons/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Models/StoreModel.dart';
@@ -6,6 +8,7 @@ import 'package:ausmart/Screens/App/HomeInnerScreens/restaurants/RestaurentDetai
 
 Widget quickCard(
     {@required Quick item, @required branch, @required BuildContext context}) {
+
   return GestureDetector(
     onTap: () {
       Navigator.push(
@@ -35,10 +38,30 @@ Widget quickCard(
               SizedBox(
                 height: 85,
                 width: MediaQuery.of(context).size.width,
-                child: FadeInImage.assetNetwork(
-                  placeholder: 'assets/images/AusmartLogo.png',
-                  image: item.storeLogo.image,
+                child: FadeInImage.memoryNetwork(
+                  width: 100,
+                  height: 130,
+                  imageCacheWidth: 100 ~/ 1,
                   fit: BoxFit.cover,
+                  placeholder: kTransparentImage,
+                  image: item.storeLogo.image,
+                  imageErrorBuilder: (context, error, stacktrace) {
+                    return FadeInImage.memoryNetwork(
+                      width: 100,
+                      height: 130,
+                      imageCacheWidth: 100 ~/ 1,
+                      fit: BoxFit.cover,
+                      placeholder: kTransparentImage,
+                      image: item.storeLogo.image,
+                      imageErrorBuilder: (context, error, stacktrace) {
+                        return Container(
+                          child: Image.asset(
+                          'assets/images/placeholder.jpg',
+                          fit: BoxFit.cover,
+                        ),);
+                      },
+                    );
+                  },
                 ),
               ),
             ],
@@ -47,7 +70,7 @@ Widget quickCard(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
                   child: Padding(
@@ -70,6 +93,7 @@ Widget quickCard(
                 ),
                 Container(
                   padding: EdgeInsets.all(2),
+                  margin: EdgeInsets.only(top: 5),
                   decoration: BoxDecoration(
                     color: item.rating < 4.0
                         ? Colors.orange[400]

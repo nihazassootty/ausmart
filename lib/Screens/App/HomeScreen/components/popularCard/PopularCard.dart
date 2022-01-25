@@ -59,7 +59,7 @@ Widget popularCard({@required item, @required BuildContext context}) {
                           ],
                         ),
                         child: FadeInImage.assetNetwork(
-                          placeholder: 'assets/images/AusmartLogo.png',
+                          placeholder: 'assets/images/foodPlaceHolder.jpg',
                           image: item.image.image,
                           fit: BoxFit.cover,
                         ),
