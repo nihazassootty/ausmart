@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:ausmart/Commons/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/svg.dart';
@@ -178,7 +179,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                                 Text(
                                                   'Dishes',
                                                   style: TextStyle(
-                                                    fontFamily: PrimaryFontName,
+                                                      fontFamily:
+                                                          PrimaryFontName,
                                                       fontSize: 18,
                                                       fontWeight:
                                                           FontWeight.w600),
@@ -188,7 +190,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                                       .toString(),
                                                   style: TextStyle(
                                                       fontSize: 18,
-                                                      fontFamily: PrimaryFontName,
+                                                      fontFamily:
+                                                          PrimaryFontName,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -246,8 +249,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                       height: 40,
                                                       width: 40,
                                                       color: Colors.white,
-                                                      child: e.image.image !=
-                                                              null
+                                                      child: e.image != null
                                                           ? Image.network(
                                                               e?.image?.image,
                                                               fit: BoxFit.fill,
@@ -287,7 +289,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                                           maxLines: 1,
                                                           style: TextStyle(
                                                               fontSize: 16,
-                                                              fontFamily: PrimaryFontName,
+                                                              fontFamily:
+                                                                  PrimaryFontName,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w500),
@@ -298,10 +301,10 @@ class _SearchScreenState extends State<SearchScreen> {
                                                           child: Text(
                                                             'Currently not Deliverable to your area',
                                                             style: TextStyle(
-                                                              
                                                                 color: Colors
                                                                     .red[900],
-                                                                fontFamily: PrimaryFontName,
+                                                                fontFamily:
+                                                                    PrimaryFontName,
                                                                 fontSize: 10,
                                                                 fontWeight:
                                                                     FontWeight
@@ -313,7 +316,10 @@ class _SearchScreenState extends State<SearchScreen> {
                                                           e.vendor != null
                                                               ? e.vendor.name
                                                               : '',
-                                                          style: TextStyle(fontFamily: PrimaryFontName,),
+                                                          style: TextStyle(
+                                                            fontFamily:
+                                                                PrimaryFontName,
+                                                          ),
                                                         ),
                                                         Offstage(
                                                           offstage: e.status,
@@ -322,7 +328,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                                             style: TextStyle(
                                                                 color: Colors
                                                                     .red[900],
-                                                               fontFamily: PrimaryFontName,
+                                                                fontFamily:
+                                                                    PrimaryFontName,
                                                                 fontSize: 10,
                                                                 fontWeight:
                                                                     FontWeight
@@ -361,14 +368,14 @@ class _SearchScreenState extends State<SearchScreen> {
                                     Text(
                                       'Restaurants',
                                       style: TextStyle(
-                                        fontFamily: PrimaryFontName,
+                                          fontFamily: PrimaryFontName,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w600),
                                     ),
                                     Text(
                                       result.vendors.count.toString(),
                                       style: TextStyle(
-                                        fontFamily: PrimaryFontName,
+                                          fontFamily: PrimaryFontName,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w600),
                                     ),
@@ -420,13 +427,62 @@ class _SearchScreenState extends State<SearchScreen> {
                                                   height: 40,
                                                   width: 40,
                                                   color: Colors.white,
-                                                  child: e.storeLogo.image !=
-                                                          null
-                                                      ? Image.network(
-                                                          e?.storeLogo?.image,
-                                                          fit: BoxFit.cover,
-                                                          width: 50,
+                                                  child: e.storeLogo != null
+                                                      // ? Image.network(
+                                                      //     e?.storeLogo?.image,
+                                                      //     fit: BoxFit.cover,
+                                                      //     width: 50,
+                                                      //     height: 50,
+                                                      //   )
+                                                      ? FadeInImage
+                                                          .memoryNetwork(
                                                           height: 50,
+                                                          width: 50,
+                                                          fit: BoxFit.cover,
+                                                          placeholder:
+                                                              kTransparentImage, // Transparent placeholder while loading image
+                                                          image: e?.storeLogo
+                                                              ?.image,
+                                                          imageErrorBuilder:
+                                                              (context, error,
+                                                                  stacktrace) {
+                                                            return FadeInImage
+                                                                .memoryNetwork(
+                                                              fit: BoxFit.cover,
+                                                              placeholder:
+                                                                  kTransparentImage,
+                                                              image: e
+                                                                  ?.storeLogo
+                                                                  ?.image,
+                                                              imageErrorBuilder:
+                                                                  (context,
+                                                                      error,
+                                                                      stacktrace) {
+                                                                return FadeInImage
+                                                                    .memoryNetwork(
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                  placeholder:
+                                                                      kTransparentImage,
+                                                                  image: e
+                                                                      ?.storeLogo
+                                                                      ?.image,
+                                                                  imageErrorBuilder:
+                                                                      (context,
+                                                                          error,
+                                                                          stacktrace) {
+                                                                    return Container(
+                                                                        child: Image
+                                                                            .asset(
+                                                                      'assets/images/placeholder1.jpg',
+                                                                      fit: BoxFit
+                                                                          .cover,
+                                                                    ));
+                                                                  },
+                                                                );
+                                                              },
+                                                            );
+                                                          },
                                                         )
                                                       : Container(
                                                           height: 20,
@@ -454,24 +510,30 @@ class _SearchScreenState extends State<SearchScreen> {
                                                     Text(
                                                       e.name,
                                                       maxLines: 1,
-                                                      style: TextStyle(fontFamily: PrimaryFontName,),
+                                                      style: TextStyle(
+                                                        fontFamily:
+                                                            PrimaryFontName,
+                                                      ),
                                                     ),
                                                     Text(
                                                       e.location.address ?? '',
                                                       maxLines: 1,
                                                       overflow:
                                                           TextOverflow.ellipsis,
-                                                      style: TextStyle(fontFamily: PrimaryFontName,),
+                                                      style: TextStyle(
+                                                        fontFamily:
+                                                            PrimaryFontName,
+                                                      ),
                                                     ),
                                                     Offstage(
                                                       offstage: e.storeStatus,
                                                       child: Text(
                                                         'Currently not available',
                                                         style: TextStyle(
-
                                                             color:
                                                                 Colors.red[900],
-                                                            fontFamily: PrimaryFontName,
+                                                            fontFamily:
+                                                                PrimaryFontName,
                                                             fontSize: 10,
                                                             fontWeight:
                                                                 FontWeight

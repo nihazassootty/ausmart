@@ -57,8 +57,8 @@ class _SplashScreenState extends State<SplashScreen> {
     // startTime();
     //TODO: check if user have latest version
 
-    checkUpdate();
-    // checkLogin();
+    // checkUpdate();
+    checkLogin();
     super.initState();
   }
 

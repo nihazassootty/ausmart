@@ -110,7 +110,7 @@ Widget popularResCard({@required item, @required BuildContext context}) {
                           Text(
                             item.name,
                             softWrap: true,
-                            maxLines: 2,
+                            maxLines: 2,  
                             overflow: TextOverflow.fade,
                             style: TextStyle(
                                 fontSize: 15, 
