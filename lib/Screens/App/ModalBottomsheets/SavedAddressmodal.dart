@@ -1,3 +1,5 @@
+import 'package:ausmart/Providers/GroceryProvider.dart';
+import 'package:ausmart/Providers/MeatnFishProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
@@ -30,17 +32,26 @@ class _SavedAddressState extends State<SavedAddress> {
 
     Provider.of<GetDataProvider>(context, listen: false)
         .setCustomerLocation(seleceted);
-    if (!widget.isEdit)
+    if (!widget.isEdit){
       Provider.of<StoreProvider>(context, listen: false).fetchStores(
         latitude: address["coordinates"][0],
         longitude: address["coordinates"][1],
         context: context,
       );
+    Provider.of<GroceryProvider>(context, listen: false).fetchGrocery(
+        latitude: address["coordinates"][0],
+        longitude: address["coordinates"][1],
+        context: context);
+        Provider.of<MeetnFishProvider>(context, listen: false).fetchMeatNFish(
+         latitude: address["coordinates"][0],
+        longitude: address["coordinates"][1],
+          context: context);
     showSnackBar(
       duration: Duration(milliseconds: 1000),
       message: "Delivery Location Updated",
       context: context,
     );
+    }
     // if (widget.callback != null) widget.callback();
     // Navigator.pop(context);
   }

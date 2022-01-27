@@ -1,3 +1,5 @@
+import 'package:ausmart/Providers/GroceryProvider.dart';
+import 'package:ausmart/Providers/MeatnFishProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:flutter_svg/svg.dart';
@@ -53,6 +55,14 @@ class _SavedPageState extends State<SavedPage> {
           .setCustomerLocation(check);
       Provider.of<StoreProvider>(context, listen: false).fetchStores(
           latitude: position.latitude, longitude: position.longitude);
+      Provider.of<GroceryProvider>(context, listen: false).fetchGrocery(
+          latitude: position.latitude,
+          longitude: position.longitude,
+          context: context);
+      Provider.of<MeetnFishProvider>(context, listen: false).fetchMeatNFish(
+          latitude: position.latitude,
+          longitude: position.longitude,
+          context: context);
     }
     if (permission == LocationPermission.whileInUse) {
       Position position = await Geolocator.getCurrentPosition(
@@ -70,6 +80,14 @@ class _SavedPageState extends State<SavedPage> {
           .setCustomerLocation(check);
       Provider.of<StoreProvider>(context, listen: false).fetchStores(
           latitude: position.latitude, longitude: position.longitude);
+      Provider.of<GroceryProvider>(context, listen: false).fetchGrocery(
+          latitude: position.latitude,
+          longitude: position.longitude,
+          context: context);
+      Provider.of<MeetnFishProvider>(context, listen: false).fetchMeatNFish(
+          latitude: position.latitude,
+          longitude: position.longitude,
+          context: context);
     }
     Navigator.pop(context);
   }
@@ -88,6 +106,14 @@ class _SavedPageState extends State<SavedPage> {
     Provider.of<StoreProvider>(context, listen: false).fetchStores(
         latitude: address["coordinates"][1],
         longitude: address["coordinates"][0]);
+    Provider.of<GroceryProvider>(context, listen: false).fetchGrocery(
+        latitude: address["coordinates"][1],
+        longitude: address["coordinates"][0],
+        context: context);
+    Provider.of<MeetnFishProvider>(context, listen: false).fetchMeatNFish(
+        latitude: address["coordinates"][1],
+        longitude: address["coordinates"][0],
+        context: context);
     Navigator.pop(
       context,
     );
