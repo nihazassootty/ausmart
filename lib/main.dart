@@ -50,6 +50,7 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, deviceType) {
         return MaterialApp(
           title: 'Ausmart',
+          color: Colors.white,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             fontFamily: 'Proxima Nova',

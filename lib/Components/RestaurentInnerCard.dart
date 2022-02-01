@@ -42,49 +42,43 @@ Widget restaurentInnercard({
       children: [
         Row(
           children: [
-            Container(
-                height: 111,
-                width: 130,
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(7),
-                ),
-                child: ColorFiltered(
-                  colorFilter: item.status
-                      ? ColorFilter.mode(
-                          Colors.transparent,
-                          BlendMode.multiply,
-                        )
-                      : ColorFilter.mode(
-                          Colors.grey,
-                          BlendMode.saturation,
-                        ),
-                  // child: Image.network(
-                  //   item.image.image,
-                  //   fit: BoxFit.cover,
-                  // ),
+            item.image == null
+                ? Container()
+                : Container(
+                    height: 111,
+                    width: 130,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(7),
+                    ),
+                    child: ColorFiltered(
+                      colorFilter: item.status
+                          ? ColorFilter.mode(
+                              Colors.transparent,
+                              BlendMode.multiply,
+                            )
+                          : ColorFilter.mode(
+                              Colors.grey,
+                              BlendMode.saturation,
+                            ),
+                      // child: Image.network(
+                      //   item.image.image,
+                      //   fit: BoxFit.cover,
+                      // ),
 
-                  child: item.image != null
-                      ? FadeInImage.memoryNetwork(
-                          width: 100,
-                          height: 130,
-                          imageCacheWidth: 100 ~/
-                              1, // Used to set cache width as Widget size to avoid decode large image
-                          fit: BoxFit.cover,
-                          placeholder:
-                              kTransparentImage, // Transparent placeholder while loading image
-                          image: item.image.image,
-                          imageErrorBuilder: (context, error, stacktrace) {
-                            // Handle error multiple time when first try is error
-                            return FadeInImage.memoryNetwork(
+                      child: 
+                           FadeInImage.memoryNetwork(
                               width: 100,
                               height: 130,
-                              imageCacheWidth: 100 ~/ 1,
+                              imageCacheWidth: 100 ~/
+                                  1, // Used to set cache width as Widget size to avoid decode large image
                               fit: BoxFit.cover,
-                              placeholder: kTransparentImage,
+                              placeholder:
+                                  kTransparentImage, // Transparent placeholder while loading image
                               image: item.image.image,
                               imageErrorBuilder: (context, error, stacktrace) {
+                                // Handle error multiple time when first try is error
                                 return FadeInImage.memoryNetwork(
                                   width: 100,
                                   height: 130,
@@ -94,28 +88,38 @@ Widget restaurentInnercard({
                                   image: item.image.image,
                                   imageErrorBuilder:
                                       (context, error, stacktrace) {
-                                    return Center(
-                                        child: Image.asset(
-                                            'assets/images/placeholder.jpg'));
+                                    return FadeInImage.memoryNetwork(
+                                      width: 100,
+                                      height: 130,
+                                      imageCacheWidth: 100 ~/ 1,
+                                      fit: BoxFit.cover,
+                                      placeholder: kTransparentImage,
+                                      image: item.image.image,
+                                      imageErrorBuilder:
+                                          (context, error, stacktrace) {
+                                        return Center(
+                                            child: Image.asset(
+                                                'assets/images/placeholder.jpg'));
+                                      },
+                                    );
                                   },
                                 );
                               },
-                            );
-                          },
-                        )
-                      : Container(
-                          child: Image.asset(
-                          'assets/images/placeholder1.jpg',
-                          fit: BoxFit.cover,
-                        ),),
-                )),
+                            )
+                          // : Container(
+                          //     child: Image.asset(
+                          //       'assets/images/placeholder1.jpg',
+                          //       fit: BoxFit.cover,
+                          //     ),
+                          //   ),
+                    )),
             Container(
               margin: EdgeInsets.all(9),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width / 3.8,
+                    width: item.image == null?  MediaQuery.of(context).size.width / 2: MediaQuery.of(context).size.width / 3,
                     child: Text(
                       item.name,
                       // softWrap: false,
@@ -156,7 +160,7 @@ Widget restaurentInnercard({
                         'Best Seller',
                         style: TextStyle(
                             fontFamily: PrimaryFontName,
-                            fontSize: 8,
+                            fontSize: 7,
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),

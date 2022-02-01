@@ -131,7 +131,7 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
       body: loading
           ? nearrestaurantShimmer()
           : SingleChildScrollView(
-            child: Column(
+              child: Column(
                 children: [
                   restaurantInfoCard(
                       restaurant: restaurant.vendor, context: context),
@@ -216,11 +216,8 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                               ),
                               Consumer<CartProvider>(
                                 builder: (context, data, child) => LimitedBox(
-                                  maxHeight: 
-                                  // data.cart.length == 0
-                                  //     ? MediaQuery.of(context).size.height / 2.2
-                                  //     :
-                                       MediaQuery.of(context).size.height /2,
+                                  maxHeight:
+                                      MediaQuery.of(context).size.height / 2,
                                   child: Container(
                                     height: MediaQuery.of(context)
                                         .size
@@ -268,7 +265,7 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                                                   //         .height /
                                                   //     2,
                                                   color: Colors.white,
-                                               
+
                                                   child: Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.start,
@@ -296,7 +293,7 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                         ),
                 ],
               ),
-          ),
+            ),
     );
   }
 }
