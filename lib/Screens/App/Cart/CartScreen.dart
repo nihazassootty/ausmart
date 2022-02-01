@@ -656,8 +656,8 @@ class _CartScreenState extends State<CartScreen> {
                         Padding(
                           padding: const EdgeInsets.all(11),
                           child: DottedBorder(
-                            color: Colors.grey[350],
-                            strokeWidth: 1,
+                            color: Colors.grey[500],
+                            strokeWidth: 1.2,
                             // borderType: BorderType.RRect,
                             dashPattern: [7, 4],
                             radius: Radius.circular(40),
@@ -1619,7 +1619,7 @@ class _CartScreenState extends State<CartScreen> {
                 )
               : BottomAppBar(
                   child: Container(
-                    height: 160,
+                    height: 152,
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
                       color: Colors.white,
