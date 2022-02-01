@@ -6,6 +6,7 @@ import 'package:ausmart/Commons/AppConstants.dart';
 import 'package:ausmart/Models/PromoModel.dart';
 import 'package:ausmart/Providers/GetDataProvider.dart';
 import 'package:ausmart/Screens/App/Cart/PaymentComplete.dart';
+import 'package:ausmart/Screens/App/mapScreen/saved_address.dart';
 import 'package:ausmart/Shimmers/nearbydummy.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -672,7 +673,7 @@ class _CartScreenState extends State<CartScreen> {
                                   fontFamily: PrimaryFontName,
                                   fontWeight: FontWeight.w400,
                                   color: Colors.grey[500],
-                                  fontSize: 13,
+                                  fontSize: 14,
                                 ),
                                 border: InputBorder.none,
                               ),
@@ -1618,7 +1619,7 @@ class _CartScreenState extends State<CartScreen> {
                 )
               : BottomAppBar(
                   child: Container(
-                    height: 105,
+                    height: 160,
                     clipBehavior: Clip.antiAlias,
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -1628,9 +1629,67 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 10),
+                          horizontal: 10, vertical: 0),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 10),
+                                          child: Text(
+                                            "Delivery Address",
+                                            style: kPink14,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.maps_home_work_outlined,
+                                          color: kPinkColor,
+                                          size: 20,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SavedPage(),
+                                              ));
+                                        },
+                                        child: Text(
+                                          "Change Address",
+                                          style: kPink143,
+                                        )),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                          Consumer<GetDataProvider>(
+                              builder: (context, details, child) => Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 0),
+                                  child: Text(
+                                    details.fullAddress,
+                                    textAlign: TextAlign.left,
+                                    overflow: TextOverflow.clip,
+                                    style: TextStyle(fontSize: 11),
+                                  ))),
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 5),
