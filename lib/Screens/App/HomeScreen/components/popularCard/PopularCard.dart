@@ -17,19 +17,19 @@ Widget popularCard({@required item, @required BuildContext context}) {
     child: Stack(
       children: [
         Container(
-          padding: EdgeInsets.all(1),
-          margin: EdgeInsets.symmetric( vertical: 1),
-          height: 130,
+          //padding: EdgeInsets.all(1),
+          //margin: EdgeInsets.symmetric(vertical: 1),
+          height: 150,
           width: 103,
           child: Container(
-            margin: EdgeInsets.all(8),
+            margin: EdgeInsets.all(5),
             decoration: ShapeDecoration(
                 shadows: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.08),
-                    spreadRadius: 8,
+                    spreadRadius: 3,
                     blurRadius: 5,
-                    offset: Offset(0, 3), // changes position of shadow
+                    offset: Offset(0, 0), // changes position of shadow
                   ),
                 ],
                 color: Colors.white,
@@ -44,7 +44,7 @@ Widget popularCard({@required item, @required BuildContext context}) {
                     child: Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: Container(
-                        padding: EdgeInsets.all(5),
+                        //padding: EdgeInsets.all(5),
                         clipBehavior: Clip.antiAlias,
                         decoration: BoxDecoration(
                           color: Colors.white,

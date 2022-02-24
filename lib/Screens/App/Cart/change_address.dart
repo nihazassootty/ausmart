@@ -14,6 +14,7 @@ import 'package:ausmart/Providers/StoreProvider.dart';
 import 'package:ausmart/Screens/App/mapScreen/MapScreen.dart';
 import 'package:ausmart/Screens/App/Cart/CheckoutScreen.dart';
 import 'package:provider/provider.dart';
+import 'package:geocoder2/geocoder2.dart';
 
 class ChangeAddress extends StatefulWidget {
   ChangeAddress({Key key}) : super(key: key);
@@ -45,6 +46,12 @@ class _ChangeAddressState extends State<ChangeAddress> {
       var addresses = await Geocoder.google(googleAPI)
           .findAddressesFromCoordinates(
               Coordinates(position.latitude, position.longitude));
+      // FetchGeocoder fetchGeocoder = await Geocoder2.getAddressFromCoordinates(
+      //     latitude: position.latitude,
+      //     longitude: position.longitude,
+      //     googleMapApiKey: googleAPI);
+      // var first1 = fetchGeocoder.results.first;
+      // var addresses = first1.formattedAddress;
 
       var check = {
         "currentAddress": 'Current Location',

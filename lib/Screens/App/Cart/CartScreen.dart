@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:ausmart/Commons/AppConstants.dart';
 import 'package:ausmart/Models/PromoModel.dart';
 import 'package:ausmart/Providers/GetDataProvider.dart';
+import 'package:ausmart/Screens/App/Cart/CheckoutScreen.dart';
 import 'package:ausmart/Screens/App/Cart/PaymentComplete.dart';
 import 'package:ausmart/Screens/App/mapScreen/saved_address.dart';
 import 'package:ausmart/Shimmers/nearbydummy.dart';
@@ -66,7 +67,7 @@ class _CartScreenState extends State<CartScreen> {
     );
 
     var result = json.decode(response.body);
-
+    print(response.statusCode);
     if (response.statusCode == 200) {
       Provider.of<CartProvider>(context, listen: false).clearItem(context);
 
@@ -1081,7 +1082,7 @@ class _CartScreenState extends State<CartScreen> {
                                                 ),
                                                 Text(
                                                   mainDiscount == 0
-                                                      ? "x Not Applied"
+                                                      ? "-"
                                                       : '₹ ' +
                                                           mainDiscount
                                                               .toStringAsFixed(
@@ -1742,14 +1743,14 @@ class _CartScreenState extends State<CartScreen> {
                                   charge,
                                   _value,
                                 );
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => CheckoutScreen(
-                                //       tip: value,
-                                //     ),
-                                //   ),
-                                // );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CheckoutScreen(
+                                      tip: value,
+                                    ),
+                                  ),
+                                );
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.green,

@@ -225,7 +225,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFFEFEFE),
- 
       bottomNavigationBar: cartBottomCard(),
       body: Consumer<StoreProvider>(
         builder: (context, data, child) {
@@ -377,12 +376,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                 ),
-                                TopBanner(),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                BannerScreen(),
                                 PopularScreen(),
                                 QuickScreen(),
-                                BannerScreen(),
+                                TopBanner(),
                                 SizedBox(
-                                  height: 5,
+                                  height: 10,
                                 ),
                                 CategoryScreen(),
                                 SizedBox(

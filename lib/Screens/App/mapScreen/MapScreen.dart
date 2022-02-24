@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:ausmart/Screens/App/mapScreen/mapSeachScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,7 +17,8 @@ import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MapScreen extends StatefulWidget {
-  MapScreen({Key key}) : super(key: key);
+  var result;
+  MapScreen({Key key, this.result}) : super(key: key);
 
   @override
   _MapScreenState createState() => _MapScreenState();
@@ -69,7 +71,10 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
       setState(() {
         address = currentAddress;
         currentLocation = CameraPosition(
-          target: LatLng(position.latitude, position.longitude),
+          target: widget.result == null
+              ? LatLng(position.latitude, position.longitude)
+              : LatLng(widget.result["geometry"]["location"]["lat"],
+                  widget.result["geometry"]["location"]["lng"]),
           zoom: 19,
         );
         loading = false;
@@ -93,7 +98,10 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
       setState(() {
         address = currentAddress;
         currentLocation = CameraPosition(
-          target: LatLng(position.latitude, position.longitude),
+          target: widget.result == null
+              ? LatLng(position.latitude, position.longitude)
+              : LatLng(widget.result["geometry"]["location"]["lat"],
+                  widget.result["geometry"]["location"]["lng"]),
           zoom: 19,
         );
         loading = false;
@@ -212,7 +220,8 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
                       'Select delivery location.',
                       style: TextStyle(
                         fontSize: 15,
-fontFamily: PrimaryFontName,                        fontWeight: FontWeight.w600,
+                        fontFamily: PrimaryFontName,
+                        fontWeight: FontWeight.w600,
                         color: Colors.black,
                       ),
                     ),
@@ -239,7 +248,8 @@ fontFamily: PrimaryFontName,                        fontWeight: FontWeight.w600,
                               maxLines: 1,
                               style: TextStyle(
                                   fontSize: 17,
-fontFamily: PrimaryFontName,                                  fontWeight: FontWeight.bold),
+                                  fontFamily: PrimaryFontName,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                           if (confirm)
@@ -253,7 +263,8 @@ fontFamily: PrimaryFontName,                                  fontWeight: FontWe
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 12,
-fontFamily: PrimaryFontName,                                      fontWeight: FontWeight.bold),
+                                      fontFamily: PrimaryFontName,
+                                      fontWeight: FontWeight.bold),
                                 ),
                                 onPressed: () {
                                   setState(() {
@@ -296,7 +307,8 @@ fontFamily: PrimaryFontName,                                      fontWeight: Fo
                             maxLines: 2,
                             style: TextStyle(
                                 fontSize: 13,
-fontFamily: PrimaryFontName,                                color: kGreyLight,
+                                fontFamily: PrimaryFontName,
+                                color: kGreyLight,
                                 fontWeight: FontWeight.w600),
                           ),
                     SizedBox(
@@ -376,7 +388,9 @@ fontFamily: PrimaryFontName,                                color: kGreyLight,
                                                   'Home',
                                                   style: TextStyle(
                                                       color: Colors.black,
-fontFamily: PrimaryFontName,                                                      fontSize: 14,
+                                                      fontFamily:
+                                                          PrimaryFontName,
+                                                      fontSize: 14,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -421,7 +435,9 @@ fontFamily: PrimaryFontName,                                                    
                                                   'Work',
                                                   style: TextStyle(
                                                       color: Colors.black,
-fontFamily: PrimaryFontName,                                                      fontSize: 14,
+                                                      fontFamily:
+                                                          PrimaryFontName,
+                                                      fontSize: 14,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -475,7 +491,8 @@ fontFamily: PrimaryFontName,                                                    
                                       : 'Confirm Location',
                               style: TextStyle(
                                   color: Colors.white,
-fontFamily: PrimaryFontName,                                  fontWeight: FontWeight.w700),
+                                  fontFamily: PrimaryFontName,
+                                  fontWeight: FontWeight.w700),
                             ),
                           ),
                         ),
@@ -495,7 +512,8 @@ fontFamily: PrimaryFontName,                                  fontWeight: FontWe
                 Container(
                   // constraints: BoxConstraints.tight(Size(30, 30)),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40),
+                    border: Border.all(color: Colors.grey, width: .5),
+                    borderRadius: BorderRadius.circular(10),
                     color: Colors.white,
                   ),
                   child: IconButton(
@@ -509,49 +527,50 @@ fontFamily: PrimaryFontName,                                  fontWeight: FontWe
                     iconSize: 16,
                   ),
                 ),
-                // SizedBox(
-                //   width: 10,
-                // ),
-                // Container(
-                //   width: 340,
-                //   height: 50,
-                //   // constraints: BoxConstraints.tight(Size(30, 30)),
-                //   decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(10),
-                //     color: kWhiteColor,
-                //   ),
-                //   child: GestureDetector(
-                //     onTap: () {
-                //       Navigator.pushReplacement(context,
-                //           MaterialPageRoute(builder: (context) => MapSearch()));
-                //     },
-                //     child: TextField(
-                //       enabled: false,
-                //       autofocus: false,
-                //       // focusNode: false,
+                SizedBox(
+                  width: 5,
+                ),
+                Container(
+                  width: 340,
+                  height: 50,
+                  // constraints: BoxConstraints.tight(Size(30, 30)),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey, width: .5),
+                    borderRadius: BorderRadius.circular(10),
+                    color: kWhiteColor,
+                  ),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => MapSearch()));
+                    },
+                    child: TextField(
+                      enabled: false,
+                      autofocus: false,
+                      // focusNode: false,
 
-                //       // controller: searchController,
-                //       decoration: InputDecoration(
-                //         contentPadding: EdgeInsets.only(left: 10),
-                //         suffixIcon: Icon(
-                //           Icons.search,
-                //           color: kPinkColor,
-                //         ),
-                //         // filled: true,
-                //         border: OutlineInputBorder(
-                //           borderRadius: BorderRadius.circular(10),
-                //           borderSide:
-                //               BorderSide(width: 0, style: BorderStyle.none),
-                //         ),
-                //         hintText: 'Search for your location',
-                //         hintStyle: kTextgrey,
-                //       ),
-                //       // onChanged: (val) {
-                //       //   findPlace(val);
-                //       // },
-                //     ),
-                //   ),
-                // ),
+                      // controller: searchController,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(left: 10),
+                        suffixIcon: Icon(
+                          Icons.search,
+                          color: kPinkColor,
+                        ),
+                        // filled: true,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide:
+                              BorderSide(width: 0, style: BorderStyle.none),
+                        ),
+                        hintText: 'Search for your location',
+                        hintStyle: kTextgrey,
+                      ),
+                      // onChanged: (val) {
+                      //   findPlace(val);
+                      // },
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

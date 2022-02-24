@@ -945,7 +945,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       });
 
       var data = jsonDecode(response.body);
-
+      print(response.statusCode);
       if (response.statusCode == 200) {
         setState(() {
           isServicable = true;
@@ -1161,7 +1161,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           SizedBox(
                             height: 10,
                           ),
-                        
                           SizedBox(
                             height: 10,
                           ),
@@ -1409,7 +1408,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                               child: Text(
                                 "Place Order",
                                 style: TextStyle(
-fontFamily: PrimaryFontName,                                  fontSize: 15,
+                                  fontFamily: PrimaryFontName,
+                                  fontSize: 15,
                                   color: Color(0xffffffff),
                                 ),
                               ),

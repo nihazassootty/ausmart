@@ -43,22 +43,24 @@ class QuickScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 165,
-                    width: MediaQuery.of(context).size.width,
-                    child: ListView.builder(
-                      padding: EdgeInsets.only(left: 8),
+                  Padding(
+                    padding: EdgeInsets.all(15),
+                    child: GridView.builder(
                       shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: getstore.store.quick.length,
-                      itemBuilder: (context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: quickCard(
-                            item: getstore.store.quick[index],
-                            branch: getstore.store.branch.id,
-                            context: context,
-                          ),
+                      physics: NeverScrollableScrollPhysics(),
+                      //scrollDirection: Axis.horizontal,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          mainAxisSpacing: 15,
+                          crossAxisSpacing: 15,
+                          crossAxisCount: 3),
+                      itemCount: getstore.store.quick.length <= 6
+                          ? getstore.store.quick.length
+                          : 6,
+                      itemBuilder: (BuildContext context, int index) {
+                        return quickCard(
+                          item: getstore.store.quick[index],
+                          branch: getstore.store.branch.id,
+                          context: context,
                         );
                       },
                     ),

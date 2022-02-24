@@ -28,7 +28,7 @@ packages:
       name: carousel_slider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "4.0.0"
   change_app_package_name:
     dependency: "direct main"
     description:
@@ -212,6 +212,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.1"
+  geocoder2:
+    dependency: "direct main"
+    description:
+      name: geocoder2
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   geolocator:
     dependency: "direct main"
     description:
@@ -757,5 +764,5 @@ packages:
     source: hosted
     version: "5.3.1"
 sdks:
-  dart: ">=2.14.0 <3.0.0"
+  dart: ">=2.15.0 <3.0.0"
   flutter: ">=2.5.0"

@@ -1,4 +1,3 @@
-
 import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:ausmart/Commons/helpers.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import 'package:ausmart/Screens/App/HomeInnerScreens/restaurants/RestaurentDetai
 
 Widget quickCard(
     {@required Quick item, @required branch, @required BuildContext context}) {
-
   return GestureDetector(
     onTap: () {
       Navigator.push(
@@ -18,7 +16,7 @@ Widget quickCard(
           ));
     },
     child: Container(
-      width: 150,
+      width: 100,
       clipBehavior: Clip.antiAlias,
       decoration: ShapeDecoration(
         color: Colors.white,
@@ -36,11 +34,11 @@ Widget quickCard(
           Stack(
             children: [
               SizedBox(
-                height: 85,
+                height: 75,
                 width: MediaQuery.of(context).size.width,
                 child: FadeInImage.memoryNetwork(
                   width: 100,
-                  height: 130,
+                  height: 120,
                   imageCacheWidth: 100 ~/ 1,
                   fit: BoxFit.cover,
                   placeholder: kTransparentImage,
@@ -56,9 +54,10 @@ Widget quickCard(
                       imageErrorBuilder: (context, error, stacktrace) {
                         return Container(
                           child: Image.asset(
-                          'assets/images/placeholder.jpg',
-                          fit: BoxFit.cover,
-                        ),);
+                            'assets/images/placeholder.jpg',
+                            fit: BoxFit.cover,
+                          ),
+                        );
                       },
                     );
                   },
@@ -67,7 +66,7 @@ Widget quickCard(
             ],
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,23 +125,23 @@ Widget quickCard(
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Container(
-              width: 110,
-              child: Text(
-                item.location.address,
-                style: TextStyle(
-                  fontFamily: PrimaryFontName,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xff333333).withOpacity(0.6),
-                  fontSize: 12,
-                ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 10),
+          //   child: Container(
+          //     width: 110,
+          //     child: Text(
+          //       item.location.address,
+          //       style: TextStyle(
+          //         fontFamily: PrimaryFontName,
+          //         fontWeight: FontWeight.w400,
+          //         color: Color(0xff333333).withOpacity(0.6),
+          //         fontSize: 12,
+          //       ),
+          //       maxLines: 1,
+          //       overflow: TextOverflow.ellipsis,
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     ),
