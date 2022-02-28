@@ -9,7 +9,7 @@ import 'package:ausmart/Screens/App/mapScreen/saved_address.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:geocoder/geocoder.dart';
+//import 'package:geocoder/geocoder.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:ausmart/Commons/AppConstants.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
@@ -28,6 +28,7 @@ import 'package:provider/provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:geocoder2/geocoder2.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -63,15 +64,21 @@ class _HomeScreenState extends State<HomeScreen> {
       }
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
-      var addresses =
-          await Geocoder.google(googleAPI).findAddressesFromCoordinates(
-        Coordinates(position.latitude, position.longitude),
-      );
+      // var addresses =
+      //     await Geocoder.google(googleAPI).findAddressesFromCoordinates(
+      //   Coordinates(position.latitude, position.longitude),
+      // );
+      GeoData data = await Geocoder2.getDataFromCoordinates(
+          latitude: position.latitude,
+          longitude: position.longitude,
+          googleMapApiKey: googleAPI);
+      //var first1 = fetchGeocoder.results.first;
+      var addresses = data.address;
       var check = {
         "address": 'Current Location',
         "latitude": position.latitude,
         "longitude": position.longitude,
-        "fullAddress": addresses.first.addressLine
+        "fullAddress": addresses
       };
       Provider.of<GetDataProvider>(context, listen: false)
           .setCustomerLocation(check);
@@ -92,14 +99,20 @@ class _HomeScreenState extends State<HomeScreen> {
     if (permission == LocationPermission.whileInUse) {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
-      var addresses = await Geocoder.google(googleAPI)
-          .findAddressesFromCoordinates(
-              Coordinates(position.latitude, position.longitude));
+      // var addresses = await Geocoder.google(googleAPI)
+      //     .findAddressesFromCoordinates(
+      //         Coordinates(position.latitude, position.longitude));
+      GeoData data = await Geocoder2.getDataFromCoordinates(
+          latitude: position.latitude,
+          longitude: position.longitude,
+          googleMapApiKey: googleAPI);
+      //var first1 = fetchGeocoder.results.first;
+      var addresses = data.address;
       var check = {
         "address": 'Current Location',
         "latitude": position.latitude,
         "longitude": position.longitude,
-        "fullAddress": addresses.first.addressLine
+        "fullAddress": addresses
       };
 
       Provider.of<GetDataProvider>(context, listen: false)
@@ -121,14 +134,20 @@ class _HomeScreenState extends State<HomeScreen> {
     if (permission == LocationPermission.always) {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
-      var addresses = await Geocoder.google(googleAPI)
-          .findAddressesFromCoordinates(
-              Coordinates(position.latitude, position.longitude));
+      // var addresses = await Geocoder.google(googleAPI)
+      //     .findAddressesFromCoordinates(
+      //         Coordinates(position.latitude, position.longitude));
+      GeoData data = await Geocoder2.getDataFromCoordinates(
+          latitude: position.latitude,
+          longitude: position.longitude,
+          googleMapApiKey: googleAPI);
+      //var first1 = fetchGeocoder.results.first;
+      var addresses = data.address;
       var check = {
         "address": 'Current Location',
         "latitude": position.latitude,
         "longitude": position.longitude,
-        "fullAddress": addresses.first.addressLine
+        "fullAddress": addresses
       };
 
       Provider.of<GetDataProvider>(context, listen: false)
@@ -287,7 +306,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               child: Container(
-                                height: 45,
+                                height: 55,
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(
                                   color: Color(0xFF01D46F),
@@ -301,19 +320,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: Icon(
                                         Icons.location_on,
                                         color: kWhiteColor,
-                                        size: 20,
+                                        size: 25,
                                       ),
                                     ),
                                     Text(
                                       "Enter your Location",
-                                      style: kText12white,
+                                      style: kText12white.copyWith(
+                                        fontSize: 14,
+                                      ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.all(5.0),
                                       child: Icon(
                                         Icons.expand_more_outlined,
                                         color: kWhiteColor,
-                                        size: 20,
+                                        size: 30,
                                       ),
                                     ),
                                   ],
@@ -380,6 +401,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   height: 10,
                                 ),
                                 BannerScreen(),
+                                SizedBox(
+                                  height: 10,
+                                ),
                                 PopularScreen(),
                                 QuickScreen(),
                                 TopBanner(),

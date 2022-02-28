@@ -2,9 +2,10 @@
 
 import 'package:ausmart/Screens/App/mapScreen/mapSeachScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoder/geocoder.dart';
+//import 'package:geocoder/geocoder.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:geocoder2/geocoder2.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ausmart/Commons/AppConstants.dart';
@@ -30,7 +31,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   CameraPosition currentLocation = CameraPosition(
     target: LatLng(10.00110011, 76.00110011),
-    zoom: 19,
+    zoom: 15,
   );
   bool mapLoading = true;
   bool confirm = false;
@@ -57,15 +58,21 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
       }
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
-      var addresses = await Geocoder.google(googleAPI)
-          .findAddressesFromCoordinates(Coordinates(
-              currentLocation.target.latitude,
-              currentLocation.target.longitude));
+      // var addresses = await Geocoder.google(googleAPI)
+      //     .findAddressesFromCoordinates(Coordinates(
+      //         currentLocation.target.latitude,
+      //         currentLocation.target.longitude));
+      GeoData data = await Geocoder2.getDataFromCoordinates(
+          latitude: position.latitude,
+          longitude: position.longitude,
+          googleMapApiKey: googleAPI);
+      //var first1 = fetchGeocoder.results.first;
+      var addresses = data.address;
       var currentAddress = {
         "latitude": position.latitude,
         "longitude": position.longitude,
-        "smallAddress": addresses.first.featureName,
-        "fullAddress": addresses.first.addressLine
+        "smallAddress": addresses,
+        "fullAddress": addresses
       };
 
       setState(() {
@@ -84,15 +91,21 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
     if (permission == LocationPermission.whileInUse) {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
-      var addresses = await Geocoder.google(googleAPI)
-          .findAddressesFromCoordinates(Coordinates(
-              currentLocation.target.latitude,
-              currentLocation.target.longitude));
+      // var addresses = await Geocoder.google(googleAPI)
+      //     .findAddressesFromCoordinates(Coordinates(
+      //         currentLocation.target.latitude,
+      //         currentLocation.target.longitude));
+      GeoData data = await Geocoder2.getDataFromCoordinates(
+          latitude: position.latitude,
+          longitude: position.longitude,
+          googleMapApiKey: googleAPI);
+      //var first1 = fetchGeocoder.results.first;
+      var addresses = data.address;
       var currentAddress = {
         "latitude": position.latitude,
         "longitude": position.longitude,
-        "smallAddress": addresses.first.featureName,
-        "fullAddress": addresses.first.addressLine
+        "smallAddress": addresses,
+        "fullAddress": addresses
       };
 
       setState(() {
@@ -102,7 +115,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
               ? LatLng(position.latitude, position.longitude)
               : LatLng(widget.result["geometry"]["location"]["lat"],
                   widget.result["geometry"]["location"]["lng"]),
-          zoom: 19,
+          zoom: 15,
         );
         loading = false;
         mapLoading = false;
@@ -111,14 +124,20 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
   }
 
   Future _getNewLocation() async {
-    var addresses = await Geocoder.google(googleAPI)
-        .findAddressesFromCoordinates(Coordinates(
-            currentLocation.target.latitude, currentLocation.target.longitude));
+    // var addresses = await Geocoder.google(googleAPI)
+    //     .findAddressesFromCoordinates(Coordinates(
+    //         currentLocation.target.latitude, currentLocation.target.longitude));
+    GeoData data = await Geocoder2.getDataFromCoordinates(
+        latitude: currentLocation.target.latitude,
+        longitude: currentLocation.target.longitude,
+        googleMapApiKey: googleAPI);
+    //var first1 = fetchGeocoder.results.first;
+    var addresses = data.address;
     var currentAddress = {
       "latitude": currentLocation.target.latitude,
       "longitude": currentLocation.target.longitude,
-      "fullAddress": addresses.first.addressLine,
-      "smallAddress": addresses.first.featureName,
+      "fullAddress": addresses,
+      "smallAddress": addresses,
     };
     setState(() {
       address = currentAddress;

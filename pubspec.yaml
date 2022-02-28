@@ -38,7 +38,7 @@ dependencies:
   google_maps_flutter: ^2.0.6
   permission_handler: ^8.1.2
   geolocator: ^7.7.0
-  geocoder: ^0.2.1
+  # geocoder: ^0.2.1
   provider: ^6.0.1
   http: ^0.13.3
   spinner_input: ^0.1.2
@@ -48,7 +48,7 @@ dependencies:
   shared_preferences: ^2.0.5
   scrollable_positioned_list: ^0.2.3
   google_fonts: ^2.1.0
-  # razorpay_flutter: ^1.2.7
+  razorpay_flutter: ^1.2.7
   material_floating_search_bar: ^0.3.6
   dotted_border: 
   url_launcher: ^6.0.17

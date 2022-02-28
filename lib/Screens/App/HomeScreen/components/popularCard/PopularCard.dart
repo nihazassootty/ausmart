@@ -22,7 +22,7 @@ Widget popularCard({@required item, @required BuildContext context}) {
           height: 150,
           width: 103,
           child: Container(
-            margin: EdgeInsets.all(5),
+            margin: EdgeInsets.all(3),
             decoration: ShapeDecoration(
                 shadows: [
                   BoxShadow(
@@ -37,12 +37,12 @@ Widget popularCard({@required item, @required BuildContext context}) {
                   borderRadius: BorderRadius.circular(32.0),
                 )),
             child: Padding(
-              padding: const EdgeInsets.all(3.0),
+              padding: const EdgeInsets.only(top: 3),
               child: Column(
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.all(2.0),
+                      padding: const EdgeInsets.all(0.0),
                       child: Container(
                         //padding: EdgeInsets.all(5),
                         clipBehavior: Clip.antiAlias,
@@ -67,7 +67,7 @@ Widget popularCard({@required item, @required BuildContext context}) {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 10, top: 5),
+                    padding: const EdgeInsets.only(bottom: 5, top: 5),
                     child: Text(
                       item.name,
                       textAlign: TextAlign.center,
@@ -75,7 +75,7 @@ Widget popularCard({@required item, @required BuildContext context}) {
                         fontFamily: PrimaryFontName,
                         fontWeight: FontWeight.w600,
                         color: Color(0xFF444444),
-                        fontSize: 12,
+                        fontSize: 11,
                       ),
                     ),
                   ),

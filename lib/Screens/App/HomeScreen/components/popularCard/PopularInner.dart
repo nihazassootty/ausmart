@@ -98,8 +98,7 @@ class _PopularInnerState extends State<PopularInner> {
                     children: [
                       Container(
                         height: 250,
-                        child:
-                         FadeInImage.memoryNetwork(
+                        child: FadeInImage.memoryNetwork(
                           fit: BoxFit.cover,
                           placeholder:
                               kTransparentImage, // Transparent placeholder while loading image
@@ -127,7 +126,6 @@ class _PopularInnerState extends State<PopularInner> {
                             );
                           },
                         ),
-                    
                       ),
                       SizedBox(
                         height: 250,
@@ -148,11 +146,11 @@ class _PopularInnerState extends State<PopularInner> {
                               child: Text(
                                 category.category.name,
                                 style: TextStyle(
-                                  fontSize: 24,
-                                  fontFamily: PrimaryFontName,
-                                  letterSpacing: 0.8,
-                                  color: Colors.white,
-                                ),
+                                    fontSize: 24,
+                                    fontFamily: PrimaryFontName,
+                                    letterSpacing: 0.8,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
                             Padding(

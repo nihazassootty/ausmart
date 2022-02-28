@@ -14,7 +14,7 @@ class TopBanner extends StatelessWidget {
               height: 160,
               width: MediaQuery.of(context).size.width,
               child: ListView.builder(
-                  padding: EdgeInsets.all(15),
+                  padding: EdgeInsets.all(10),
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: getstore.store.branch.branchBanner.length,

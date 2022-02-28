@@ -1,3 +1,4 @@
+import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:flutter/material.dart';
 import 'package:ausmart/Commons/zerostate.dart';
 import 'package:ausmart/Screens/App/HomeScreen/components/popularCard/PopularCard.dart';
@@ -16,24 +17,56 @@ class PopularScreen extends StatelessWidget {
                     icon: 'assets/svg/norestaurant.svg',
                     head: 'Sorry!',
                     sub: 'No Restaurant is found')
-                : Container(
-                    padding: EdgeInsets.all(8),
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      //scrollDirection: Axis.horizontal,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          mainAxisSpacing: 0,
-                          crossAxisSpacing: 0,
-                          crossAxisCount: 4),
-                      itemCount: data.category.count,
-                      itemBuilder: (BuildContext context, int index) {
-                        return popularCard(
-                          item: data.category.data[index],
-                          context: context,
-                        );
-                      },
-                    ),
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: RichText(
+                          textAlign: TextAlign.justify,
+                          text: TextSpan(
+                            text: "Popular",
+                            style: TextStyle(
+                              fontFamily: PrimaryFontName,
+                              fontWeight: FontWeight.w800,
+                              fontSize: 22,
+                              color: Color(0xff444444),
+                            ),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: "\tFoods",
+                                style: TextStyle(
+                                  fontSize: 22,
+                                  fontFamily: PrimaryFontName,
+                                  fontWeight: FontWeight.w800,
+                                  color: Color(0xff444444),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        child: GridView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          //scrollDirection: Axis.horizontal,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  mainAxisSpacing: 0,
+                                  crossAxisSpacing: 0,
+                                  crossAxisCount: 4),
+                          itemCount: data.category.count,
+                          itemBuilder: (BuildContext context, int index) {
+                            return popularCard(
+                              item: data.category.data[index],
+                              context: context,
+                            );
+                          },
+                        ),
+                      ),
+                    ],
                   )
         // Padding(
         //     padding: const EdgeInsets.only(left: 10),

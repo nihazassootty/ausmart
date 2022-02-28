@@ -12,7 +12,7 @@ import 'package:ausmart/Providers/GetDataProvider.dart';
 import 'package:ausmart/Screens/App/Cart/PaymentComplete.dart';
 import 'package:ausmart/Shimmers/nearbydummy.dart';
 import 'package:provider/provider.dart';
-// import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 // // ignore: must_be_immutable
 // class CheckoutScreen extends StatefulWidget {
 //   double discountedTotal;
@@ -869,25 +869,104 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   bool isServicable = true;
   int errorCode;
   dynamic charge = 0;
+  bool isProcessing = false;
+  Razorpay _razorpay;
 
+  Future<String> generateOrderId(double amount) async {
+    var headers = {
+      'content-type': 'application/json',
+      'Authorization':
+          'Basic ' + base64Encode(utf8.encode('$razorpayKey:$razorpaySecret')),
+    };
+    final Uri url = Uri.https(
+      "api.razorpay.com",
+      "/v1/orders",
+    );
+    var data =
+        '{ "amount": ${amount * 100}, "currency": "INR", "receipt": "receipt#R1", "payment_capture": 1 }';
+    final response = await http.post(url, headers: headers, body: data);
+    if (response.statusCode != 200)
+      throw Exception('http.post error: statusCode= ${response.statusCode}');
+    return json.decode(response.body)['id'].toString();
+  }
+
+  ///
   void placeorder(itemtotal, totalpayable, deliverycharge, paymentType) async {
     var getcart = Provider.of<CartProvider>(context, listen: false);
     var getuser = Provider.of<GetDataProvider>(context, listen: false);
-    Map<String, dynamic> data = {
-      "vendor": getcart.store["storeId"],
-      "vendorType": getcart.store["type"],
-      "items": getcart.cart,
-      "contactNumber": getuser.get.customer.user.username,
-      "tip": widget.tip,
-      "deliveryCharge": deliverycharge,
-      "discount": widget.discount,
-      "paymentType": paymentType,
-      "address": getuser.address
-    };
+    setState(() {
+      isProcessing = true;
+    });
 
+    if (paymentType == null) {
+      setState(() {
+        isProcessing = false;
+      });
+      return showSnackBar(
+          message: 'Please select payment method', context: context);
+    }
+    if (paymentType == 'online') {
+      // print("here"+totalpayable.toString());
+      generateOrderId(totalpayable)
+          .then((value) => openCheckout(value, getuser));
+
+      //online payment here
+    } else {
+      Map<String, dynamic> data = {
+        "vendor": getcart.store["storeId"],
+        "vendorType": getcart.store["type"],
+        "items": getcart.cart,
+        "contactNumber": getuser.get.customer.user.username,
+        "tip": widget.tip,
+        "deliveryCharge": deliverycharge,
+        "discount": widget.discount,
+        "paymentType": paymentType,
+        "address": getuser.address
+      };
+
+      FlutterSecureStorage storage = FlutterSecureStorage();
+      final String token = await storage.read(key: "token");
+      final Uri url = Uri.https(baseUrl, apiUrl + "/order");
+
+      final response = await http.post(
+        url,
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": "Bearer $token"
+        },
+        body: jsonEncode(data),
+      );
+
+      var result = json.decode(response.body);
+
+      if (response.statusCode == 200) {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PaymentComplete(
+                orderData: result["data"]["orderId"],
+                orderId: result["data"]["_id"],
+              ),
+            ),
+            (route) => false);
+        Provider.of<CartProvider>(context, listen: false).clearItem(context);
+      } else {
+        showSnackBar(
+          duration: Duration(milliseconds: 100),
+          context: context,
+          message: "Order Cannot be placed,try again",
+        );
+      }
+    }
+  }
+
+  //////////////
+  Future placeorderOnline(body) async {
     FlutterSecureStorage storage = FlutterSecureStorage();
     final String token = await storage.read(key: "token");
     final Uri url = Uri.https(baseUrl, apiUrl + "/order");
+    print("heloo" + url.toString());
 
     final response = await http.post(
       url,
@@ -896,11 +975,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         "Accept": "application/json",
         "Authorization": "Bearer $token"
       },
-      body: jsonEncode(data),
+      body: jsonEncode(body),
     );
-
     var result = json.decode(response.body);
-
+    print(body.toString());
     if (response.statusCode == 200) {
       Navigator.pushAndRemoveUntil(
           context,
@@ -921,6 +999,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     }
   }
 
+  ////////////
   Future deliverycharge({latitude, longitude, restaurentid}) async {
     setState(() {
       loading = true;
@@ -974,6 +1053,53 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         restaurentid: getcartmodel.store["storeId"]);
   }
 
+  //////////////
+  Future _onlinePayment(PaymentSuccessResponse response) async {
+    var cart = Provider.of<CartProvider>(context, listen: false);
+    var user = Provider.of<GetDataProvider>(context, listen: false);
+    var body = {
+      // "note": note,
+      "vendor": cart.store["storeId"],
+      "items": cart.cart,
+      "vendorType": cart.store["type"],
+      "number": user.get.customer.user.username,
+      "paymentType": _value,
+      "address": user.address,
+      "contactNumber": user.get.customer.user.username,
+      "tip": widget.tip,
+      "deliveryCharge": charge,
+      "discount": widget.discount,
+      "paymentRazorpay": {
+        "orderId": response.orderId,
+        "paymentId": response.paymentId,
+        "signature": response.signature
+      }
+    };
+    placeorderOnline(body);
+  }
+
+  void openCheckout(value, GetDataProvider user) async {
+    var options = {
+      'key': '$razorpayKey',
+      "order_id": value,
+      "name": user.get.customer.name,
+      'description': 'Ausmart',
+      'prefill': {
+        'contact': user.get.customer.user.username,
+        'email': user.get.customer.email,
+      },
+    };
+    try {
+      _razorpay.open(options);
+    } catch (e) {
+      print('here');
+      setState(() {
+        isProcessing = false;
+      });
+      debugPrint(e);
+    }
+  }
+
   void initState() {
     super.initState();
     final getmodel = Provider.of<GetDataProvider>(context, listen: false);
@@ -982,6 +1108,15 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         latitude: getmodel.latitude,
         longitude: getmodel.longitude,
         restaurentid: getcartmodel.store["storeId"]);
+    _razorpay = Razorpay();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS,
+        (PaymentSuccessResponse response) => _onlinePayment(response));
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR,
+        (PaymentFailureResponse response) {
+      setState(() {
+        isProcessing = false;
+      });
+    });
   }
 
   TextEditingController _instructionController;

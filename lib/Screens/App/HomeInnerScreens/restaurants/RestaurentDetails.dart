@@ -93,7 +93,6 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
   }
 
   TabController _tabController;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -218,73 +217,67 @@ class _RestaurentDetailState extends State<RestaurentDetail> {
                                 builder: (context, data, child) => LimitedBox(
                                   maxHeight:
                                       MediaQuery.of(context).size.height / 2,
-                                  child: Container(
-                                    height: MediaQuery.of(context)
-                                        .size
-                                        .height, //height of TabBarView
-                                    child: TabBarView(
-                                      controller: _tabController,
-                                      children: restaurant.products.map((e) {
-                                        List check = e.products;
-                                        var store = restaurant.vendor;
-                                        return check.isEmpty
-                                            ? Container(
-                                                height: 560,
-                                                child: Center(
-                                                    child: Column(
-                                                  children: [
-                                                    SvgPicture.asset(
-                                                        'assets/svg/noproducts.svg',
-                                                        height: 150),
-                                                    SizedBox(height: 25),
-                                                    Text(
-                                                      'Ohh No!',
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                              PrimaryFontName,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 18),
-                                                    ),
-                                                    SizedBox(height: 10),
-                                                    Text(
-                                                      'This Category has no more items!' ??
-                                                          '',
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                              PrimaryFontName,
-                                                          fontSize: 15),
-                                                    )
-                                                  ],
-                                                )),
-                                              )
-                                            : SingleChildScrollView(
-                                                child: Container(
-                                                  // height: MediaQuery.of(context)
-                                                  //         .size
-                                                  //         .height /
-                                                  //     2,
-                                                  color: Colors.white,
-
+                                  child: TabBarView(
+                                    controller: _tabController,
+                                    children: restaurant.products.map((e) {
+                                      List check = e.products;
+                                      var store = restaurant.vendor;
+                                      return check.isEmpty
+                                          ? Container(
+                                              height: 560,
+                                              child: Center(
                                                   child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: check
-                                                        .map((e) =>
-                                                            restaurentInnercard(
-                                                              item: e,
-                                                              store: store,
-                                                              context: context,
-                                                            ))
-                                                        .toList(),
+                                                children: [
+                                                  SvgPicture.asset(
+                                                      'assets/svg/noproducts.svg',
+                                                      height: 150),
+                                                  SizedBox(height: 25),
+                                                  Text(
+                                                    'Ohh No!',
+                                                    style: TextStyle(
+                                                        fontFamily:
+                                                            PrimaryFontName,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 18),
                                                   ),
+                                                  SizedBox(height: 10),
+                                                  Text(
+                                                    'This Category has no more items!' ??
+                                                        '',
+                                                    style: TextStyle(
+                                                        fontFamily:
+                                                            PrimaryFontName,
+                                                        fontSize: 15),
+                                                  )
+                                                ],
+                                              )),
+                                            )
+                                          : SingleChildScrollView(
+                                              child: Container(
+                                                // height: MediaQuery.of(context)
+                                                //         .size
+                                                //         .height /
+                                                //     2,
+                                                color: Colors.white,
+
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: check
+                                                      .map((e) =>
+                                                          restaurentInnercard(
+                                                            item: e,
+                                                            store: store,
+                                                            context: context,
+                                                          ))
+                                                      .toList(),
                                                 ),
-                                              );
-                                      }).toList(),
-                                    ),
+                                              ),
+                                            );
+                                    }).toList(),
                                   ),
                                 ),
                               )

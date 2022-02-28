@@ -87,7 +87,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               padding: const EdgeInsets.all(2.0),
               child: SvgPicture.asset(
                 'assets/svg/HomeN.svg',
-                height: 23,
+                height: 25,
                 color: kGreenColor,
               ),
             ),
@@ -117,7 +117,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               padding: const EdgeInsets.all(2.0),
               child: Icon(
                 Icons.shopping_cart_rounded,
-                size: 20,
+                size: 22,
                 color: Color(0xff444444).withOpacity(0.3),
               ),
             ),
@@ -125,7 +125,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               padding: const EdgeInsets.all(2.0),
               child: Icon(
                 Icons.shopping_cart_rounded,
-                size: 25,
+                size: 27,
                 color: kGreenColor,
               ),
             ),
@@ -136,15 +136,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
               padding: const EdgeInsets.all(2.0),
               child: SvgPicture.asset(
                 'assets/svg/acount.svg',
-                height: 20,
-                // color: Color(0xff444444).withOpacity(0.3),
+                height: 22,
+                //color: Color(0xff444444).withOpacity(0.3),
               ),
             ),
             activeIcon: Padding(
               padding: const EdgeInsets.all(2.0),
               child: SvgPicture.asset(
                 'assets/svg/acount.svg',
-                height: 25,
+                height: 27,
                 color: kGreenColor,
               ),
             ),

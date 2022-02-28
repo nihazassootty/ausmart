@@ -18,7 +18,7 @@ class NearbyScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: RichText(
                     textAlign: TextAlign.justify,
                     text: TextSpan(
@@ -26,7 +26,7 @@ class NearbyScreen extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: PrimaryFontName,
                         fontWeight: FontWeight.w800,
-                        fontSize: 18,
+                        fontSize: 22,
                         color: Color(0xff444444),
                       ),
                       children: <TextSpan>[
@@ -35,7 +35,7 @@ class NearbyScreen extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: PrimaryFontName,
                             fontWeight: FontWeight.w800,
-                            fontSize: 18,
+                            fontSize: 22,
                             color: Color(0xff444444),
                           ),
                         ),

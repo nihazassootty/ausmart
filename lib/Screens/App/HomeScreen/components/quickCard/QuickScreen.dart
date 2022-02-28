@@ -26,14 +26,14 @@ class QuickScreen extends StatelessWidget {
                         style: TextStyle(
                           fontFamily: PrimaryFontName,
                           fontWeight: FontWeight.w800,
-                          fontSize: 18,
+                          fontSize: 22,
                           color: Color(0xff444444),
                         ),
                         children: <TextSpan>[
                           TextSpan(
                             text: "\tOrder",
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 22,
                               fontFamily: PrimaryFontName,
                               fontWeight: FontWeight.w800,
                               color: Color(0xff444444),
@@ -44,14 +44,14 @@ class QuickScreen extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(15),
+                    padding: EdgeInsets.all(10),
                     child: GridView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       //scrollDirection: Axis.horizontal,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          mainAxisSpacing: 15,
-                          crossAxisSpacing: 15,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
                           crossAxisCount: 3),
                       itemCount: getstore.store.quick.length <= 6
                           ? getstore.store.quick.length

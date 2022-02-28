@@ -10,12 +10,12 @@ class CategoryScreen extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5.0),
+          padding: const EdgeInsets.symmetric(horizontal: 2.0),
           child: Row(
             children: [
               exploreCard(
-                innerColor: Colors.blue[50],
-                color: Color(0xff4BA2D2),
+                  innerColor: Colors.blue[50],
+                  color: Color(0xff4BA2D2),
                   title: 'Hotels',
                   image: 'assets/images/hotels.png',
                   action: () {
@@ -26,8 +26,8 @@ class CategoryScreen extends StatelessWidget {
                     );
                   }),
               exploreCard(
-                innerColor: Colors.orange[50],
-                color: Color(0xffE5755C),
+                  innerColor: Colors.orange[50],
+                  color: Color(0xffE5755C),
                   title: 'Meat & Fish',
                   image: 'assets/images/meat.png',
                   action: () {
@@ -37,8 +37,8 @@ class CategoryScreen extends StatelessWidget {
                     );
                   }),
               exploreCard(
-                innerColor: Colors.green[50],
-                color: Color(0xff3FAB66),
+                  innerColor: Colors.green[50],
+                  color: Color(0xff3FAB66),
                   title: 'Groceries',
                   image: 'assets/images/grocery.png',
                   action: () {

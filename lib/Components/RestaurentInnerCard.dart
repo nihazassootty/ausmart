@@ -53,32 +53,39 @@ Widget restaurentInnercard({
                       borderRadius: BorderRadius.circular(7),
                     ),
                     child: ColorFiltered(
-                      colorFilter: item.status
-                          ? ColorFilter.mode(
-                              Colors.transparent,
-                              BlendMode.multiply,
-                            )
-                          : ColorFilter.mode(
-                              Colors.grey,
-                              BlendMode.saturation,
-                            ),
-                      // child: Image.network(
-                      //   item.image.image,
-                      //   fit: BoxFit.cover,
-                      // ),
+                        colorFilter: item.status
+                            ? ColorFilter.mode(
+                                Colors.transparent,
+                                BlendMode.multiply,
+                              )
+                            : ColorFilter.mode(
+                                Colors.grey,
+                                BlendMode.saturation,
+                              ),
+                        // child: Image.network(
+                        //   item.image.image,
+                        //   fit: BoxFit.cover,
+                        // ),
 
-                      child: 
-                           FadeInImage.memoryNetwork(
+                        child: FadeInImage.memoryNetwork(
+                          width: 100,
+                          height: 130,
+                          imageCacheWidth: 100 ~/
+                              1, // Used to set cache width as Widget size to avoid decode large image
+                          fit: BoxFit.cover,
+                          placeholder:
+                              kTransparentImage, // Transparent placeholder while loading image
+                          image: item.image.image,
+                          imageErrorBuilder: (context, error, stacktrace) {
+                            // Handle error multiple time when first try is error
+                            return FadeInImage.memoryNetwork(
                               width: 100,
                               height: 130,
-                              imageCacheWidth: 100 ~/
-                                  1, // Used to set cache width as Widget size to avoid decode large image
+                              imageCacheWidth: 100 ~/ 1,
                               fit: BoxFit.cover,
-                              placeholder:
-                                  kTransparentImage, // Transparent placeholder while loading image
+                              placeholder: kTransparentImage,
                               image: item.image.image,
                               imageErrorBuilder: (context, error, stacktrace) {
-                                // Handle error multiple time when first try is error
                                 return FadeInImage.memoryNetwork(
                                   width: 100,
                                   height: 130,
@@ -88,38 +95,31 @@ Widget restaurentInnercard({
                                   image: item.image.image,
                                   imageErrorBuilder:
                                       (context, error, stacktrace) {
-                                    return FadeInImage.memoryNetwork(
-                                      width: 100,
-                                      height: 130,
-                                      imageCacheWidth: 100 ~/ 1,
-                                      fit: BoxFit.cover,
-                                      placeholder: kTransparentImage,
-                                      image: item.image.image,
-                                      imageErrorBuilder:
-                                          (context, error, stacktrace) {
-                                        return Center(
-                                            child: Image.asset(
-                                                'assets/images/placeholder.jpg'));
-                                      },
-                                    );
+                                    return Center(
+                                        child: Image.asset(
+                                            'assets/images/placeholder.jpg'));
                                   },
                                 );
                               },
-                            )
-                          // : Container(
-                          //     child: Image.asset(
-                          //       'assets/images/placeholder1.jpg',
-                          //       fit: BoxFit.cover,
-                          //     ),
-                          //   ),
-                    )),
+                            );
+                          },
+                        )
+                        // : Container(
+                        //     child: Image.asset(
+                        //       'assets/images/placeholder1.jpg',
+                        //       fit: BoxFit.cover,
+                        //     ),
+                        //   ),
+                        )),
             Container(
               margin: EdgeInsets.all(9),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    width: item.image == null?  MediaQuery.of(context).size.width / 2: MediaQuery.of(context).size.width / 3,
+                    width: item.image == null
+                        ? MediaQuery.of(context).size.width / 2
+                        : MediaQuery.of(context).size.width / 3,
                     child: Text(
                       item.name,
                       // softWrap: false,
@@ -246,7 +246,7 @@ Widget restaurentInnercard({
                       'ausmartPrice': val.ausmartPrice,
                       'price': totalprice,
                       'offerPrice': val.offerPrice,
-                      'packingCharge': val.packingCharge,
+                      'packingCharge': totalprice,
                       'qty': qty,
                       'addons': addons,
                       'showAddon': val.showAddon,
@@ -265,6 +265,8 @@ Widget restaurentInnercard({
                     //     duration: Duration(milliseconds: 1000),
                     //     context: context,
                     //     message: 'Added to cart');
+                    print(getmodel.store);
+                    print(getmodel.cart);
                   } else if (getmodel.store["storeId"] == store.id &&
                       getmodel.store.isNotEmpty) {
                     Map item = {

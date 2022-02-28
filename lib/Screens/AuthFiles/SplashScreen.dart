@@ -72,7 +72,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Customer customer = res.data.application.customer;
     print(version);
     if (Platform.isAndroid) {
-      if (version != customer.android.version+'.0') {
+      if (version != customer.android.version + '.0') {
         if (customer.android.force) {
           return showDialog(
               barrierDismissible: false,
@@ -449,7 +449,7 @@ class _SplashScreenState extends State<SplashScreen> {
       }
     }
     if (Platform.isAndroid) {
-      if (version == customer.android.version+'.0') {
+      if (version == customer.android.version + '.0') {
         checkLogin();
       } else {
         if (version == customer.ios.version) {

@@ -110,10 +110,10 @@ Widget popularResCard({@required item, @required BuildContext context}) {
                           Text(
                             item.name,
                             softWrap: true,
-                            maxLines: 2,  
+                            maxLines: 2,
                             overflow: TextOverflow.fade,
                             style: TextStyle(
-                                fontSize: 15, 
+                                fontSize: 15,
                                 color: Colors.black87,
                                 fontFamily: PrimaryFontName,
                                 fontWeight: FontWeight.w700),
@@ -132,10 +132,11 @@ Widget popularResCard({@required item, @required BuildContext context}) {
                       ),
                     ),
                     SizedBox(
-                      width: 10,
+                      width: 6,
                     ),
                     Container(
-                      padding: EdgeInsets.all(3),
+                      padding:
+                          EdgeInsets.only(left: 8, right: 8, top: 5, bottom: 5),
                       decoration: BoxDecoration(
                         color: item.rating <= 3.0
                             ? Colors.orange[400]
@@ -148,7 +149,7 @@ Widget popularResCard({@required item, @required BuildContext context}) {
                           Icon(
                             Icons.star,
                             color: Color(0xFFFFFFFF),
-                            size: 8.0,
+                            size: 12.0,
                           ),
                           Text(
                             ' ' + item.rating.toString().padRight(2, '.0'),

@@ -1737,20 +1737,52 @@ class _CartScreenState extends State<CartScreen> {
                                       'delivery charge :$charge' +
                                       'payment type :$_value',
                                 );
-                                placeorder(
-                                  itemtotal,
-                                  grandTotal + charge,
-                                  charge,
-                                  _value,
-                                );
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => CheckoutScreen(
-                                      tip: value,
+                                print(getcartmodel.cart
+                                    .map((item) => item["qty"]));
+                                if (data.store["minimumOrderValue"] != null) {
+                                  getcartmodel.cart
+                                              .map((item) =>
+                                                  item["packingCharge"] *
+                                                  item["qty"])
+                                              .fold(
+                                                  0,
+                                                  (prev, amount) =>
+                                                      prev + amount) >=
+                                          data.store["minimumOrderValue"]
+                                      ? Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                CheckoutScreen(),
+                                          ),
+                                        )
+                                      : showSnackBar(
+                                          message:
+                                              "You have to order minimum amount of ${data.store["minimumOrderValue"]}",
+                                          context: context);
+                                } else {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => CheckoutScreen(),
                                     ),
-                                  ),
-                                );
+                                  );
+                                }
+
+                                // placeorder(
+                                //   itemtotal,
+                                //   grandTotal + charge,
+                                //   charge,
+                                //   _value,
+                                // );
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) => CheckoutScreen(
+                                //       tip: value,
+                                //     ),
+                                //   ),
+                                // );
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.green,
