@@ -1,7 +1,7 @@
 import 'package:ausmart/Providers/GroceryProvider.dart';
 import 'package:ausmart/Providers/MeatnFishProvider.dart';
 import 'package:flutter/material.dart';
-//import 'package:geocoder/geocoder.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:geocoder2/geocoder2.dart';
 import 'package:geolocator/geolocator.dart';
@@ -42,21 +42,21 @@ class _SavedPageState extends State<SavedPage> {
       }
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
-      // var addresses = await Geocoder.google(googleAPI)
-      //     .findAddressesFromCoordinates(
-      //         Coordinates(position.latitude, position.longitude));
-      GeoData data = await Geocoder2.getDataFromCoordinates(
-          latitude: position.latitude,
-          longitude: position.longitude,
-          googleMapApiKey: googleAPI);
-      //var first1 = fetchGeocoder.results.first;
-      var addresses = data.address;
+      var addresses = await Geocoder.google(googleAPI)
+          .findAddressesFromCoordinates(
+              Coordinates(position.latitude, position.longitude));
+      // GeoData data = await Geocoder2.getDataFromCoordinates(
+      //     latitude: position.latitude,
+      //     longitude: position.longitude,
+      //     googleMapApiKey: googleAPI);
+      // //var first1 = fetchGeocoder.results.first;
+      // var addresses = data.address;
 
       var check = {
         "currentAddress": 'Current Location',
         "latitude": position.latitude,
         "longitude": position.longitude,
-        "fullAddress": addresses
+        "fullAddress": addresses.first.addressLine
       };
       Provider.of<GetDataProvider>(context, listen: false)
           .setCustomerLocation(check);
@@ -74,20 +74,20 @@ class _SavedPageState extends State<SavedPage> {
     if (permission == LocationPermission.whileInUse) {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
-      // var addresses = await Geocoder.google(googleAPI)
-      //     .findAddressesFromCoordinates(
-      //         Coordinates(position.latitude, position.longitude));
-      GeoData data = await Geocoder2.getDataFromCoordinates(
-          latitude: position.latitude,
-          longitude: position.longitude,
-          googleMapApiKey: googleAPI);
-      //var first1 = fetchGeocoder.results.first;
-      var addresses = data.address;
+      var addresses = await Geocoder.google(googleAPI)
+          .findAddressesFromCoordinates(
+              Coordinates(position.latitude, position.longitude));
+      // GeoData data = await Geocoder2.getDataFromCoordinates(
+      //     latitude: position.latitude,
+      //     longitude: position.longitude,
+      //     googleMapApiKey: googleAPI);
+      // //var first1 = fetchGeocoder.results.first;
+      // var addresses = data.address;
       var check = {
         "currentAddress": 'Current Location',
         "latitude": position.latitude,
         "longitude": position.longitude,
-        "fullAddress": addresses
+        "fullAddress": addresses.first.addressLine
       };
       Provider.of<GetDataProvider>(context, listen: false)
           .setCustomerLocation(check);

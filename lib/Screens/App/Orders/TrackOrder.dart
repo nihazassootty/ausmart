@@ -67,9 +67,10 @@ class _TrackOrderState extends State<TrackOrder> {
 
       var data = jsonDecode(response.body);
       if (response.statusCode == 200) {
+        print(data);
         setState(() {
           order = SingleOrderModel.fromJson(data);
-
+          print(order);
           loading = false;
           // print(orderdetails);
         });

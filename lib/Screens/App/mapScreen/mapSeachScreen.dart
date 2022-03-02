@@ -6,7 +6,7 @@ import 'package:ausmart/Commons/AppConstants.dart';
 import 'package:ausmart/Commons/ColorConstants.dart';
 import 'package:ausmart/Commons/TextStyles.dart';
 import 'package:ausmart/Models/MapPredictionModel.dart';
-//import 'package:geocoder/geocoder.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:http/http.dart' as http;
 //import 'package:ausmart/Screens/App/Address.dart';
 import 'AddressFromSearch.dart';

@@ -2,7 +2,7 @@
 
 import 'package:ausmart/Screens/App/mapScreen/mapSeachScreen.dart';
 import 'package:flutter/material.dart';
-//import 'package:geocoder/geocoder.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:geocoder2/geocoder2.dart';
@@ -31,7 +31,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   CameraPosition currentLocation = CameraPosition(
     target: LatLng(10.00110011, 76.00110011),
-    zoom: 15,
+    zoom: 19,
   );
   bool mapLoading = true;
   bool confirm = false;
@@ -45,34 +45,24 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
       return showSnackBar(
           duration: Duration(milliseconds: 10000),
           context: context,
-          message: 'Please Enable Location Permission');
+          message: 'Please Access Permission');
     }
-    if (permission == LocationPermission.denied) {
-      LocationPermission newpermission = await Geolocator.requestPermission();
-      if (newpermission == LocationPermission.deniedForever ||
-          newpermission == LocationPermission.denied) {
-        return showSnackBar(
-            duration: Duration(milliseconds: 10000),
-            context: context,
-            message: 'Please Enable Location Permission');
-      }
+    if (permission == LocationPermission.always) {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
-      // var addresses = await Geocoder.google(googleAPI)
-      //     .findAddressesFromCoordinates(Coordinates(
-      //         currentLocation.target.latitude,
-      //         currentLocation.target.longitude));
-      GeoData data = await Geocoder2.getDataFromCoordinates(
-          latitude: position.latitude,
-          longitude: position.longitude,
-          googleMapApiKey: googleAPI);
-      //var first1 = fetchGeocoder.results.first;
-      var addresses = data.address;
+      var addresses = await Geocoder.google(googleAPI)
+          .findAddressesFromCoordinates(Coordinates(
+              currentLocation.target.latitude,
+              currentLocation.target.longitude));
       var currentAddress = {
-        "latitude": position.latitude,
-        "longitude": position.longitude,
-        "smallAddress": addresses,
-        "fullAddress": addresses
+        "latitude": widget.result == null
+            ? position.latitude
+            : widget.result["geometry"]["location"]["lat"],
+        "longitude": widget.result == null
+            ? position.longitude
+            : widget.result["geometry"]["location"]["lng"],
+        "smallAddress": addresses.first.featureName,
+        "fullAddress": addresses.first.addressLine
       };
 
       setState(() {
@@ -88,24 +78,63 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
         mapLoading = false;
       });
     }
+    if (permission == LocationPermission.denied) {
+      LocationPermission newpermission = await Geolocator.requestPermission();
+      if (newpermission == LocationPermission.deniedForever ||
+          newpermission == LocationPermission.denied) {
+        return showSnackBar(
+            duration: Duration(milliseconds: 10000),
+            context: context,
+            message: 'Please Access Permission');
+      }
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      var addresses = await Geocoder.google(googleAPI)
+          .findAddressesFromCoordinates(Coordinates(
+              currentLocation.target.latitude,
+              currentLocation.target.longitude));
+      var currentAddress = {
+        "latitude": widget.result == null
+            ? position.latitude
+            : widget.result["geometry"]["location"]["lat"],
+        "longitude": widget.result == null
+            ? position.longitude
+            : widget.result["geometry"]["location"]["lng"],
+        "smallAddress": addresses.first.featureName,
+        "fullAddress": addresses.first.addressLine
+      };
+
+      setState(
+        () {
+          address = currentAddress;
+          currentLocation = CameraPosition(
+            target: widget.result == null
+                ? LatLng(position.latitude, position.longitude)
+                : LatLng(widget.result["geometry"]["location"]["lat"],
+                    widget.result["geometry"]["location"]["lng"]),
+            zoom: 19,
+          );
+          loading = false;
+          mapLoading = false;
+        },
+      );
+    }
     if (permission == LocationPermission.whileInUse) {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
-      // var addresses = await Geocoder.google(googleAPI)
-      //     .findAddressesFromCoordinates(Coordinates(
-      //         currentLocation.target.latitude,
-      //         currentLocation.target.longitude));
-      GeoData data = await Geocoder2.getDataFromCoordinates(
-          latitude: position.latitude,
-          longitude: position.longitude,
-          googleMapApiKey: googleAPI);
-      //var first1 = fetchGeocoder.results.first;
-      var addresses = data.address;
+      var addresses = await Geocoder.google(googleAPI)
+          .findAddressesFromCoordinates(Coordinates(
+              currentLocation.target.latitude,
+              currentLocation.target.longitude));
       var currentAddress = {
-        "latitude": position.latitude,
-        "longitude": position.longitude,
-        "smallAddress": addresses,
-        "fullAddress": addresses
+        "latitude": widget.result == null
+            ? position.latitude
+            : widget.result["geometry"]["location"]["lat"],
+        "longitude": widget.result == null
+            ? position.longitude
+            : widget.result["geometry"]["location"]["lng"],
+        "smallAddress": addresses.first.featureName,
+        "fullAddress": addresses.first.addressLine
       };
 
       setState(() {
@@ -115,7 +144,7 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
               ? LatLng(position.latitude, position.longitude)
               : LatLng(widget.result["geometry"]["location"]["lat"],
                   widget.result["geometry"]["location"]["lng"]),
-          zoom: 15,
+          zoom: 19,
         );
         loading = false;
         mapLoading = false;
@@ -124,20 +153,20 @@ class _MapScreenState extends State<MapScreen> with TickerProviderStateMixin {
   }
 
   Future _getNewLocation() async {
-    // var addresses = await Geocoder.google(googleAPI)
-    //     .findAddressesFromCoordinates(Coordinates(
-    //         currentLocation.target.latitude, currentLocation.target.longitude));
-    GeoData data = await Geocoder2.getDataFromCoordinates(
-        latitude: currentLocation.target.latitude,
-        longitude: currentLocation.target.longitude,
-        googleMapApiKey: googleAPI);
-    //var first1 = fetchGeocoder.results.first;
-    var addresses = data.address;
+    var addresses = await Geocoder.google(googleAPI)
+        .findAddressesFromCoordinates(Coordinates(
+            currentLocation.target.latitude, currentLocation.target.longitude));
+    // GeoData data = await Geocoder2.getDataFromCoordinates(
+    //     latitude: currentLocation.target.latitude,
+    //     longitude: currentLocation.target.longitude,
+    //     googleMapApiKey: googleAPI);
+    // //var first1 = fetchGeocoder.results.first;
+    // var addresses = data.address;
     var currentAddress = {
       "latitude": currentLocation.target.latitude,
       "longitude": currentLocation.target.longitude,
-      "fullAddress": addresses,
-      "smallAddress": addresses,
+      "fullAddress": addresses.first.addressLine,
+      "smallAddress": addresses.first.featureName,
     };
     setState(() {
       address = currentAddress;
